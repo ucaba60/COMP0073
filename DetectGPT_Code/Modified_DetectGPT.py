@@ -17,11 +17,14 @@ import torch
 from transformers import BertTokenizer, BertForMaskedLM
 import spacy
 from collections import Counter
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 nlp = spacy.load('en_core_web_sm')
 
-model = BertForMaskedLM.from_pretrained('bert-base-uncased')
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertForMaskedLM.from_pretrained('allenai/scibert_scivocab_uncased')
+tokenizer = BertTokenizer.from_pretrained('allenai/scibert_scivocab_uncased')
 
 def calculate_perplexity(text):
     inputs = tokenizer(text, return_tensors='pt')
@@ -76,3 +79,15 @@ avg_sentence_length = total_tokens / total_sentences if total_sentences > 0 else
 avg_perplexity = sum(perplexities) / len(perplexities) if perplexities else 0
 
 
+fig, ax = plt.subplots()
+
+# Generate a histogram with seaborn
+sns.histplot(perplexities, bins=50, ax=ax)
+
+# Set labels and title
+ax.set_xlabel('Perplexity')
+ax.set_ylabel('Frequency')
+ax.set_title('Distribution of Perplexities')
+
+# Show the plot
+plt.show()
