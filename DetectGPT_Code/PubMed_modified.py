@@ -29,11 +29,12 @@ def split_input_into_chunks(input_ids):
     """
     Splits the input into chunks of size `CHUNK_SIZE-2` to allow for adding `[CLS]` and `[SEP]` tokens.
     """
-    chunk_sizes = [(CHUNK_SIZE-2)] * ((input_ids.size(1)) // (CHUNK_SIZE-2))
-    remainder = input_ids.size(1) % (CHUNK_SIZE-2)
+    chunk_sizes = [(CHUNK_SIZE - 2)] * ((input_ids.size(1)) // (CHUNK_SIZE - 2))
+    remainder = input_ids.size(1) % (CHUNK_SIZE - 2)
     if remainder != 0:
         chunk_sizes.append(remainder)
     return input_ids[0].split_with_sizes(chunk_sizes)
+
 
 def compute_perplexity(input_chunks):
     total_perplexity = 0
@@ -53,15 +54,14 @@ def calculate_chunk_perplexity(chunk):
         loss = outputs.loss
     return torch.exp(loss).item()
 
+
 def load_dataset():
     data = datasets.load_dataset(DATASET, SPLIT, split=TRAIN_SPLIT)
     return [(q, (nlp(a), 0)) for q, a in zip(data['question'], data['long_answer'])]
 
 
 def process_data(data):
-    pos_counts, punctuation_counts, function_word_counts, total_tokens, total_sentences, sentence_perplexities = initialize_counters()
-    process_each_answer(data, pos_counts, punctuation_counts, function_word_counts, total_tokens, total_sentences,
-                        sentence_perplexities)
+    process_each_answer(data)
     return pos_counts, punctuation_counts, function_word_counts, total_tokens, total_sentences, sentence_perplexities
 
 
@@ -69,16 +69,17 @@ def initialize_counters():
     return Counter(), Counter(), Counter(), 0, 0, []
 
 
-def process_each_answer(data, pos_counts, punctuation_counts, function_word_counts, total_tokens, total_sentences,
-                        sentence_perplexities):
+def process_each_answer(data):
+    global total_tokens, total_sentences  # Declare these as global variables
     for question, (answer_doc, _) in data:
         total_tokens += len(answer_doc)
         total_sentences += len(list(answer_doc.sents))
-        process_each_sentence(answer_doc, sentence_perplexities)
-        process_each_token(answer_doc, pos_counts, punctuation_counts, function_word_counts)
+        process_each_sentence(answer_doc)
+        process_each_token(answer_doc)
 
 
-def process_each_sentence(answer_doc, sentence_perplexities):
+def process_each_sentence(answer_doc):
+    global sentence_perplexities  # Declare it as global
     for sent in answer_doc.sents:
         sentence_perplexity = calculate_perplexity(sent.text)
         if sentence_perplexity < 0:
@@ -86,7 +87,8 @@ def process_each_sentence(answer_doc, sentence_perplexities):
         sentence_perplexities.append(sentence_perplexity)
 
 
-def process_each_token(answer_doc, pos_counts, punctuation_counts, function_word_counts):
+def process_each_token(answer_doc):
+    global pos_counts, punctuation_counts, function_word_counts  # Declare these as global variables
     for token in answer_doc:
         pos_counts[token.pos_] += 1
         if token.is_punct:
@@ -140,6 +142,15 @@ def plot_perplexities(sentence_perplexities):
     sns.despine()  # Remove the top and right spines
 
     plt.show()
+
+
+pos_counts = Counter()
+punctuation_counts = Counter()
+function_word_counts = Counter()
+total_tokens = 0
+total_sentences = 0
+sentence_perplexities = []
+
 
 
 def main():
