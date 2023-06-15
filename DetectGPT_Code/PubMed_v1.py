@@ -81,7 +81,7 @@ class TextAnalysis:
     def print_results(self, avg_sentence_length, avg_sentence_perplexity):
         print(f"Frequency of adjectives: {self.pos_counts['ADJ']}")
         print(f"Frequency of adverbs: {self.pos_counts['ADV']}")
-        print(f"Frequency of conjunctions: {self.pos_counts['CONJ']}")
+        print(f"Frequency of conjunctions: {self.pos_counts['CCONJ']}")
         print(f"Frequency of nouns: {self.pos_counts['NOUN']}")
         print(f"Frequency of numbers: {self.pos_counts['NUM']}")
         print(f"Frequency of pronouns: {self.pos_counts['PRON']}")
