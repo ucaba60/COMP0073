@@ -1,0 +1,1 @@
+Commas, fullstops are not consistent in WP, so not a good indicator
