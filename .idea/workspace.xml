@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="JupyterNotebook&#10;PubMed - performs extraction, POS Calculation, perplexity count">
-      <change afterPath="$PROJECT_DIR$/DetectGPT_Code/PubMed_modified.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DetectGPT_Code/WritingPrompts.py" afterDir="false" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="NOTES FILE">
+      <change afterPath="$PROJECT_DIR$/DetectGPT_Code/PubMed_and_WP.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/Notebook_v1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/Notebook_v1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/PubMed_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/PubMed_v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/custom_datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/custom_datasets.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +30,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/DetectGPT_Code/PubMed_and_WP.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -181,7 +186,56 @@
       <option name="project" value="LOCAL" />
       <updated>1686729426335</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="JupyterNotebook&#10;PubMed - performs extraction, POS Calculation, perplexity count">
+      <created>1686810014199</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1686810014199</updated>
+    </task>
+    <task id="LOCAL-00015" summary="PubMed works, but haven't tested if values make sense.">
+      <created>1686825081307</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686825081307</updated>
+    </task>
+    <task id="LOCAL-00016" summary="PubMed works, but haven't tested if values make sense.">
+      <created>1686825983771</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1686825983771</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Works, DO TESING IF VALUES ARE OK">
+      <created>1686827292419</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1686827292419</updated>
+    </task>
+    <task id="LOCAL-00018" summary="CONJ IS CCONJ !">
+      <created>1686827457318</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1686827457318</updated>
+    </task>
+    <task id="LOCAL-00019" summary="CONJ IS CCONJ !">
+      <created>1686827801304</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1686827801304</updated>
+    </task>
+    <task id="LOCAL-00020" summary="NOTES FILE">
+      <created>1686902403094</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1686902403094</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,7 +256,11 @@
     <MESSAGE value="Counts POS and Preplexity using BERT" />
     <MESSAGE value="Add jupyternotebook" />
     <MESSAGE value="JupyterNotebook&#10;PubMed - performs extraction, POS Calculation, perplexity count" />
-    <option name="LAST_COMMIT_MESSAGE" value="JupyterNotebook&#10;PubMed - performs extraction, POS Calculation, perplexity count" />
+    <MESSAGE value="PubMed works, but haven't tested if values make sense." />
+    <MESSAGE value="Works, DO TESING IF VALUES ARE OK" />
+    <MESSAGE value="CONJ IS CCONJ !" />
+    <MESSAGE value="NOTES FILE" />
+    <option name="LAST_COMMIT_MESSAGE" value="NOTES FILE" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -215,6 +273,11 @@
           <url>file://$PROJECT_DIR$/DetectGPT_Code/run.py</url>
           <line>265</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DetectGPT_Code/run.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

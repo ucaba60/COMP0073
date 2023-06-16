@@ -5,6 +5,7 @@ from transformers import BertTokenizer, BertForMaskedLM
 import seaborn as sns
 import matplotlib.pyplot as plt
 from datasets import load_dataset
+import random
 
 # Constants
 DATASET = 'pubmed_qa'
@@ -26,36 +27,62 @@ class TextAnalysis:
         self.total_tokens = 0
         self.total_sentences = 0
         self.sentence_perplexities = []
+        self.answer_perplexities = []
 
     def calculate_perplexity(self, text):
-        inputs = self.tokenizer.encode_plus(text, return_tensors='pt')
-        inputs['labels'] = inputs['input_ids'].detach().clone()
+        input_ids = self.tokenizer.encode(text, return_tensors='pt')
 
-        # create mask
-        mask = torch.cat([torch.tensor([1]), torch.ones(inputs['input_ids'].shape[1] - 2), torch.tensor([1])]).bool()
-        inputs['input_ids'].masked_fill_(mask, self.tokenizer.mask_token_id)
+        # We're going to compute the loss over all tokens, so don't ignore any tokens
+        no_ignore_mask = torch.ones_like(input_ids)
 
         with torch.no_grad():
-            loss = self.model(**inputs).loss
-        return torch.exp(loss).item()
+            outputs = self.model(input_ids, attention_mask=(input_ids != self.tokenizer.pad_token_id), labels=input_ids,
+                                 return_dict=True)
+
+        # take the mean of the losses over all tokens (but you could also sum them, depending on what you prefer)
+        perplexity = torch.exp(outputs.loss)
+
+        return perplexity.item()
+
+    def strip_newlines(self, text):
+        return ' '.join(text.split())
 
     def load_dataset(self):
-        data = load_dataset(DATASET, SPLIT, split=TRAIN_SPLIT)
-        filtered_data = [(q, (self.nlp(a), 0)) for q, a in zip(data['question'], data['long_answer']) if
-                         len(self.tokenizer(a)['input_ids']) <= CHUNK_SIZE]
-        print(f"Loaded {len(data)} questions from the dataset")  # debug print
+        raw_data = load_dataset(DATASET, SPLIT, split=TRAIN_SPLIT)
+        data = [(q, a) for q, a in zip(raw_data['question'], raw_data['long_answer']) if
+                len(self.tokenizer(a)['input_ids']) <= CHUNK_SIZE]
+
+        # strip whitespace around each example
+        data = [(q.strip(), a.strip()) for q, a in data]
+
+        # remove newlines from each example
+        data = [(self.strip_newlines(q), self.strip_newlines(a)) for q, a in data]
+
+        # remove duplicates from the data
+        data = list(dict.fromkeys(data))  # deterministic, as opposed to set()
+
+        random.seed(0)
+        random.shuffle(data)
+
+        print(f"Loaded {len(raw_data)} questions from the dataset")  # debug print
         print(
-            f"Filtered down to {len(filtered_data)} questions with answers longer than {CHUNK_SIZE} tokens")  # debug print
-        return filtered_data
+            f"Filtered down to {len(data)} questions with answers longer than {CHUNK_SIZE} tokens")  # debug print
+        return data
 
     def process_data(self, data):
         print(f"Processing {len(data)} items")  # debug print
-        for question, (answer_doc, _) in data:
+        for question, answer in data:
             print(f"Processing question: {question[:100]}...")  # debug print
+            answer_doc = self.nlp(answer)
             self.total_tokens += len(answer_doc)
             self.total_sentences += len(list(answer_doc.sents))
             self.process_each_token(answer_doc)
             self.process_each_sentence(answer_doc)
+
+            answer_perplexity = self.calculate_perplexity(answer)  # calculate perplexity for entire answer
+            if answer_perplexity < 0:
+                print(f"Negative perplexity found: {answer_perplexity} for answer: {answer}")
+            self.answer_perplexities.append(answer_perplexity)  # store the answer's perplexity
 
     def process_each_sentence(self, answer_doc):
         for sent in answer_doc.sents:
@@ -76,9 +103,11 @@ class TextAnalysis:
         avg_sentence_length = self.total_tokens / self.total_sentences if self.total_sentences > 0 else 0
         avg_sentence_perplexity = sum(self.sentence_perplexities) / len(
             self.sentence_perplexities) if self.sentence_perplexities else 0
-        return avg_sentence_length, avg_sentence_perplexity
+        avg_answer_perplexity = sum(self.answer_perplexities) / len(
+            self.answer_perplexities) if self.answer_perplexities else 0
+        return avg_sentence_length, avg_sentence_perplexity, avg_answer_perplexity
 
-    def print_results(self, avg_sentence_length, avg_sentence_perplexity):
+    def print_results(self, avg_sentence_length, avg_sentence_perplexity, avg_answer_perplexity):
         print(f"Frequency of adjectives: {self.pos_counts['ADJ']}")
         print(f"Frequency of adverbs: {self.pos_counts['ADV']}")
         print(f"Frequency of conjunctions: {self.pos_counts['CCONJ']}")
@@ -95,30 +124,35 @@ class TextAnalysis:
         print(f"Frequency of function word 'the': {self.function_word_counts['the']}")
         print(f"Average sentence length: {avg_sentence_length}")
         print(f"Average sentence perplexity: {avg_sentence_perplexity}")
+        print(f"Average answer perplexity: {avg_answer_perplexity}")
 
     def plot_perplexities(self):
-        filtered_sentence_perplexities = [p for p in self.sentence_perplexities if p <= 10]
-
         sns.set_style('white')
-        sns.kdeplot(filtered_sentence_perplexities, color='skyblue', fill=True)
-        plt.title('Density Plot of Sentence Perplexities')
-        plt.xlabel('Perplexity')
-        plt.ylabel('Density')
+        fig, axs = plt.subplots(2)
+        sns.kdeplot(self.sentence_perplexities, color='skyblue', fill=True, ax=axs[0])
+        axs[0].set_title('Density Plot of Sentence Perplexities')
+        axs[0].set_xlabel('Perplexity')
+        axs[0].set_ylabel('Density')
 
-        plt.xlim(0, 10)
-        plt.xticks(range(0, 13))
+        sns.kdeplot(self.answer_perplexities, color='skyblue', fill=True, ax=axs[1])
+        axs[1].set_title('Density Plot of Answer Perplexities')
+        axs[1].set_xlabel('Perplexity')
+        axs[1].set_ylabel('Density')
 
-        plt.ylim(0, 0.2)
-        sns.despine()
+        for ax in axs:
+            ax.set_xlim(0, 10)
+            ax.set_xticks(range(0, 11))
+            sns.despine()
+        plt.tight_layout()
         plt.show()
 
     def run(self):
         pubmed_data = self.load_dataset()
         self.process_data(pubmed_data)
-        avg_sentence_length, avg_sentence_perplexity = self.calculate_averages()
+        avg_sentence_length, avg_sentence_perplexity, avg_answer_perplexity = self.calculate_averages()
 
         print("Results for PubMed Dataset:")
-        self.print_results(avg_sentence_length, avg_sentence_perplexity)
+        self.print_results(avg_sentence_length, avg_sentence_perplexity, avg_answer_perplexity)
         self.plot_perplexities()
 
 
