@@ -97,13 +97,13 @@ def preprocess_data(dataset):
     data = [(strip_newlines(q), a) for q, a in data]
 
     # try to keep only examples with > 250 words
-    if dataset in ['pubmed_qa']:
+    if dataset == 'pubmed_qa':
         print(f"Loaded and pre-processed {len(data)} questions from the dataset")  # debug print
 
-    if dataset in ['writingprompts']:
+    if dataset == 'writingprompts':
         long_data = [(x, y) for x, y in data if len(x.split()) > 250]
         if len(long_data) > 0:
             data = long_data
-    print(f"Loaded and pre-processed {len(data)} prompts/stories from the dataset")  # debug print
+        print(f"Loaded and pre-processed {len(data)} prompts/stories from the dataset")  # debug print
 
     return data

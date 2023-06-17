@@ -3,10 +3,10 @@ from collections import Counter
 from data_generation import preprocess_data
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 import torch
-from torch.nn import functional as F
 from transformers import BertTokenizerFast
 from statistics import mean
-
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # Constants
 nlp = spacy.load('en_core_web_sm')
@@ -39,16 +39,15 @@ def count_pos_tags_and_special_elements(text):
     return dict(pos_counts), dict(punctuation_counts), dict(function_word_counts)
 
 
-def load_and_count(dataset_name):
-    # Load and preprocess the data
-    data = preprocess_data(dataset_name)
-
+def load_and_count(dataset_name, data):
     # Extract texts
     texts, labels = zip(*data)
 
     # Split questions and answers for pubmed_qa dataset
     if dataset_name == 'pubmed_qa':
-        texts = [text.split("Answer:", 1)[1] for text in texts]
+        texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Strip the 'Answer:' prefix
+    elif dataset_name == 'writingprompts':
+        texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Strip the 'Story:' prefix
 
     # Calculate POS tag frequencies for the texts
     pos_frequencies, punctuation_frequencies, function_word_frequencies = zip(
@@ -67,22 +66,7 @@ def load_and_count(dataset_name):
     for function_word_freq in function_word_frequencies:
         overall_function_word_counts += Counter(function_word_freq)
 
-    # Print the frequencies
-    print(f"Frequency of adjectives: {overall_pos_counts['ADJ']}")
-    print(f"Frequency of adverbs: {overall_pos_counts['ADV']}")
-    print(f"Frequency of conjunctions: {overall_pos_counts['CCONJ']}")
-    print(f"Frequency of nouns: {overall_pos_counts['NOUN']}")
-    print(f"Frequency of numbers: {overall_pos_counts['NUM']}")
-    print(f"Frequency of pronouns: {overall_pos_counts['PRON']}")
-    print(f"Frequency of verbs: {overall_pos_counts['VERB']}")
-    print(f"Frequency of commas: {overall_punctuation_counts[',']}")
-    print(f"Frequency of fullstops: {overall_punctuation_counts['.']}")
-    print(f"Frequency of special character '-': {overall_punctuation_counts['-']}")
-    print(f"Frequency of function word 'a': {overall_function_word_counts['a']}")
-    print(f"Frequency of function word 'in': {overall_function_word_counts['in']}")
-    print(f"Frequency of function word 'of': {overall_function_word_counts['of']}")
-    print(f"Frequency of function word 'the': {overall_function_word_counts['the']}")
-
+    return overall_pos_counts, overall_punctuation_counts, overall_function_word_counts
 
 def load_model():
     """
@@ -136,43 +120,74 @@ def calculate_perplexity(text, model, tokenizer):
     return torch.exp(loss).item()  # perplexity is e^loss
 
 
-def calculate_average_perplexities(dataset_name):
-    # Load and preprocess the data
-    data = preprocess_data(dataset_name)
-
-    # Extract texts
+def compute_statistics(dataset_name, data):
     texts, labels = zip(*data)
-
-    # Split questions and answers for pubmed_qa dataset
     if dataset_name == 'pubmed_qa':
-        texts = [text.split("Answer:", 1)[1] for text in texts]
+        texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Stripping the 'Answer: ' string
     elif dataset_name == 'writingprompts':
-        texts = [text.split("Story:", 1)[1] for text in texts]
-
-    # Load the model and tokenizer
+        texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Stripping the 'Story: ' string
     model, tokenizer = load_model()
-
-    # Calculate the perplexity for each text
-    perplexities = [calculate_perplexity(text, model, tokenizer) for text in texts]
-
-    # Filter out None values
-    perplexities = [p for p in perplexities if p is not None]
-
-    # Calculate the average sentence length
+    overall_pos_counts, overall_punctuation_counts, overall_function_word_counts = load_and_count(dataset_name, data)
     average_sentence_length = calculate_average_sentence_length(texts)
-    print(f"Average sentence length: {average_sentence_length}")
-
-    # Calculate and print the average text perplexity
-    average_text_perplexity = sum(perplexities) / len(perplexities)
-    print(f"Average text perplexity: {average_text_perplexity}")
-
-    # Split the texts into sentences and calculate the perplexity for each sentence
+    text_perplexities = [calculate_perplexity(text, model, tokenizer) for text in texts]
+    text_perplexities = [p for p in text_perplexities if p is not None]
+    average_text_perplexity = sum(text_perplexities) / len(text_perplexities)
     sentences = [sentence for text in texts for sentence in text.split('. ')]
     sentence_perplexities = [calculate_perplexity(sentence, model, tokenizer) for sentence in sentences]
-
-    # Filter out None values
     sentence_perplexities = [p for p in sentence_perplexities if p is not None]
-
-    # Calculate and print the average sentence perplexity
     average_sentence_perplexity = sum(sentence_perplexities) / len(sentence_perplexities)
-    print(f"Average sentence perplexity: {average_sentence_perplexity}")
+    return {
+        'pos_freqs': overall_pos_counts,
+        'punctuation_freqs': overall_punctuation_counts,
+        'function_word_freqs': overall_function_word_counts,
+        'average_sentence_length': average_sentence_length,
+        'average_text_perplexity': average_text_perplexity,
+        'average_sentence_perplexity': average_sentence_perplexity,
+    }
+
+
+def print_statistics(statistics):
+    pos_freqs = statistics['pos_freqs']
+    punctuation_freqs = statistics['punctuation_freqs']
+    function_word_freqs = statistics['function_word_freqs']
+
+    print(f"Frequency of adjectives: {pos_freqs.get('ADJ', 0)}")
+    print(f"Frequency of adverbs: {pos_freqs.get('ADV', 0)}")
+    print(f"Frequency of conjunctions: {pos_freqs.get('CCONJ', 0)}")
+    print(f"Frequency of nouns: {pos_freqs.get('NOUN', 0)}")
+    print(f"Frequency of numbers: {pos_freqs.get('NUM', 0)}")
+    print(f"Frequency of pronouns: {pos_freqs.get('PRON', 0)}")
+    print(f"Frequency of verbs: {pos_freqs.get('VERB', 0)}")
+    print(f"Frequency of commas: {punctuation_freqs.get(',', 0)}")
+    print(f"Frequency of fullstops: {punctuation_freqs.get('.', 0)}")
+    print(f"Frequency of special character '-': {punctuation_freqs.get('-', 0)}")
+    print(f"Frequency of function word 'a': {function_word_freqs.get('a', 0)}")
+    print(f"Frequency of function word 'in': {function_word_freqs.get('in', 0)}")
+    print(f"Frequency of function word 'of': {function_word_freqs.get('of', 0)}")
+    print(f"Frequency of function word 'the': {function_word_freqs.get('the', 0)}")
+    print(f"Average sentence length: {statistics['average_sentence_length']}")
+    print(f"Average sentence perplexity: {statistics['average_sentence_perplexity']}")
+    print(f"Average text perplexity: {statistics['average_text_perplexity']}")
+
+
+def plot_perplexities(sentence_perplexities, text_perplexities):
+    plt.figure(figsize=(14, 6))
+    sns.set_style('white')
+    fig, axs = plt.subplots(2)
+    plt.subplot(1, 2, 1)
+    sns.kdeplot(sentence_perplexities, color='skyblue', fill=True, ax=axs[0])
+    axs[0].set_title('Density Plot of Sentence Perplexities')
+    axs[0].set_xlabel('Perplexity')
+    axs[0].set_ylabel('Density')
+
+    sns.kdeplot(text_perplexities, color='skyblue', fill=True, ax=axs[1])
+    axs[1].set_title('Density Plot of Answer Perplexities')
+    axs[1].set_xlabel('Perplexity')
+    axs[1].set_ylabel('Density')
+
+    for ax in axs:
+        ax.set_xlim(0, 10)
+        ax.set_xticks(range(0, 11))
+        sns.despine()
+    plt.tight_layout()
+    plt.show()
