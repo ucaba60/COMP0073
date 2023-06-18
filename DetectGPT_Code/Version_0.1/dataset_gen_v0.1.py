@@ -1,5 +1,7 @@
 import datasets
 import re
+import pandas as pd
+import os
 
 DATASETS = ['pubmed_qa', 'writingprompts']
 DATA_PATH = 'data/writingPrompts'
@@ -112,3 +114,27 @@ def preprocess_data(dataset):
             data = long_data
         print(f"Loaded and pre-processed {len(data)} prompts/stories from the dataset")  # debug print
     return data
+
+
+def convert_to_csv(data, dataset_name, directory='Labelled_Data'):
+    """
+    Converts the data to a DataFrame and saves it to a CSV file in the specified directory.
+    """
+    # Check if directory exists, if not, create it
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    # Convert data to DataFrame
+    df = pd.DataFrame(data, columns=['text', 'label'])
+
+    # Write DataFrame to CSV
+    df.to_csv(f'{directory}/{dataset_name}_Human_data.csv', index=False)
+
+
+dataset_name = 'pubmed_qa'  # Or 'writingprompts'
+
+# Preprocess the data
+data = preprocess_data(dataset_name)
+
+# Convert to DataFrame and save to CSV
+convert_to_csv(data, dataset_name)
