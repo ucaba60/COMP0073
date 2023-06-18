@@ -2,11 +2,9 @@ import spacy
 from collections import Counter
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 import torch
-from transformers import BertTokenizerFast
 from statistics import mean
 import seaborn as sns
 import matplotlib.pyplot as plt
-
 
 # Constants
 nlp = spacy.load('en_core_web_sm')
@@ -72,7 +70,7 @@ def load_and_count(dataset_name, data):
 
 
 def load_model():
-    #CHECKED
+    # CHECKED
     """
     Load the model and tokenizer.
     Returns a model and tokenizer.
@@ -85,7 +83,7 @@ def load_model():
 
 
 def calculate_average_sentence_length(texts):
-    #CHEKCED
+    # CHEKCED
     """
     Calculate the average sentence length of a list of texts using SpaCy.
 
@@ -106,7 +104,7 @@ def calculate_average_sentence_length(texts):
 
 
 def calculate_perplexity(text, model, tokenizer):
-    #CHECKED
+    # CHECKED
     """
     Calculate the perplexity of a piece of text.
     """
@@ -125,7 +123,7 @@ def calculate_perplexity(text, model, tokenizer):
 
 
 def compute_statistics(dataset_name, data):
-    #CHECKED
+    # CHECKED
     texts, labels = zip(*data)
     if dataset_name == 'pubmed_qa':
         texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Stripping the 'Answer: ' string
@@ -154,7 +152,7 @@ def compute_statistics(dataset_name, data):
 
 
 def print_statistics(statistics):
-    #CHECKED
+    # CHECKED
     pos_freqs = statistics['pos_freqs']
     punctuation_freqs = statistics['punctuation_freqs']
     function_word_freqs = statistics['function_word_freqs']
@@ -176,6 +174,7 @@ def print_statistics(statistics):
     print(f"Average sentence length: {statistics['average_sentence_length']}")
     print(f"Average sentence perplexity: {statistics['average_sentence_perplexity']}")
     print(f"Average text perplexity: {statistics['average_text_perplexity']}")
+
 
 def plot_perplexities(sentence_perplexities, text_perplexities):
     """
