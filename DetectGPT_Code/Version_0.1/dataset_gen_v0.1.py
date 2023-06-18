@@ -35,7 +35,7 @@ def load_pubmed(num_examples=NUM_EXAMPLES):
     Loads the PubMed QA dataset.
     """
     data = datasets.load_dataset('pubmed_qa', 'pqa_labeled', split=f'train[:{num_examples}]')
-    data = [(f'Question: {q} Answer:{a}', 0) for q, a in zip(data['question'], data['long_answer'])]
+    data = [(f'Question: {q} Answer: {a}', 0) for q, a in zip(data['question'], data['long_answer'])]
     return data
 
 
@@ -103,10 +103,12 @@ def preprocess_data(dataset):
     data = load_data(dataset)
     data = list(dict.fromkeys(data))
     data = [(strip_newlines(q).strip(), a) for q, a in data]
-    long_data = [(x, y) for x, y in data if len(x.split()) > 250]
+    if dataset == 'pubmed_qa':
+        print(f"Loaded and pre-processed {len(data)} questions from the dataset")  # debug print
 
-    if long_data:
-        data = long_data
-
-    print(f"Loaded and pre-processed {len(data)} items from the {dataset} dataset")
+    if dataset == 'writingprompts':
+        long_data = [(x, y) for x, y in data if len(x.split()) > 250]
+        if len(long_data) > 0:
+            data = long_data
+        print(f"Loaded and pre-processed {len(data)} prompts/stories from the dataset")  # debug print
     return data
