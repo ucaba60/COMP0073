@@ -5,10 +5,12 @@ DATASETS = ['pubmed_qa', 'writingprompts']
 
 
 def strip_newlines(text):
+    #Checked
     return ' '.join(text.split())
 
 
 def load_pubmed():
+    #Checked
     data = datasets.load_dataset('pubmed_qa', 'pqa_labeled', split='train[:150]')
 
     # combine question and long_answer, and label them as 0
@@ -18,17 +20,20 @@ def load_pubmed():
 
 
 def process_prompt(prompt):
+    #Checked
     tags = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]']
     for tag in tags:
         prompt = prompt.replace(tag, '')
     return prompt
 
 def remove_whitespace_before_punctuations(text):
+    #Checked
     text = re.sub(r'\s([?.!,:;](?:\s|$))', r'\1', text)
     return text
 
 
 def process_spaces(story):
+    #Checked
     return story.replace(
         ' ,', ',').replace(
         ' .', '.').replace(
@@ -53,6 +58,7 @@ def process_spaces(story):
 
 
 def load_writingPrompts_dataset():
+    #Checked
     writing_path = 'data/writingPrompts'
 
     with open(f'{writing_path}/valid.wp_source', 'r', encoding='utf-8') as f:
@@ -64,7 +70,7 @@ def load_writingPrompts_dataset():
     prompts = [remove_whitespace_before_punctuations(prompt) for prompt in prompts]
     prompts = [prompt.rstrip() for prompt in prompts]
     stories = [process_spaces(story) for story in stories]
-    joined = ["Prompt: " + prompt + " Story: " + story for prompt, story in zip(prompts, stories)]
+    joined = ["Prompt:" + prompt + " Story: " + story for prompt, story in zip(prompts, stories)]
     filtered = [story for story in joined if 'nsfw' not in story and 'NSFW' not in story]
 
     # Label the stories as 0 to indicate they are human-generated
@@ -74,6 +80,7 @@ def load_writingPrompts_dataset():
 
 
 def load_data(dataset_name):
+    #Checked
     if dataset_name == 'pubmed_qa':
         return load_pubmed()
     elif dataset_name == 'writingprompts':
@@ -84,6 +91,7 @@ def load_data(dataset_name):
 
 
 def preprocess_data(dataset):
+    #Checked
     if dataset in DATASETS:
         data = load_data(dataset)
 
