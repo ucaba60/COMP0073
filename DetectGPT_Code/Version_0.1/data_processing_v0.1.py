@@ -5,7 +5,7 @@ import torch
 from statistics import mean
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+import textstat
 
 # Constants
 nlp = spacy.load('en_core_web_sm')
@@ -37,6 +37,22 @@ def count_pos_tags_and_special_elements(text):
     function_word_counts = Counter(token.text for token in doc if token.lower_ in FUNCTION_WORDS)
 
     return dict(pos_counts), dict(punctuation_counts), dict(function_word_counts)
+
+
+def calculate_readability_scores(text):
+    """
+    Calculate the Flesch Reading Ease and Flesch-Kincaid Grade Level of a text.
+
+    Args:
+    text (str): The text to score.
+
+    Returns:
+    tuple: A tuple containing the Flesch Reading Ease and Flesch-Kincaid Grade Level.
+    """
+    flesch_reading_ease = textstat.flesch_reading_ease(text)
+    flesch_kincaid_grade_level = textstat.flesch_kincaid_grade(text)
+
+    return flesch_reading_ease, flesch_kincaid_grade_level
 
 
 def load_and_count(dataset_name, data):
@@ -153,6 +169,9 @@ def compute_statistics(dataset_name, data):
         texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Stripping the 'Story: ' string
     model, tokenizer = load_model()
     overall_pos_counts, overall_punctuation_counts, overall_function_word_counts = load_and_count(dataset_name, data)
+    readability_scores = [calculate_readability_scores(text) for text in texts]
+    average_flesch_reading_ease = mean(score[0] for score in readability_scores)
+    average_flesch_kincaid_grade_level = mean(score[1] for score in readability_scores)
     average_word_length = calculate_average_word_length(texts)
     average_sentence_length = calculate_average_sentence_length(texts)
     text_perplexities = [calculate_perplexity(text, model, tokenizer) for text in texts]
@@ -167,6 +186,8 @@ def compute_statistics(dataset_name, data):
         'punctuation_freqs': overall_punctuation_counts,
         'function_word_freqs': overall_function_word_counts,
         'average_word_length': average_word_length,
+        'average_flesch_reading_ease': average_flesch_reading_ease,
+        'average_flesch_kincaid_grade_level': average_flesch_kincaid_grade_level,
         'average_sentence_length': average_sentence_length,
         'average_text_perplexity': average_text_perplexity,
         'average_sentence_perplexity': average_sentence_perplexity,
@@ -195,6 +216,8 @@ def print_statistics(statistics):
     print(f"Frequency of function word 'in': {function_word_freqs.get('in', 0)}")
     print(f"Frequency of function word 'of': {function_word_freqs.get('of', 0)}")
     print(f"Frequency of function word 'the': {function_word_freqs.get('the', 0)}")
+    print(f"Average Flesch Reading Ease: {statistics['average_flesch_reading_ease']}")
+    print(f"Average Flesch-Kincaid Grade Level: {statistics['average_flesch_kincaid_grade_level']}")
     print(f"Average word length: {statistics['average_word_length']}")
     print(f"Average sentence length: {statistics['average_sentence_length']}")
     print(f"Average sentence perplexity: {statistics['average_sentence_perplexity']}")
@@ -225,5 +248,3 @@ def plot_perplexities(sentence_perplexities, text_perplexities):
     plt.xlabel('Perplexity')
     plt.xlim(0, 10)  # Limit x-axis to 10 for text perplexity
     plt.show()
-
-

@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Processing and gen WORK AND TESTED">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="AVERAGE WORD LENGHT INCORPORATED">
+      <change afterPath="$PROJECT_DIR$/DetectGPT_Code/Version_0.1/logreg.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/COMP0073.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/COMP0073.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/PubMed_and_WP.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/PubMed_and_WP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/data_generation_test-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/data_generation_test-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/Version_0.1/data_processing_v0.1.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/Version_0.1/data_processing_v0.1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DetectGPT_Code/data_generation_test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/data_generation_test.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/data_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/data_process.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,7 +293,42 @@
       <option name="project" value="LOCAL" />
       <updated>1687080793288</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Cleanup">
+      <created>1687082584032</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1687082584032</updated>
+    </task>
+    <task id="LOCAL-00030" summary="generation and pre-processing of PubMed &amp; WritingPrompts works">
+      <created>1687082645451</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1687082645451</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Save as csv">
+      <created>1687083381590</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1687083381590</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Save as csv">
+      <created>1687083397796</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1687083397796</updated>
+    </task>
+    <task id="LOCAL-00033" summary="AVERAGE WORD LENGHT INCORPORATED">
+      <created>1687083955248</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1687083955248</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -325,7 +361,11 @@
     <MESSAGE value="dataset_gen_v0.1.py - TESTED works as intended, data_generation.py is initial version" />
     <MESSAGE value="data_process.py - WORKS -CHECKED" />
     <MESSAGE value="Processing and gen WORK AND TESTED" />
-    <option name="LAST_COMMIT_MESSAGE" value="Processing and gen WORK AND TESTED" />
+    <MESSAGE value="Cleanup" />
+    <MESSAGE value="generation and pre-processing of PubMed &amp; WritingPrompts works" />
+    <MESSAGE value="Save as csv" />
+    <MESSAGE value="AVERAGE WORD LENGHT INCORPORATED" />
+    <option name="LAST_COMMIT_MESSAGE" value="AVERAGE WORD LENGHT INCORPORATED" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -348,16 +388,6 @@
           <url>file://$PROJECT_DIR$/DetectGPT_Code/run.py</url>
           <line>744</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DetectGPT_Code/PubMed_and_WP.py</url>
-          <line>82</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DetectGPT_Code/data_process.py</url>
-          <line>107</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
