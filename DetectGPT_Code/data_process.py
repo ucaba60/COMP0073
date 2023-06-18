@@ -1,6 +1,5 @@
 import spacy
 from collections import Counter
-from data_generation import preprocess_data
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 import torch
 from transformers import BertTokenizerFast
@@ -14,6 +13,7 @@ FUNCTION_WORDS = {'a', 'in', 'of', 'the'}
 
 
 def count_pos_tags_and_special_elements(text):
+    # CHECKED
     """
     Counts the frequency of POS tags, punctuation marks and function words in a given text.
 
@@ -40,6 +40,7 @@ def count_pos_tags_and_special_elements(text):
 
 
 def load_and_count(dataset_name, data):
+    # CHECKED
     # Extract texts
     texts, labels = zip(*data)
 
@@ -47,7 +48,7 @@ def load_and_count(dataset_name, data):
     if dataset_name == 'pubmed_qa':
         texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Strip the 'Answer:' prefix
     elif dataset_name == 'writingprompts':
-        texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Strip the 'Story:' prefix
+        texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Stripping the 'Story: ' string
 
     # Calculate POS tag frequencies for the texts
     pos_frequencies, punctuation_frequencies, function_word_frequencies = zip(
@@ -68,7 +69,9 @@ def load_and_count(dataset_name, data):
 
     return overall_pos_counts, overall_punctuation_counts, overall_function_word_counts
 
+
 def load_model():
+    #CHECKED
     """
     Load the model and tokenizer.
     Returns a model and tokenizer.
@@ -81,8 +84,9 @@ def load_model():
 
 
 def calculate_average_sentence_length(texts):
+    #CHEKCED
     """
-    Calculate the average sentence length of a list of texts.
+    Calculate the average sentence length of a list of texts using SpaCy.
 
     Args:
     texts (list): The list of texts.
@@ -90,20 +94,18 @@ def calculate_average_sentence_length(texts):
     Returns:
     float: The average sentence length.
     """
-    # Initialize the tokenizer
-    tokenizer = BertTokenizerFast.from_pretrained('allenai/scibert_scivocab_uncased')
+    sentence_lengths = []
 
-    # Split the texts into sentences
-    sentences = [sentence for text in texts for sentence in text.split('. ')]
+    for text in texts:
+        doc = nlp(text)
+        for sent in doc.sents:
+            sentence_lengths.append(len(sent))
 
-    # Tokenize the sentences and calculate their length
-    sentence_lengths = [len(tokenizer.tokenize(sentence)) for sentence in sentences]
-
-    # Calculate and return the average sentence length
     return mean(sentence_lengths)
 
 
 def calculate_perplexity(text, model, tokenizer):
+    #CHECKED
     """
     Calculate the perplexity of a piece of text.
     """
@@ -111,6 +113,7 @@ def calculate_perplexity(text, model, tokenizer):
     input_ids = tokenizer.encode(text, return_tensors="pt")
 
     # if the text is too long, skip it
+    # this step has the extra effect of removing examples with low-quality/garbage content
     if len(input_ids[0]) > 512:
         return None
 
@@ -121,6 +124,7 @@ def calculate_perplexity(text, model, tokenizer):
 
 
 def compute_statistics(dataset_name, data):
+    #CHECKED
     texts, labels = zip(*data)
     if dataset_name == 'pubmed_qa':
         texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Stripping the 'Answer: ' string
@@ -132,7 +136,7 @@ def compute_statistics(dataset_name, data):
     text_perplexities = [calculate_perplexity(text, model, tokenizer) for text in texts]
     text_perplexities = [p for p in text_perplexities if p is not None]
     average_text_perplexity = sum(text_perplexities) / len(text_perplexities)
-    sentences = [sentence for text in texts for sentence in text.split('. ')]
+    sentences = [sentence.text for text in texts for sentence in nlp(text).sents]
     sentence_perplexities = [calculate_perplexity(sentence, model, tokenizer) for sentence in sentences]
     sentence_perplexities = [p for p in sentence_perplexities if p is not None]
     average_sentence_perplexity = sum(sentence_perplexities) / len(sentence_perplexities)
@@ -147,6 +151,7 @@ def compute_statistics(dataset_name, data):
 
 
 def print_statistics(statistics):
+    #CHECKED
     pos_freqs = statistics['pos_freqs']
     punctuation_freqs = statistics['punctuation_freqs']
     function_word_freqs = statistics['function_word_freqs']
