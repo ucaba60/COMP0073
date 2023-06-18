@@ -131,10 +131,4 @@ def convert_to_csv(data, dataset_name, directory='Labelled_Data'):
     df.to_csv(f'{directory}/{dataset_name}_Human_data.csv', index=False)
 
 
-dataset_name = 'pubmed_qa'  # Or 'writingprompts'
 
-# Preprocess the data
-data = preprocess_data(dataset_name)
-
-# Convert to DataFrame and save to CSV
-convert_to_csv(data, dataset_name)

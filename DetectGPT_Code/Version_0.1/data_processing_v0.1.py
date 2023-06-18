@@ -6,6 +6,7 @@ from statistics import mean
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+
 # Constants
 nlp = spacy.load('en_core_web_sm')
 FUNCTION_WORDS = {'a', 'in', 'of', 'the'}
@@ -82,6 +83,27 @@ def load_model():
     return model, tokenizer
 
 
+def calculate_average_word_length(texts):
+    """
+    Calculate the average word length of a list of texts using SpaCy.
+
+    Args:
+    texts (list): The list of texts.
+
+    Returns:
+    float: The average word length.
+    """
+    word_lengths = []
+
+    for text in texts:
+        doc = nlp(text)
+        for token in doc:
+            if not token.is_punct:  # ignore punctuation
+                word_lengths.append(len(token.text))
+
+    return mean(word_lengths)
+
+
 def calculate_average_sentence_length(texts):
     # CHEKCED
     """
@@ -131,6 +153,7 @@ def compute_statistics(dataset_name, data):
         texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Stripping the 'Story: ' string
     model, tokenizer = load_model()
     overall_pos_counts, overall_punctuation_counts, overall_function_word_counts = load_and_count(dataset_name, data)
+    average_word_length = calculate_average_word_length(texts)
     average_sentence_length = calculate_average_sentence_length(texts)
     text_perplexities = [calculate_perplexity(text, model, tokenizer) for text in texts]
     text_perplexities = [p for p in text_perplexities if p is not None]
@@ -143,6 +166,7 @@ def compute_statistics(dataset_name, data):
         'pos_freqs': overall_pos_counts,
         'punctuation_freqs': overall_punctuation_counts,
         'function_word_freqs': overall_function_word_counts,
+        'average_word_length': average_word_length,
         'average_sentence_length': average_sentence_length,
         'average_text_perplexity': average_text_perplexity,
         'average_sentence_perplexity': average_sentence_perplexity,
@@ -171,6 +195,7 @@ def print_statistics(statistics):
     print(f"Frequency of function word 'in': {function_word_freqs.get('in', 0)}")
     print(f"Frequency of function word 'of': {function_word_freqs.get('of', 0)}")
     print(f"Frequency of function word 'the': {function_word_freqs.get('the', 0)}")
+    print(f"Average word length: {statistics['average_word_length']}")
     print(f"Average sentence length: {statistics['average_sentence_length']}")
     print(f"Average sentence perplexity: {statistics['average_sentence_perplexity']}")
     print(f"Average text perplexity: {statistics['average_text_perplexity']}")
@@ -200,3 +225,5 @@ def plot_perplexities(sentence_perplexities, text_perplexities):
     plt.xlabel('Perplexity')
     plt.xlim(0, 10)  # Limit x-axis to 10 for text perplexity
     plt.show()
+
+
