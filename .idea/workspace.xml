@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="NOTES FILE">
-      <change afterPath="$PROJECT_DIR$/DetectGPT_Code/PubMed_and_WP.py" afterDir="false" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Processing and gen WORK AND TESTED">
+      <change beforePath="$PROJECT_DIR$/.idea/COMP0073.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/COMP0073.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/Notebook_v1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/Notebook_v1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/PubMed_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/PubMed_v1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/custom_datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/custom_datasets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/PubMed_and_WP.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/PubMed_and_WP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/data_generation_test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/data_generation_test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/data_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/data_process.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +50,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
@@ -235,7 +236,63 @@
       <option name="project" value="LOCAL" />
       <updated>1686902403094</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="PubMed Fully working + some tested">
+      <created>1686906645850</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1686906645850</updated>
+    </task>
+    <task id="LOCAL-00022" summary="PubMed+WP trying output">
+      <created>1686911865469</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1686911865470</updated>
+    </task>
+    <task id="LOCAL-00023" summary="data_generation -WORKS">
+      <created>1687001866499</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1687001866499</updated>
+    </task>
+    <task id="LOCAL-00024" summary="data_process - WORKS BUT AVERAGE VALUES SLIGHTLY OFF">
+      <created>1687004510249</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1687004510249</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Data_generation and data_process work - NEED TESTING AND DOCUMENTATION TO EXPLAIN&#10;&#10;ALSO ON JUPTYTER!">
+      <created>1687039727168</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1687039727168</updated>
+    </task>
+    <task id="LOCAL-00026" summary="dataset_gen_v0.1.py - TESTED works as intended, data_generation.py is initial version">
+      <created>1687074469375</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1687074469375</updated>
+    </task>
+    <task id="LOCAL-00027" summary="data_process.py - WORKS -CHECKED">
+      <created>1687077492111</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1687077492111</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Processing and gen WORK AND TESTED">
+      <created>1687080793288</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1687080793288</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -260,7 +317,15 @@
     <MESSAGE value="Works, DO TESING IF VALUES ARE OK" />
     <MESSAGE value="CONJ IS CCONJ !" />
     <MESSAGE value="NOTES FILE" />
-    <option name="LAST_COMMIT_MESSAGE" value="NOTES FILE" />
+    <MESSAGE value="PubMed Fully working + some tested" />
+    <MESSAGE value="PubMed+WP trying output" />
+    <MESSAGE value="data_generation -WORKS" />
+    <MESSAGE value="data_process - WORKS BUT AVERAGE VALUES SLIGHTLY OFF" />
+    <MESSAGE value="Data_generation and data_process work - NEED TESTING AND DOCUMENTATION TO EXPLAIN&#10;&#10;ALSO ON JUPTYTER!" />
+    <MESSAGE value="dataset_gen_v0.1.py - TESTED works as intended, data_generation.py is initial version" />
+    <MESSAGE value="data_process.py - WORKS -CHECKED" />
+    <MESSAGE value="Processing and gen WORK AND TESTED" />
+    <option name="LAST_COMMIT_MESSAGE" value="Processing and gen WORK AND TESTED" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -278,6 +343,21 @@
           <url>file://$PROJECT_DIR$/DetectGPT_Code/run.py</url>
           <line>30</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DetectGPT_Code/run.py</url>
+          <line>744</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DetectGPT_Code/PubMed_and_WP.py</url>
+          <line>82</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DetectGPT_Code/data_process.py</url>
+          <line>107</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
