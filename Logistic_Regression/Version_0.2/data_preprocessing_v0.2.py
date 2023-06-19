@@ -3,7 +3,8 @@ import re
 import pandas as pd
 import os
 
-DATASETS = ['pubmed_qa', 'writingprompts']
+# Constants
+DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail']
 DATA_PATH = 'data/writingPrompts'
 NUM_EXAMPLES = 150
 TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]']
@@ -120,7 +121,7 @@ def load_data(dataset_name):
         return load_pubmed()
     elif dataset_name == 'writingprompts':
         return load_writingPrompts()
-    elif dataset_name == 'cnn_daily_mail':
+    elif dataset_name == 'cnn_dailymail':
         return load_cnn_daily_mail()
     else:
         raise ValueError(f"Dataset name {dataset_name} not recognized.")
@@ -139,11 +140,13 @@ def preprocess_data(dataset):
     if dataset == 'pubmed_qa':
         print(f"Loaded and pre-processed {len(data)} questions from the dataset")  # debug print
 
-    if dataset == 'writingprompts':
+    # Getting long-enough prompts, can do the same for the articles as well
+    if dataset == 'writingprompts' or dataset == 'cnn_dailymail':
         long_data = [(x, y) for x, y in data if len(x.split()) > 250]
         if len(long_data) > 0:
             data = long_data
-        print(f"Loaded and pre-processed {len(data)} prompts/stories from the dataset")  # debug print
+        print(f"Loaded and pre-processed {len(data)} prompts/stories[summaries/articles] from the dataset")  # debug
+        # print
 
     return data
 
