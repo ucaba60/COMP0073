@@ -27,9 +27,11 @@ def remove_prefix(dataset_name, data):
     texts, labels = zip(*data)
 
     if dataset_name == 'pubmed_qa':
-        texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Strip the 'Answer:' prefix
+        texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Strip the 'Answer:' prefix'
     elif dataset_name == 'writingprompts':
         texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Stripping the 'Story: ' string
+    elif dataset_name == 'cnn_dailymail':
+        texts = [text.split("Article:", 1)[1].strip() for text in texts]  # Stripping the 'Article: ' string
 
     return texts, labels
 
