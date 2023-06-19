@@ -12,6 +12,27 @@ nlp = spacy.load('en_core_web_sm')
 FUNCTION_WORDS = {'a', 'in', 'of', 'the'}
 
 
+def process_prefix(dataset_name, data):
+    """
+    Process the prefixes in the given dataset.
+
+    Args:
+    dataset_name (str): The name of the dataset.
+    data (list of tuples): The data from the dataset.
+
+    Returns:
+    list: The list of texts after stripping the prefix.
+    """
+    texts, labels = zip(*data)
+
+    if dataset_name == 'pubmed_qa':
+        texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Strip the 'Answer:' prefix
+    elif dataset_name == 'writingprompts':
+        texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Stripping the 'Story: ' string
+
+    return texts, labels
+
+
 def count_pos_tags_and_special_elements(text):
     # CHECKED
     """
@@ -58,13 +79,7 @@ def calculate_readability_scores(text):
 def load_and_count(dataset_name, data):
     # CHECKED
     # Extract texts
-    texts, labels = zip(*data)
-
-    # Split questions and answers for pubmed_qa dataset
-    if dataset_name == 'pubmed_qa':
-        texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Strip the 'Answer:' prefix
-    elif dataset_name == 'writingprompts':
-        texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Stripping the 'Story: ' string
+    texts, labels = process_prefix(dataset_name, data)
 
     # Calculate POS tag frequencies for the texts
     pos_frequencies, punctuation_frequencies, function_word_frequencies = zip(
@@ -160,13 +175,10 @@ def calculate_perplexity(text, model, tokenizer):
     return torch.exp(loss).item()  # perplexity is e^loss
 
 
-def compute_statistics(dataset_name, data):
+def summary_statistics(dataset_name, data):
     # CHECKED
-    texts, labels = zip(*data)
-    if dataset_name == 'pubmed_qa':
-        texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Stripping the 'Answer: ' string
-    elif dataset_name == 'writingprompts':
-        texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Stripping the 'Story: ' string
+    texts, labels = process_prefix(dataset_name, data)
+
     model, tokenizer = load_model()
     overall_pos_counts, overall_punctuation_counts, overall_function_word_counts = load_and_count(dataset_name, data)
     readability_scores = [calculate_readability_scores(text) for text in texts]
