@@ -41,7 +41,7 @@ def load_pubmed(num_examples=NUM_EXAMPLES):
     return data
 
 
-def load_writingPrompts_dataset(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
+def load_writingPrompts(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
     """
     Loads the WritingPrompts dataset.
     """
@@ -83,6 +83,35 @@ def load_writingPrompts_dataset(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
     return data
 
 
+def load_cnn_daily_mail(num_examples=NUM_EXAMPLES):
+    """
+    Loads the CNN/Daily Mail dataset.
+    """
+    data = datasets.load_dataset('cnn_dailymail', '3.0.0', split=f'train[:{num_examples}]')
+
+    processed_data = []
+    for a, s in zip(data['article'], data['highlights']):
+        # remove the string and the '--' from the start of the articles
+        a = re.sub('^[^-]*--', '', a).strip()
+
+        # remove the string 'E-mail to a friend.' from the articles, if present
+        a = a.replace('E-mail to a friend .', '')
+        s = s.replace('NEW:', '')
+        a = a.replace(
+            'Copyright 2007 Reuters. All rights reserved.This material may not be published, broadcast, rewritten, '
+            'or redistributed.',
+            '')
+
+        # remove whitespace before punctuation marks in both article and summary
+        a = remove_whitespace_before_punctuations(a)
+        s = remove_whitespace_before_punctuations(s)
+
+        processed_data.append((f'Summary: {s} Article: {a}', 0))
+        data = processed_data
+
+    return data
+
+
 def load_data(dataset_name):
     """
     Loads a dataset based on its name.
@@ -90,7 +119,9 @@ def load_data(dataset_name):
     if dataset_name == 'pubmed_qa':
         return load_pubmed()
     elif dataset_name == 'writingprompts':
-        return load_writingPrompts_dataset()
+        return load_writingPrompts()
+    elif dataset_name == 'cnn_daily_mail':
+        return load_cnn_daily_mail()
     else:
         raise ValueError(f"Dataset name {dataset_name} not recognized.")
 
@@ -113,6 +144,7 @@ def preprocess_data(dataset):
         if len(long_data) > 0:
             data = long_data
         print(f"Loaded and pre-processed {len(data)} prompts/stories from the dataset")  # debug print
+
     return data
 
 
