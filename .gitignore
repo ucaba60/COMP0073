@@ -1,6 +1,5 @@
 /DetectGPT_Code/data/writingPrompts/
 /DetectGPT_Code/data/writingPrompts/
-/DetectGPT_Code/data/writingPrompts/
 /DetectGPT_Code/data/writingPrompts/README
 /DetectGPT_Code/data/writingPrompts/test.wp_source
 /DetectGPT_Code/data/writingPrompts/test.wp_target
@@ -9,3 +8,5 @@
 /DetectGPT_Code/data/writingPrompts/valid.wp_source
 /DetectGPT_Code/data/writingPrompts/valid.wp_target
 /DetectGPT_Code/Version_0.1/Labelled_Data/
+/Logistic_Regression/data/writingPrompts/
+/Logistic_Regression/Version_0.2/Labelled_Data/combined_Human_data.csv
