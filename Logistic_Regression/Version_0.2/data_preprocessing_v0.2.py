@@ -13,6 +13,12 @@ TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]',
 def strip_newlines(text):
     """
     Removes newline characters from a string.
+
+    Args:
+        text (str): Input text string.
+
+    Returns:
+        str: Text with newline characters removed.
     """
     return ' '.join(text.split())
 
@@ -20,6 +26,13 @@ def strip_newlines(text):
 def process_text(text, replacements):
     """
     Performs a series of replacements in a string.
+
+    Args:
+        text (str): Input text string.
+        replacements (dict): Dictionary mapping old substring to new substring.
+
+    Returns:
+        str: Text with specified replacements made.
     """
     for old, new in replacements.items():
         text = text.replace(old, new)
@@ -29,6 +42,12 @@ def process_text(text, replacements):
 def remove_whitespace_before_punctuations(text):
     """
     Removes whitespace before punctuation marks in a string.
+
+    Args:
+        text (str): Input text string.
+
+    Returns:
+        str: Text with whitespace removed before punctuation marks.
     """
     return re.sub(r'\s([?.!,:;](?:\s|$))', r'\1', text)
 
@@ -36,6 +55,12 @@ def remove_whitespace_before_punctuations(text):
 def load_pubmed(num_examples=NUM_EXAMPLES):
     """
     Loads the PubMed QA dataset.
+
+    Args:
+        num_examples (int, optional): Number of examples to load. Defaults to NUM_EXAMPLES.
+
+    Returns:
+        list: List of tuples where each tuple is a question-answer pair and a label (always 0).
     """
     data = datasets.load_dataset('pubmed_qa', 'pqa_labeled', split=f'train[:{num_examples}]')
     data = [(f'Question: {q} Answer: {a}', 0) for q, a in zip(data['question'], data['long_answer'])]
@@ -45,6 +70,13 @@ def load_pubmed(num_examples=NUM_EXAMPLES):
 def load_writingPrompts(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
     """
     Loads the WritingPrompts dataset.
+
+    Args:
+        data_path (str, optional): Path to the dataset. Defaults to DATA_PATH.
+        num_examples (int, optional): Number of examples to load. Defaults to NUM_EXAMPLES.
+
+    Returns:
+        list: List of tuples where each tuple is a prompt-story pair and a label (always 0).
     """
     with open(f'{data_path}/valid.wp_source', 'r', encoding='utf-8') as f:
         prompts = f.readlines()[:num_examples]
@@ -87,6 +119,12 @@ def load_writingPrompts(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
 def load_cnn_daily_mail(num_examples=NUM_EXAMPLES):
     """
     Loads the CNN/Daily Mail dataset.
+
+    Args:
+        num_examples (int, optional): Number of examples to load. Defaults to NUM_EXAMPLES.
+
+    Returns:
+        list: List of tuples where each tuple is a summary-article pair and a label (always 0).
     """
     data = datasets.load_dataset('cnn_dailymail', '3.0.0', split=f'train[:{num_examples}]')
 
@@ -115,7 +153,16 @@ def load_cnn_daily_mail(num_examples=NUM_EXAMPLES):
 
 def load_data(dataset_name):
     """
-    Loads a dataset based on its name.
+       Loads a dataset based on its name.
+
+       Args:
+           dataset_name (str): Name of the dataset to load.
+
+       Returns:
+           list: List of data from the specified dataset.
+
+       Raises:
+           ValueError: If the dataset_name is not recognized.
     """
     if dataset_name == 'pubmed_qa':
         return load_pubmed()
@@ -129,7 +176,16 @@ def load_data(dataset_name):
 
 def preprocess_data(dataset):
     """
-    Preprocesses a dataset.
+        Preprocesses a dataset.
+
+        Args:
+            dataset (str): Name of the dataset to preprocess.
+
+        Returns:
+            list: List of preprocessed data from the specified dataset.
+
+        Raises:
+            ValueError: If the dataset_name is not recognized.
     """
     if dataset not in DATASETS:
         raise ValueError(f"Dataset name {dataset} not recognized.")
@@ -153,7 +209,15 @@ def preprocess_data(dataset):
 
 def convert_to_csv(data, dataset_name, directory='Labelled_Data'):
     """
-    Converts the data to a DataFrame and saves it to a CSV file in the specified directory.
+        Converts the data to a DataFrame and saves it to a CSV file in the specified directory.
+
+        Args:
+            data (list): List of data to be converted to CSV.
+            dataset_name (str): Name of the dataset.
+            directory (str, optional): Name of the directory to save the CSV file. Defaults to 'Labelled_Data'.
+
+        Returns:
+            None
     """
     # Check if directory exists, if not, create it
     if not os.path.exists(directory):
