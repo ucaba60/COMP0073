@@ -2,10 +2,12 @@ import datasets
 import re
 import pandas as pd
 import os
+import random
+
 
 # Constants
 DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail']
-DATA_PATH = 'data/writingPrompts'
+DATA_PATH = '../data/writingPrompts'
 NUM_EXAMPLES = 150
 TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]']
 
@@ -228,3 +230,31 @@ def convert_to_csv(data, dataset_name, directory='Labelled_Data'):
 
     # Write DataFrame to CSVv
     df.to_csv(f'{directory}/{dataset_name}_Human_data.csv', index=False)
+
+
+
+
+def combine_datasets(datasets=DATASETS):
+    """
+    Combines data from multiple datasets into a single dataset and saves the result to a CSV file.
+
+    Args:
+        datasets (list, optional): List of datasets to combine. Defaults to DATASETS.
+
+    Returns:
+        None
+    """
+    # Initialize a list to store the combined data
+    combined_data = []
+
+    # Load and preprocess data from each dataset
+    for dataset in datasets:
+        data = preprocess_data(dataset)
+        combined_data.extend(data)
+
+    # Shuffle the combined data to ensure a mix of data from all datasets
+    random.shuffle(combined_data)
+
+    # Save the combined data to a CSV file
+    convert_to_csv(combined_data, 'combined')
+

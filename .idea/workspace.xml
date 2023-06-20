@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="gpt-2 results">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/GPT-2-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/GPT-2-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/Notebook_v1-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/Notebook_v1-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/SCIBERT-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/SCIBERT-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/data_generation_test-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/data_generation_test-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/GPT-2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/GPT-2.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/SCIBERT.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/SCIBERT.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/data_generation_test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/data_generation_test.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py" afterDir="false" />
-    </list>
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Combines datasets into one .csv file to be used for the regression. -TESTED&#10;&#10;NEED TO SEPERATE REGRESSION INTO ITS OWN FILE." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,18 +40,19 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/Logistic_Regression/data",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\data" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -416,7 +407,35 @@
       <option name="project" value="LOCAL" />
       <updated>1687248134879</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="JupyterNotebooks + Tests of Regression vectors">
+      <created>1687250373093</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1687250373094</updated>
+    </task>
+    <task id="LOCAL-00047" summary="JupyterNotebooks + Tests of Regression vectors">
+      <created>1687250385564</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1687250385564</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Combines datasets into one .csv file to be used for the regression. -TESTED&#10;&#10;NEED TO SEPERATE REGRESSION INTO ITS OWN FILE.">
+      <created>1687251486626</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1687251486626</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Combines datasets into one .csv file to be used for the regression. -TESTED&#10;&#10;NEED TO SEPERATE REGRESSION INTO ITS OWN FILE.">
+      <created>1687251682572</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1687251682572</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -431,8 +450,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="JupyterNotebook&#10;PubMed - performs extraction, POS Calculation, perplexity count" />
-    <MESSAGE value="PubMed works, but haven't tested if values make sense." />
     <MESSAGE value="Works, DO TESING IF VALUES ARE OK" />
     <MESSAGE value="CONJ IS CCONJ !" />
     <MESSAGE value="NOTES FILE" />
@@ -456,7 +473,9 @@
     <MESSAGE value="." />
     <MESSAGE value="SCIBERT RESULTS -IMPORTANT" />
     <MESSAGE value="gpt-2 results" />
-    <option name="LAST_COMMIT_MESSAGE" value="gpt-2 results" />
+    <MESSAGE value="JupyterNotebooks + Tests of Regression vectors" />
+    <MESSAGE value="Combines datasets into one .csv file to be used for the regression. -TESTED&#10;&#10;NEED TO SEPERATE REGRESSION INTO ITS OWN FILE." />
+    <option name="LAST_COMMIT_MESSAGE" value="Combines datasets into one .csv file to be used for the regression. -TESTED&#10;&#10;NEED TO SEPERATE REGRESSION INTO ITS OWN FILE." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
