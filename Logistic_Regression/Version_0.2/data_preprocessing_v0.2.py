@@ -4,12 +4,12 @@ import pandas as pd
 import os
 import random
 
-
 # Constants
 DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail']
 DATA_PATH = '../data/writingPrompts'
 NUM_EXAMPLES = 150
-TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]']
+TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]', '[ CC ]', '[ RF ]',
+        '[ wp ]']
 
 
 def strip_newlines(text):
@@ -232,14 +232,15 @@ def convert_to_csv(data, dataset_name, directory='Labelled_Data'):
     df.to_csv(f'{directory}/{dataset_name}_Human_data.csv', index=False)
 
 
-
-
-def combine_datasets(datasets=DATASETS):
+def combine_datasets(datasets=DATASETS, extract_prompts=False, directory='Labelled_Data'):
     """
-    Combines data from multiple datasets into a single dataset and saves the result to a CSV file.
+    Combines data from multiple datasets into a single dataset. If specified, extracts prompts based on dataset names,
+    and saves the result to a CSV file.
 
     Args:
+        directory: Where the file will be saved
         datasets (list, optional): List of datasets to combine. Defaults to DATASETS.
+        extract_prompts (bool, optional): Whether to extract prompts from the combined data. Defaults to False.
 
     Returns:
         None
@@ -247,14 +248,47 @@ def combine_datasets(datasets=DATASETS):
     # Initialize a list to store the combined data
     combined_data = []
 
+    # If specified, also store the extracted prompts
+    extracted_prompts = [] if extract_prompts else None
+
     # Load and preprocess data from each dataset
     for dataset in datasets:
         data = preprocess_data(dataset)
         combined_data.extend(data)
 
+        # If specified, extract prompts
+        if extract_prompts:
+            extracted_prompts.extend(extract_prompt(data, dataset))
+
     # Shuffle the combined data to ensure a mix of data from all datasets
-    random.shuffle(combined_data)
+    # random.shuffle(combined_data)
+    # random.shuffle(extracted_prompts) if extract_prompts else None
 
     # Save the combined data to a CSV file
     convert_to_csv(combined_data, 'combined')
 
+    # If specified, save the extracted prompts to a CSV file
+    if extract_prompts:
+        df = pd.DataFrame(extracted_prompts, columns=['text'])
+        df.to_csv(f'{directory}/prompts.csv', index=False)
+
+
+def extract_prompt(data, dataset_name):
+    """
+    Extracts the prompts from a preprocessed dataset.
+
+    Args:
+        data (list): Preprocessed data.
+        dataset_name (str): Name of the dataset the data is from.
+
+    Returns:
+        list: List of extracted prompts.
+    """
+    prompts = []
+    if dataset_name == 'pubmed_qa':
+        prompts = [text.split('Answer:')[0] + 'Answer:' for text, label in data]
+    elif dataset_name == 'cnn_dailymail':
+        prompts = ['Write a news article based on the following summary: ' + text.split('Summary:')[1].strip() for text, label in data]
+    elif dataset_name == 'writingprompts':
+        prompts = [text.replace('Prompt:', '').split('Story:')[0].strip() + 'Continue the story:' for text, label in data]
+    return prompts
