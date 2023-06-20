@@ -86,7 +86,7 @@ def calculate_readability_scores(text):
     return flesch_reading_ease, flesch_kincaid_grade_level
 
 
-def prepare_data_for_regression(data):
+def prepare_data_for_regression(data, dataset_name):
     """
        This function prepares the data for regression analysis by extracting features and labels from the data.
 
@@ -105,7 +105,10 @@ def prepare_data_for_regression(data):
     # Load the model and tokenizer
     model, tokenizer = load_model()
 
-    for text, label in data:
+    # Remove prefixes
+    texts, labels = remove_prefix(dataset_name, data)
+
+    for text, label in zip(texts, labels):
         # Count POS tags in the text
         pos_counts, punctuation_counts, function_word_counts = count_pos_tags_and_special_elements(text)
 

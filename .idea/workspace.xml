@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="AVERAGE WORD LENGHT INCORPORATED">
-      <change afterPath="$PROJECT_DIR$/DetectGPT_Code/Version_0.1/logreg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/COMP0073.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/COMP0073.iml" afterDir="false" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="gpt-2 results">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/data_generation_test-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/data_generation_test-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/Version_0.1/data_processing_v0.1.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/Version_0.1/data_processing_v0.1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/GPT-2-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/GPT-2-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/Notebook_v1-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/Notebook_v1-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/SCIBERT-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/SCIBERT-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/.ipynb_checkpoints/data_generation_test-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/data_generation_test-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/GPT-2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/GPT-2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetectGPT_Code/SCIBERT.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/SCIBERT.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DetectGPT_Code/data_generation_test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/DetectGPT_Code/data_generation_test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +65,7 @@
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\JupyterNotebooks" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\DetectGPT_Code" />
     </key>
   </component>
@@ -328,7 +332,91 @@
       <option name="project" value="LOCAL" />
       <updated>1687083955248</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Reading scores incorporated and tested">
+      <created>1687084668371</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1687084668371</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Little optimisation">
+      <created>1687162762436</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1687162762436</updated>
+    </task>
+    <task id="LOCAL-00036" summary="VERSION 2 - WORKS WITH PUBMED/WRITINGPROMTS ADDING DAILYMAIL">
+      <created>1687165214674</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1687165214674</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Incorporated cnn_dailymail -WIP">
+      <created>1687168057007</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1687168057007</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Incorporated cnn_dailymail -WIP">
+      <created>1687168186589</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1687168186589</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Incorporated cnn_dailymail -WIP">
+      <created>1687170565343</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1687170565343</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Incorporated cnn_dailymail -WIP">
+      <created>1687173212160</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1687173212160</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Added docstrings">
+      <created>1687247712749</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1687247712749</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Added docstrings">
+      <created>1687248079642</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1687248079642</updated>
+    </task>
+    <task id="LOCAL-00043" summary=".">
+      <created>1687248097164</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1687248097164</updated>
+    </task>
+    <task id="LOCAL-00044" summary="SCIBERT RESULTS -IMPORTANT">
+      <created>1687248122823</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1687248122823</updated>
+    </task>
+    <task id="LOCAL-00045" summary="gpt-2 results">
+      <created>1687248134879</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1687248134879</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -343,11 +431,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="WritingPrompt Dataset + JUPYTER ANNOTATED CODE" />
-    <MESSAGE value="custom_datasets from DetectGPT" />
-    <MESSAGE value="custom_datasets from DetectGPT, starting my own data pre-processing" />
-    <MESSAGE value="Counts POS and Preplexity using BERT" />
-    <MESSAGE value="Add jupyternotebook" />
     <MESSAGE value="JupyterNotebook&#10;PubMed - performs extraction, POS Calculation, perplexity count" />
     <MESSAGE value="PubMed works, but haven't tested if values make sense." />
     <MESSAGE value="Works, DO TESING IF VALUES ARE OK" />
@@ -365,7 +448,15 @@
     <MESSAGE value="generation and pre-processing of PubMed &amp; WritingPrompts works" />
     <MESSAGE value="Save as csv" />
     <MESSAGE value="AVERAGE WORD LENGHT INCORPORATED" />
-    <option name="LAST_COMMIT_MESSAGE" value="AVERAGE WORD LENGHT INCORPORATED" />
+    <MESSAGE value="Reading scores incorporated and tested" />
+    <MESSAGE value="Little optimisation" />
+    <MESSAGE value="VERSION 2 - WORKS WITH PUBMED/WRITINGPROMTS ADDING DAILYMAIL" />
+    <MESSAGE value="Incorporated cnn_dailymail -WIP" />
+    <MESSAGE value="Added docstrings" />
+    <MESSAGE value="." />
+    <MESSAGE value="SCIBERT RESULTS -IMPORTANT" />
+    <MESSAGE value="gpt-2 results" />
+    <option name="LAST_COMMIT_MESSAGE" value="gpt-2 results" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
