@@ -15,15 +15,17 @@ FUNCTION_WORDS = {'a', 'in', 'of', 'the'}
 
 def remove_prefix(dataset_name, data):
     """
-      Process the prefixes in the given dataset.
+    This function removes a predefined prefix from each text in a given dataset.
 
-      Args:
-      dataset_name (str): The name of the dataset.
-      data (list of tuples): The data from the dataset.
+    Args:
+    dataset_name (str): The name of the dataset.
+    data (list of tuples): The data from the dataset. Each element of the list is a tuple, where the first element
+    is the text and the second element is its label.
 
-      Returns:
-      list: The list of texts after stripping the prefix.
-      """
+    Returns:
+    texts (list): The list of texts after the prefix has been removed.
+    labels (list): The list of labels corresponding to the texts.
+    """
     texts, labels = zip(*data)
 
     if dataset_name == 'pubmed_qa':
@@ -39,14 +41,17 @@ def remove_prefix(dataset_name, data):
 def count_pos_tags_and_special_elements(text):
     # CHECKED
     """
-    Counts the frequency of POS tags, punctuation marks and function words in a given text.
+      This function counts the frequency of POS (Part of Speech) tags, punctuation marks, and function words in a given text.
+      It uses the SpaCy library for POS tagging.
 
-    Args:
-    text (str): The text for which to count POS tags and special elements.
+      Args:
+      text (str): The text for which to count POS tags and special elements.
 
-    Returns:
-    tuple: A tuple containing two dictionaries, where keys are POS tags and punctuation marks
-           and values are their corresponding count.
+      Returns:
+      pos_counts (dict): A dictionary where keys are POS tags and values are their corresponding count.
+      punctuation_counts (dict): A dictionary where keys are punctuation marks and values are their corresponding count.
+      function_word_counts (dict): A dictionary where keys are function words and values are their corresponding count.
+
     """
     # Use SpaCy to parse the text
     doc = nlp(text)
@@ -65,13 +70,15 @@ def count_pos_tags_and_special_elements(text):
 
 def calculate_readability_scores(text):
     """
-    Calculate the Flesch Reading Ease and Flesch-Kincaid Grade Level of a text.
+    This function calculates the Flesch Reading Ease and Flesch-Kincaid Grade Level of a text using the textstat library.
 
     Args:
     text (str): The text to score.
 
     Returns:
-    tuple: A tuple containing the Flesch Reading Ease and Flesch-Kincaid Grade Level.
+    flesch_reading_ease (float): The Flesch Reading Ease score of the text.
+    flesch_kincaid_grade_level (float): The Flesch-Kincaid Grade Level of the text.
+
     """
     flesch_reading_ease = textstat.flesch_reading_ease(text)
     flesch_kincaid_grade_level = textstat.flesch_kincaid_grade(text)
@@ -80,6 +87,17 @@ def calculate_readability_scores(text):
 
 
 def prepare_data_for_regression(data):
+    """
+       This function prepares the data for regression analysis by extracting features and labels from the data.
+
+       Args:
+       data (list of tuples): The data from the dataset. Each element of the list is a tuple, where the first element
+       is the text and the second element is its label.
+
+       Returns:
+       feature_matrix (DataFrame): A DataFrame where each row represents a text and each column represents a feature.
+       label_vector (Series): A Series where each element is the label of a text.
+    """
     # Initialize lists to store features and labels
     feature_list = []
     label_list = []
@@ -128,6 +146,21 @@ def prepare_data_for_regression(data):
 
 
 def load_and_count(dataset_name, data):
+    """
+       This function loads the texts from the dataset and calculates the frequency of POS tags, punctuation marks,
+       and function words.
+
+       Args:
+       dataset_name (str): The name of the dataset.
+       data (list of tuples): The data from the dataset. Each element of the list is a tuple, where the first element
+       is the text and the second element is its label.
+
+       Returns:
+       overall_pos_counts (Counter): A Counter object of POS tag frequencies.
+       overall_punctuation_counts (Counter): A Counter object of punctuation mark frequencies.
+       overall_function_word_counts (Counter): A Counter object of function word frequencies.
+    """
+
     # CHECKED
     # Extract texts
     texts, labels = remove_prefix(dataset_name, data)
@@ -155,8 +188,12 @@ def load_and_count(dataset_name, data):
 def load_model():
     # CHECKED
     """
-    Load the model and tokenizer.
-    Returns a model and tokenizer.
+      This function loads a pre-trained model and its corresponding tokenizer from the Hugging Face model hub.
+
+      Returns:
+      model: The loaded model.
+      tokenizer: The tokenizer corresponding to the model.
+
     """
     model_name = 'allenai/scibert_scivocab_uncased'
     model = AutoModelForMaskedLM.from_pretrained(model_name)
@@ -167,14 +204,16 @@ def load_model():
 
 def calculate_average_word_length(texts):
     """
-    Calculate the average word length of a list of texts using SpaCy.
+     This function calculates the average word length of a list of texts using the SpaCy library.
 
-    Args:
-    texts (list): The list of texts.
+     Args:
+     texts (list): The list of texts.
 
-    Returns:
-    float: The average word length.
+     Returns:
+     (float): The average word length.
+
     """
+
     word_lengths = []
 
     for text in texts:
@@ -189,13 +228,13 @@ def calculate_average_word_length(texts):
 def calculate_average_sentence_length(texts):
     # CHEKCED
     """
-    Calculate the average sentence length of a list of texts using SpaCy.
+    This function calculates the average sentence length of a list of texts using the SpaCy library.
 
     Args:
     texts (list): The list of texts.
 
     Returns:
-    float: The average sentence length.
+    avg_sentence_length (float): The average sentence length.
     """
     sentence_lengths = []
 
@@ -210,7 +249,15 @@ def calculate_average_sentence_length(texts):
 def calculate_perplexity(text, model, tokenizer):
     # CHECKED
     """
-    Calculate the perplexity of a piece of text.
+    Calculates the perplexity of a text using a language model and tokenizer.
+
+    Args:
+    text (str): The text for which perplexity will be calculated.
+    model: The language model used to calculate perplexity.
+    tokenizer: The tokenizer used to tokenize the text.
+
+    Returns:
+    perplexity (float or None): The calculated perplexity of the text, or None if the text is too long.
     """
     # tokenize the input, add special tokens and return tensors
     input_ids = tokenizer.encode(text, return_tensors="pt")
@@ -228,6 +275,16 @@ def calculate_perplexity(text, model, tokenizer):
 
 def summary_statistics(dataset_name, data):
     # CHECKED
+    """
+       Calculates various summary statistics for a dataset.
+
+       Args:
+       dataset_name (str): The name of the dataset.
+       data (dict): The data from the dataset.
+
+       Returns:
+       dict: A dictionary containing various summary statistics of the data.
+   """
     texts, labels = remove_prefix(dataset_name, data)
 
     model, tokenizer = load_model()
