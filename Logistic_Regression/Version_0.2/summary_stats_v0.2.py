@@ -41,10 +41,10 @@ def remove_prefix(dataset_name, data):
 
 def average_token_count(dataset_name, data):
     """
-    Calculates the average number of tokens in the answers of the pubmed_qa dataset.
+    Calculates the average number of tokens in the answers of a dataset.
 
     Returns:
-        float: Average number of tokens in the answers of the pubmed_qa dataset.
+        float: Average number of tokens in the answers of a dataset
     """
     texts, labels = remove_prefix(dataset_name, data)
 
