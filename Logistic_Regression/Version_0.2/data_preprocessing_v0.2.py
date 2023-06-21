@@ -26,7 +26,7 @@ def strip_newlines(text):
     return ' '.join(text.split())
 
 
-def process_text(text, replacements):
+def replace_text(text, replacements):
     """
     Performs a series of replacements in a string.
 
@@ -72,7 +72,7 @@ def load_pubmed(num_examples=NUM_EXAMPLES):
 
 def load_writingPrompts(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
     """
-    Loads the WritingPrompts dataset.
+    Loads the WritingPrompts dataset. Combines Prompts and Stories with additional formatting.
 
     Args:
         data_path (str, optional): Path to the dataset. Defaults to DATA_PATH.
@@ -87,7 +87,7 @@ def load_writingPrompts(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
         stories = f.readlines()[:num_examples]
 
     prompt_replacements = {tag: '' for tag in TAGS}
-    prompts = [process_text(prompt, prompt_replacements) for prompt in prompts]
+    prompts = [replace_text(prompt, prompt_replacements) for prompt in prompts]
     prompts = [remove_whitespace_before_punctuations(prompt) for prompt in prompts]
 
     story_replacements = {
@@ -112,7 +112,7 @@ def load_writingPrompts(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
         '\\\'': '\'',
         '\n ': '\n',
     }
-    stories = [process_text(story, story_replacements).strip() for story in stories]
+    stories = [replace_text(story, story_replacements).strip() for story in stories]
     joined = ["Prompt:" + prompt + " Story: " + story for prompt, story in zip(prompts, stories)]
     filtered = [story for story in joined if 'nsfw' not in story.lower()]
     data = [(story, 0) for story in filtered]
@@ -121,7 +121,7 @@ def load_writingPrompts(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
 
 def load_cnn_daily_mail(num_examples=NUM_EXAMPLES):
     """
-    Loads the CNN/Daily Mail dataset.
+    Loads the CNN/Daily Mail dataset. Combines article and summary with additional formatting.
 
     Args:
         num_examples (int, optional): Number of examples to load. Defaults to NUM_EXAMPLES.

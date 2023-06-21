@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="data_preprocessing_v0.2.py works appropriately">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Count of prompt lenght and cost&#10;Count of average tokens of answers/stories/articles in order to limit GPT API to those parameter for more comparable results">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/data_combining-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/data_combining-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/data_combining.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/data_combining.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/data_preprocessing_v0.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/data_preprocessing_v0.2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,13 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00006" summary="custom_datasets from DetectGPT, starting my own data pre-processing">
-      <created>1686655438072</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1686655438072</updated>
     </task>
     <task id="LOCAL-00007" summary="custom_datasets from DetectGPT, starting my own data pre-processing">
       <created>1686657108859</created>
@@ -441,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687334632375</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Count of prompt lenght and cost&#10;Count of average tokens of answers/stories/articles in order to limit GPT API to those parameter for more comparable results">
+      <created>1687337889066</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1687337889066</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,7 +455,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="PubMed Fully working + some tested" />
     <MESSAGE value="PubMed+WP trying output" />
     <MESSAGE value="data_generation -WORKS" />
     <MESSAGE value="data_process - WORKS BUT AVERAGE VALUES SLIGHTLY OFF" />
@@ -481,7 +479,8 @@
     <MESSAGE value="Human data on .csv&#10;Prompts formatted and on .csv&#10;#TODO -&gt; GPT DATA" />
     <MESSAGE value="Prompting GPT -&gt; Version 0" />
     <MESSAGE value="data_preprocessing_v0.2.py works appropriately" />
-    <option name="LAST_COMMIT_MESSAGE" value="data_preprocessing_v0.2.py works appropriately" />
+    <MESSAGE value="Count of prompt lenght and cost&#10;Count of average tokens of answers/stories/articles in order to limit GPT API to those parameter for more comparable results" />
+    <option name="LAST_COMMIT_MESSAGE" value="Count of prompt lenght and cost&#10;Count of average tokens of answers/stories/articles in order to limit GPT API to those parameter for more comparable results" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
