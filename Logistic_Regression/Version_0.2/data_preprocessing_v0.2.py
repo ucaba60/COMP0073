@@ -9,7 +9,7 @@ DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail']
 DATA_PATH = '../data/writingPrompts'
 NUM_EXAMPLES = 150
 TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]', '[ CC ]', '[ RF ]',
-        '[ wp ]']
+        '[ wp ]', '[ Wp ]', '[ RF ]', '[ WP/MP ]']
 
 
 def strip_newlines(text):
@@ -288,7 +288,10 @@ def extract_prompt(data, dataset_name):
     if dataset_name == 'pubmed_qa':
         prompts = [text.split('Answer:')[0] + 'Answer:' for text, label in data]
     elif dataset_name == 'cnn_dailymail':
-        prompts = ['Write a news article based on the following summary: ' + text.split('Summary:')[1].strip() for text, label in data]
+        # Split the text into article and summary, then only append the summary
+        prompts = [
+            'Write a news article based on the following summary: ' + text.split('Summary:')[1].split('Article:')[
+                0].strip() for text, label in data]
     elif dataset_name == 'writingprompts':
-        prompts = [text.replace('Prompt:', '').split('Story:')[0].strip() + 'Continue the story:' for text, label in data]
+        prompts = [text.replace('Prompt:', '').split('Story:')[0].strip() + ' Continue the story:' for text, label in data]
     return prompts
