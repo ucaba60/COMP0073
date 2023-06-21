@@ -3,6 +3,7 @@ import re
 import pandas as pd
 import os
 import random
+import tiktoken
 
 # Constants
 DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail']
@@ -293,5 +294,40 @@ def extract_prompt(data, dataset_name):
             'Write a news article based on the following summary: ' + text.split('Summary:')[1].split('Article:')[
                 0].strip() for text, label in data]
     elif dataset_name == 'writingprompts':
-        prompts = [text.replace('Prompt:', '').split('Story:')[0].strip() + ' Continue the story:' for text, label in data]
+        prompts = [text.replace('Prompt:', '').split('Story:')[0].strip() + ' Continue the story:' for text, label in
+                   data]
     return prompts
+
+
+def token_count(csv_files):
+    """
+    Counts the number of tokens in a CSV file.
+
+    Args:
+        csv_file (str): Path to the CSV file.
+
+    Returns:
+        None
+    """
+
+    encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
+
+    for csv_file in csv_files:
+        # Load prompts from CSV file
+        df = pd.read_csv(csv_file)
+        prompts = df['text'].tolist()
+
+        # Initialize a counter for total tokens
+        total_tokens = 0
+
+        for prompt in prompts:
+            num_tokens = len(encoding.encode(prompt))
+            total_tokens += num_tokens
+
+        print(f"File '{csv_file}' has {total_tokens} tokens.")
+
+        # Estimate cost
+        if csv_file == 'Labelled_Data/prompts.csv':
+            cost = (total_tokens / 1000) * 0.003
+            print(f"Estimated cost for '{csv_file}' is ${cost:.2f}")
+

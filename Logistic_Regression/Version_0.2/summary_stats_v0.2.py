@@ -7,6 +7,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import textstat
 import pandas as pd
+import tiktoken
 
 # Constants
 nlp = spacy.load('en_core_web_sm')
@@ -36,6 +37,34 @@ def remove_prefix(dataset_name, data):
         texts = [text.split("Article:", 1)[1].strip() for text in texts]  # Stripping the 'Article: ' string
 
     return texts, labels
+
+
+def average_token_count(dataset_name, data):
+    """
+    Calculates the average number of tokens in the answers of the pubmed_qa dataset.
+
+    Returns:
+        float: Average number of tokens in the answers of the pubmed_qa dataset.
+    """
+    texts, labels = remove_prefix(dataset_name, data)
+
+    encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
+
+    total_tokens = 0
+
+    for text in texts:
+        num_tokens = len(encoding.encode(text))
+        total_tokens += num_tokens
+
+    average_tokens = total_tokens / len(texts)
+
+    return average_tokens
+
+#PUBMED = 54
+#WP = 780
+#CNN = 794
+
+
 
 
 def count_pos_tags_and_special_elements(text):
