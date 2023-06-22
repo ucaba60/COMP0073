@@ -274,7 +274,6 @@ def combine_datasets(datasets=DATASETS, extract_prompts=False, directory='Labell
         df.to_csv(f'{directory}/prompts.csv', index=False)
 
 
-
 def extract_prompt(data, dataset_name):
     """
     Extracts the prompts from a preprocessed dataset.
@@ -331,4 +330,3 @@ def token_count(csv_files):
         if csv_file == 'Labelled_Data/prompts.csv':
             cost = (total_tokens / 1000) * 0.003
             print(f"Estimated cost for '{csv_file}' is ${cost:.2f}")
-

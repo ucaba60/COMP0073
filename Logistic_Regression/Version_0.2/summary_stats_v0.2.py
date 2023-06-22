@@ -62,11 +62,10 @@ def average_token_count(dataset_name, data):
 
     return average_tokens
 
-#PUBMED = 54
-#WP = 780
-#CNN = 794
 
-
+# PUBMED = 54
+# WP = 780
+# CNN = 794
 
 
 def count_pos_tags_and_special_elements(text):
@@ -229,13 +228,13 @@ def load_model():
       tokenizer: The tokenizer corresponding to the model.
 
     """
-    model_name = 'allenai/scibert_scivocab_uncased'
-    model = AutoModelForMaskedLM.from_pretrained(model_name)
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    # model_name = 'allenai/scibert_scivocab_uncased'
+    # model = AutoModelForMaskedLM.from_pretrained(model_name)
+    # tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-    # model_name = 'roberta-base'
-    # tokenizer = RobertaTokenizer.from_pretrained(model_name)
-    # model = RobertaForMaskedLM.from_pretrained(model_name)
+    model_name = 'roberta-base'
+    tokenizer = RobertaTokenizer.from_pretrained(model_name)
+    model = RobertaForMaskedLM.from_pretrained(model_name)
     return model, tokenizer
 
 
