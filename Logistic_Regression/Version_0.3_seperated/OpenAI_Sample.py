@@ -44,7 +44,7 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
             # Define max tokens based on the current index
             # The first 150 entries will have 100 max tokens, the rest will have 1000
             # This is because the first 150 entries are short prompts/responses, while the rest are longer
-            max_tokens = 100 if i < 150 else 1000
+            # max_tokens = 100 if i < 150 else 1000
 
             # Generate the response
             response = openai.ChatCompletion.create(
@@ -54,7 +54,6 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
                     {"role": "user", "content": prompt}
                 ],
                 temperature=temperature,
-                max_tokens=max_tokens
             )
 
             # Append the response to the list
@@ -77,7 +76,7 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
 
 # ------------------------------------------------------------------------------------------#
 
-generate_gpt_responses("Labelled_Data/prompts.csv", "Labelled_Data/t1_responses.csv")
+# generate_gpt_responses("Labelled_Data/prompts.csv", "Labelled_Data/t1_responses.csv")
 
 # ------------------------------------------------------------------------------------------#
 
@@ -91,6 +90,9 @@ def check_lengths(prompt_csv_path, response_csv_path):
     else:
         print(f"Length of prompts file: {len(prompts_df)}")
         print(f"Length of responses file: {len(responses_df)}")
+
+
+# check_lengths("Labelled_Data/prompts.csv", "Labelled_Data/t1_responses.csv")
 
 
 def extract_and_combine(response_csv_path, output_csv_path):
@@ -122,3 +124,13 @@ def extract_and_combine(response_csv_path, output_csv_path):
 
     # Save the DataFrame to a CSV file
     df.to_csv(output_csv_path, index=False)
+
+# ------------------------------------------------------------------------------------------#
+
+# extract_and_combine("Labelled_Data/t1_responses.csv", "Labelled_Data/t1_preprocessed.csv")
+
+
+# df = pd.read_csv("t1_preprocessed.csv")
+#
+# # Create a list of tuples
+# data_tuples = [(row['Text'], row['Label']) for index, row in df.iterrows()]
