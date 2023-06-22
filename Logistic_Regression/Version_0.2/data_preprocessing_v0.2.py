@@ -8,7 +8,7 @@ import tiktoken
 # Constants
 DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail','gpt']
 DATA_PATH = '../data/writingPrompts'
-NUM_EXAMPLES = 150
+NUM_EXAMPLES = 200
 TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]', '[ CC ]', '[ RF ]',
         '[ wp ]', '[ Wp ]', '[ RF ]', '[ WP/MP ]']
 
@@ -304,7 +304,7 @@ def token_count(csv_files):
     Counts the number of tokens in a CSV file.
 
     Args:
-        csv_file (str): Path to the CSV file.
+        csv_files (str): Path to the CSV file.
 
     Returns:
         None
@@ -330,3 +330,11 @@ def token_count(csv_files):
         if csv_file == 'Labelled_Data/prompts.csv':
             cost = (total_tokens / 1000) * 0.003
             print(f"Estimated cost for '{csv_file}' is ${cost:.2f}")
+
+
+# x = preprocess_data('pubmed_qa')
+# y = preprocess_data('writingprompts')
+# z = preprocess_data('cnn_dailymail')
+# combine_datasets(['pubmed_qa', 'writingprompts', 'cnn_dailymail'], extract_prompts=True)
+
+# token_count(['Labelled_Data/combined_human_Human_data.csv', 'Labelled_Data/prompts.csv'])

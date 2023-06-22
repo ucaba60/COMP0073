@@ -41,6 +41,11 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
         responses = []
 
         for prompt in batch:
+            # Define max tokens based on the current index
+            # The first 150 entries will have 100 max tokens, the rest will have 1000
+            # This is because the first 150 entries are short prompts/responses, while the rest are longer
+            max_tokens = 100 if i < 150 else 1000
+
             # Generate the response
             response = openai.ChatCompletion.create(
                 model=model,
@@ -49,6 +54,7 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
                     {"role": "user", "content": prompt}
                 ],
                 temperature=temperature,
+                max_tokens=max_tokens
             )
 
             # Append the response to the list
@@ -69,7 +75,13 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
         print(f"Batch {i // BATCH_SIZE + 1} completed")
 
 
-# generate_gpt_responses("Labelled_Data/prompts.csv", "Labelled_Data/t1_responses.csv")
+# ------------------------------------------------------------------------------------------#
+
+generate_gpt_responses("Labelled_Data/prompts.csv", "Labelled_Data/t1_responses.csv")
+
+# ------------------------------------------------------------------------------------------#
+
+
 def check_lengths(prompt_csv_path, response_csv_path):
     prompts_df = pd.read_csv(prompt_csv_path)
     responses_df = pd.read_csv(response_csv_path)
@@ -110,6 +122,3 @@ def extract_and_combine(response_csv_path, output_csv_path):
 
     # Save the DataFrame to a CSV file
     df.to_csv(output_csv_path, index=False)
-
-
-

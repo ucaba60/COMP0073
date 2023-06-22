@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="remove redundant code">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Getting GPT Prompts WORKS! NEEDS CLEANUP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/data_preprocessing_v0.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/data_preprocessing_v0.2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/Labelled_Data/t1_responses.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/OpenAI_Sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/OpenAI_Sample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/t1_preprocessed.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,13 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Works, DO TESING IF VALUES ARE OK">
-      <created>1686827292419</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1686827292419</updated>
     </task>
     <task id="LOCAL-00018" summary="CONJ IS CCONJ !">
       <created>1686827457318</created>
@@ -442,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687451491233</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Getting GPT Prompts WORKS! NEEDS CLEANUP">
+      <created>1687455636590</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1687455636590</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,7 +459,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="data_process.py - WORKS -CHECKED" />
     <MESSAGE value="Processing and gen WORK AND TESTED" />
     <MESSAGE value="Cleanup" />
     <MESSAGE value="generation and pre-processing of PubMed &amp; WritingPrompts works" />
@@ -482,7 +483,8 @@
     <MESSAGE value="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample" />
     <MESSAGE value="SAMPLE T1 -COMPLETE" />
     <MESSAGE value="remove redundant code" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove redundant code" />
+    <MESSAGE value="Getting GPT Prompts WORKS! NEEDS CLEANUP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Getting GPT Prompts WORKS! NEEDS CLEANUP" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -510,6 +512,16 @@
           <url>file://$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py</url>
           <line>16</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/OpenAI_Sample.py</url>
+          <line>95</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Logistic_Regression/Version_0.2/data_preprocessing_v0.2.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
