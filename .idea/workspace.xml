@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Increasing to sample of 200 initially -&gt; 554 TOTAL after pre-processing!&#10;GPT prompting 100 tokens for pubmed 1000 for rest." />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Commented out max_tokens doesn't make sense&#10;T1_PREPROCESSED">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/TESTING GPT RESULTS COMPARABILITY-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/TESTING GPT RESULTS COMPARABILITY-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/TESTING GPT RESULTS COMPARABILITY.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/TESTING GPT RESULTS COMPARABILITY.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,14 +51,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/Logistic_Regression/Version_0.3_seperated/Labelled_Data",
+    "last_opened_file_path": "C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/Logistic_Regression/JupyterNotebooks/Labelled_Data",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\Version_0.3_seperated\Labelled_Data" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\JupyterNotebooks\Labelled_Data" />
+      <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\Version_0.3_seperated\Labelled_Data" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\Version_0.2" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\data" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073" />
@@ -94,20 +99,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00019" summary="CONJ IS CCONJ !">
-      <created>1686827801304</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1686827801304</updated>
-    </task>
-    <task id="LOCAL-00020" summary="NOTES FILE">
-      <created>1686902403094</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1686902403094</updated>
     </task>
     <task id="LOCAL-00021" summary="PubMed Fully working + some tested">
       <created>1686906645850</created>
@@ -438,7 +429,21 @@
       <option name="project" value="LOCAL" />
       <updated>1687456726272</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="TESTING COMPARABILITY">
+      <created>1687456823746</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1687456823746</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Commented out max_tokens doesn't make sense&#10;T1_PREPROCESSED">
+      <created>1687473527392</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1687473527392</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -453,8 +458,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cleanup" />
-    <MESSAGE value="generation and pre-processing of PubMed &amp; WritingPrompts works" />
     <MESSAGE value="Save as csv" />
     <MESSAGE value="AVERAGE WORD LENGHT INCORPORATED" />
     <MESSAGE value="Reading scores incorporated and tested" />
@@ -478,7 +481,9 @@
     <MESSAGE value="remove redundant code" />
     <MESSAGE value="Getting GPT Prompts WORKS! NEEDS CLEANUP" />
     <MESSAGE value="Increasing to sample of 200 initially -&gt; 554 TOTAL after pre-processing!&#10;GPT prompting 100 tokens for pubmed 1000 for rest." />
-    <option name="LAST_COMMIT_MESSAGE" value="Increasing to sample of 200 initially -&gt; 554 TOTAL after pre-processing!&#10;GPT prompting 100 tokens for pubmed 1000 for rest." />
+    <MESSAGE value="TESTING COMPARABILITY" />
+    <MESSAGE value="Commented out max_tokens doesn't make sense&#10;T1_PREPROCESSED" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commented out max_tokens doesn't make sense&#10;T1_PREPROCESSED" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -509,7 +514,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/OpenAI_Sample.py</url>
-          <line>95</line>
+          <line>97</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
