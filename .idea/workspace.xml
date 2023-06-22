@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="SAMPLE T1 -COMPLETE">
-      <change afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/Labelled_Data/combined_human_Human_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="remove redundant code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/data_preprocessing_v0.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/data_preprocessing_v0.2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/OpenAI_Sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/OpenAI_Sample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/responses.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,18 +44,20 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/Logistic_Regression/Version_0.3_seperated/Labelled_Data&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/Logistic_Regression/JupyterNotebooks/Labelled_Data",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\JupyterNotebooks\Labelled_Data" />
+      <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\Version_0.2" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\Version_0.3_seperated\Labelled_Data" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\data" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073" />
@@ -99,27 +98,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00014" summary="JupyterNotebook&#10;PubMed - performs extraction, POS Calculation, perplexity count">
-      <created>1686810014199</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1686810014199</updated>
-    </task>
-    <task id="LOCAL-00015" summary="PubMed works, but haven't tested if values make sense.">
-      <created>1686825081307</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1686825081307</updated>
-    </task>
-    <task id="LOCAL-00016" summary="PubMed works, but haven't tested if values make sense.">
-      <created>1686825983771</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1686825983771</updated>
     </task>
     <task id="LOCAL-00017" summary="Works, DO TESING IF VALUES ARE OK">
       <created>1686827292419</created>
@@ -443,7 +421,28 @@
       <option name="project" value="LOCAL" />
       <updated>1687449620749</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="SAMPLE T1 -COMPLETE">
+      <created>1687451329799</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1687451329799</updated>
+    </task>
+    <task id="LOCAL-00064" summary="SAMPLE T1 -COMPLETE">
+      <created>1687451438310</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1687451438310</updated>
+    </task>
+    <task id="LOCAL-00065" summary="remove redundant code">
+      <created>1687451491233</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1687451491233</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +457,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dataset_gen_v0.1.py - TESTED works as intended, data_generation.py is initial version" />
     <MESSAGE value="data_process.py - WORKS -CHECKED" />
     <MESSAGE value="Processing and gen WORK AND TESTED" />
     <MESSAGE value="Cleanup" />
@@ -483,7 +481,8 @@
     <MESSAGE value="RoBERTa - instead of SciBert- BETTER RESULTS" />
     <MESSAGE value="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample" />
     <MESSAGE value="SAMPLE T1 -COMPLETE" />
-    <option name="LAST_COMMIT_MESSAGE" value="SAMPLE T1 -COMPLETE" />
+    <MESSAGE value="remove redundant code" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove redundant code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -506,6 +505,11 @@
           <url>file://$PROJECT_DIR$/DetectGPT_Code/run.py</url>
           <line>744</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Logistic_Regression/Version_0.2/summary_stats_v0.2.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

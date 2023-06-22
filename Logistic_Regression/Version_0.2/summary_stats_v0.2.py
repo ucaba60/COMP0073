@@ -1,6 +1,5 @@
 import spacy
 from collections import Counter
-from transformers import AutoTokenizer, AutoModelForMaskedLM
 import torch
 from statistics import mean
 import seaborn as sns
@@ -9,7 +8,6 @@ import textstat
 import pandas as pd
 import tiktoken
 from transformers import RobertaTokenizer, RobertaForMaskedLM
-from transformers import pipeline
 
 # Constants
 nlp = spacy.load('en_core_web_sm')

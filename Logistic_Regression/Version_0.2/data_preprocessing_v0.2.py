@@ -6,7 +6,7 @@ import random
 import tiktoken
 
 # Constants
-DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail']
+DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail','gpt']
 DATA_PATH = '../data/writingPrompts'
 NUM_EXAMPLES = 150
 TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]', '[ CC ]', '[ RF ]',
