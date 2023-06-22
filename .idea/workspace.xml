@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="RoBERTa - instead of SciBert- BETTER RESULTS">
-      <change afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/Labelled_Data/prompts.csv" afterDir="false" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/OpenAI_Sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/OpenAI_Sample.py" afterDir="false" />
     </list>
@@ -96,13 +95,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Counts POS and Preplexity using BERT">
-      <created>1686681000611</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1686681000611</updated>
     </task>
     <task id="LOCAL-00012" summary="Add jupyternotebook">
       <created>1686683781989</created>
@@ -440,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687424485064</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample">
+      <created>1687425574125</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1687425574125</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -455,7 +454,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="data_process - WORKS BUT AVERAGE VALUES SLIGHTLY OFF" />
     <MESSAGE value="Data_generation and data_process work - NEED TESTING AND DOCUMENTATION TO EXPLAIN&#10;&#10;ALSO ON JUPTYTER!" />
     <MESSAGE value="dataset_gen_v0.1.py - TESTED works as intended, data_generation.py is initial version" />
     <MESSAGE value="data_process.py - WORKS -CHECKED" />
@@ -480,7 +478,8 @@
     <MESSAGE value="Count of prompt lenght and cost&#10;Count of average tokens of answers/stories/articles in order to limit GPT API to those parameter for more comparable results" />
     <MESSAGE value="Better docstrings, CHECKPOINT 1" />
     <MESSAGE value="RoBERTa - instead of SciBert- BETTER RESULTS" />
-    <option name="LAST_COMMIT_MESSAGE" value="RoBERTa - instead of SciBert- BETTER RESULTS" />
+    <MESSAGE value="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample" />
+    <option name="LAST_COMMIT_MESSAGE" value="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
