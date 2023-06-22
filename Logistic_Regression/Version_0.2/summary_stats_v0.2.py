@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import textstat
 import pandas as pd
 import tiktoken
+from transformers import RobertaTokenizer, RobertaForMaskedLM
+from transformers import pipeline
 
 # Constants
 nlp = spacy.load('en_core_web_sm')
@@ -231,6 +233,9 @@ def load_model():
     model = AutoModelForMaskedLM.from_pretrained(model_name)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
 
+    # model_name = 'roberta-base'
+    # tokenizer = RobertaTokenizer.from_pretrained(model_name)
+    # model = RobertaForMaskedLM.from_pretrained(model_name)
     return model, tokenizer
 
 
@@ -291,18 +296,20 @@ def calculate_perplexity(text, model, tokenizer):
     Returns:
     perplexity (float or None): The calculated perplexity of the text, or None if the text is too long.
     """
-    # tokenize the input, add special tokens and return tensors
-    input_ids = tokenizer.encode(text, return_tensors="pt")
 
-    # if the text is too long, skip it
-    # this step has the extra effect of removing examples with low-quality/garbage content
-    if len(input_ids[0]) > 512:
+    try:
+        input_ids = tokenizer.encode(text, return_tensors='pt')
+        # Truncate the text if it's too long for the model
+        input_ids = input_ids[:, :model.config.max_position_embeddings]
+
+        with torch.no_grad():
+            outputs = model(input_ids, labels=input_ids)
+            loss = outputs.loss
+            perplexity = torch.exp(loss)
+        return perplexity.item()
+    except Exception as e:
+        print(f"Tokens > 512, ignoring... in calculate_perplexity: {e}")
         return None
-
-    with torch.no_grad():
-        output = model(input_ids, labels=input_ids)
-    loss = output.loss
-    return torch.exp(loss).item()  # perplexity is e^loss
 
 
 def summary_statistics(dataset_name, data):
