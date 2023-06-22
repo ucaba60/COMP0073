@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="SAMPLE T1 -COMPLETE">
+      <change afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/Labelled_Data/combined_human_Human_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/data_preprocessing_v0.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.2/data_preprocessing_v0.2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/OpenAI_Sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/OpenAI_Sample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logistic_Regression/Version_0.3_seperated/responses.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,16 +47,16 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/Logistic_Regression/Version_0.3_seperated/Labelled_Data",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/Logistic_Regression/Version_0.3_seperated/Labelled_Data&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\Version_0.3_seperated\Labelled_Data" />
@@ -95,13 +99,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00013" summary="JupyterNotebook&#10;PubMed - performs extraction, POS Calculation, perplexity count">
-      <created>1686729426335</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1686729426335</updated>
     </task>
     <task id="LOCAL-00014" summary="JupyterNotebook&#10;PubMed - performs extraction, POS Calculation, perplexity count">
       <created>1686810014199</created>
@@ -439,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687426803701</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="SAMPLE T1 -COMPLETE">
+      <created>1687449620749</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1687449620749</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -454,7 +458,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Data_generation and data_process work - NEED TESTING AND DOCUMENTATION TO EXPLAIN&#10;&#10;ALSO ON JUPTYTER!" />
     <MESSAGE value="dataset_gen_v0.1.py - TESTED works as intended, data_generation.py is initial version" />
     <MESSAGE value="data_process.py - WORKS -CHECKED" />
     <MESSAGE value="Processing and gen WORK AND TESTED" />
@@ -479,7 +482,8 @@
     <MESSAGE value="Better docstrings, CHECKPOINT 1" />
     <MESSAGE value="RoBERTa - instead of SciBert- BETTER RESULTS" />
     <MESSAGE value="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample" />
-    <option name="LAST_COMMIT_MESSAGE" value="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample" />
+    <MESSAGE value="SAMPLE T1 -COMPLETE" />
+    <option name="LAST_COMMIT_MESSAGE" value="SAMPLE T1 -COMPLETE" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

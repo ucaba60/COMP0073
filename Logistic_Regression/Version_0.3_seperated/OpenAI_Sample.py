@@ -69,7 +69,47 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
         print(f"Batch {i // BATCH_SIZE + 1} completed")
 
 
-
-
-
 # generate_gpt_responses("Labelled_Data/prompts.csv", "Labelled_Data/t1_responses.csv")
+def check_lengths(prompt_csv_path, response_csv_path):
+    prompts_df = pd.read_csv(prompt_csv_path)
+    responses_df = pd.read_csv(response_csv_path)
+
+    if len(prompts_df) == len(responses_df):
+        print("Both files have the same length!")
+    else:
+        print(f"Length of prompts file: {len(prompts_df)}")
+        print(f"Length of responses file: {len(responses_df)}")
+
+
+def extract_and_combine(response_csv_path, output_csv_path):
+    """
+    Load 'Prompt' and 'Response' from the generated responses csv file, remove the '<<RESP>>' string,
+    combine them in a new column 'Text', add a label 1 to every instance, and save to a new csv file.
+
+    Args:
+        response_csv_path (str): Path to the csv file containing the generated responses.
+        output_csv_path (str): Path to the csv file where the combined text and labels will be saved.
+
+    Returns:
+        None, generates a csv file with the combined text and labels.
+    """
+    # Load the responses
+    df = pd.read_csv(response_csv_path)
+
+    # Remove the '<<RESP>>' string from each response
+    df['Response'] = df['Response'].str.replace('<<RESP>> ', '')
+
+    # Combine the prompt and the response in a new column 'Text'
+    df['Text'] = df['Prompt'] + ' ' + df['Response']
+
+    # Add a new column 'Label' with value 1 to each instance
+    df['Label'] = 1
+
+    # Keep only the 'Text' and 'Label' columns
+    df = df[['Text', 'Label']]
+
+    # Save the DataFrame to a CSV file
+    df.to_csv(output_csv_path, index=False)
+
+
+

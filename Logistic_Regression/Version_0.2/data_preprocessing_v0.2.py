@@ -266,12 +266,13 @@ def combine_datasets(datasets=DATASETS, extract_prompts=False, directory='Labell
     # random.shuffle(extracted_prompts) if extract_prompts else None
 
     # Save the combined data to a CSV file
-    convert_to_csv(combined_data, 'combined')
+    convert_to_csv(combined_data, 'combined_human')
 
     # If specified, save the extracted prompts to a CSV file
     if extract_prompts:
         df = pd.DataFrame(extracted_prompts, columns=['text'])
         df.to_csv(f'{directory}/prompts.csv', index=False)
+
 
 
 def extract_prompt(data, dataset_name):
