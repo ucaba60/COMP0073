@@ -96,13 +96,6 @@
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
     </task>
-    <task id="LOCAL-00012" summary="Add jupyternotebook">
-      <created>1686683781989</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1686683781989</updated>
-    </task>
     <task id="LOCAL-00013" summary="JupyterNotebook&#10;PubMed - performs extraction, POS Calculation, perplexity count">
       <created>1686729426335</created>
       <option name="number" value="00013" />
@@ -439,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687425574125</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample">
+      <created>1687426803701</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1687426803701</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
