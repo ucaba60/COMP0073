@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="version 0.5 dataset_loader.py">
-      <change afterPath="$PROJECT_DIR$/version_0.5/gpt_sample.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/version_0.5/log_reg.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/version_0.5/summary_statistics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5/dataset_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5/dataset_loader.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,13 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Cleanup">
-      <created>1687082584032</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1687082584032</updated>
     </task>
     <task id="LOCAL-00030" summary="generation and pre-processing of PubMed &amp; WritingPrompts works">
       <created>1687082645451</created>
@@ -444,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687598917525</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="version 0.5 dataset_loader.py">
+      <created>1687610822389</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1687610822389</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
