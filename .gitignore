@@ -1,5 +1,4 @@
 /DetectGPT_Code/data/writingPrompts/
-/DetectGPT_Code/data/writingPrompts/
 /DetectGPT_Code/data/writingPrompts/README
 /DetectGPT_Code/data/writingPrompts/test.wp_source
 /DetectGPT_Code/data/writingPrompts/test.wp_target
@@ -13,3 +12,4 @@
 /Logistic_Regression/JupyterNotebooks/Labelled_Data/
 /Logistic_Regression/Version_0.2/Labelled_Data/
 /version_0.5/data/
+/version_0.5/data/writingPrompts/
