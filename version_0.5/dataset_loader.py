@@ -8,7 +8,7 @@ import argparse
 import glob
 
 # Constants
-DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail', 'gpt']
+DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail']
 DATA_PATH = './data/writingPrompts'
 NUM_EXAMPLES = 200
 TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]', '[ CC ]', '[ RF ]',
@@ -347,32 +347,33 @@ def main():
     parser = argparse.ArgumentParser(description='Script for loading and preprocessing datasets.')
     parser.add_argument('--datasets', nargs='+', default=DATASETS,
                         help='List of datasets to load and preprocess. Default is all datasets.')
-    parser.add_argument('--prompts', action='store_true', help='Extract prompts from preprocessed datasets.')
+    parser.add_argument('--all_prompts', action='store_true', help='Extract prompts from all preprocessed datasets.')
     parser.add_argument('--tokens', action='store_true', help='Count tokens in preprocessed datasets.')
     parser.add_argument('--combined', action='store_true', help='Combine all datasets.')
     args = parser.parse_args()
 
     datasets = args.datasets
     combined_data = []
+    combined_prompts = []
     for dataset in datasets:
         data = preprocess_data(dataset)  # preprocessing is always done
         combined_data.extend(data)
         convert_to_csv(data, dataset)
-        if args.prompts:
+
+        if args.all_prompts:
             prompts = extract_prompt(data, dataset)
-            df = pd.DataFrame(prompts, columns=['text'])
-            df.to_csv(f'{directory}/prompts_{dataset}.csv', index=False)
+            combined_prompts.extend(prompts)
+
         if args.tokens:
             csv_files = glob.glob('Labelled_Data/*.csv')
             token_count(csv_files)
+
     if args.combined:
         convert_to_csv(combined_data, 'combined')
-        if args.prompts:
-            combined_prompts = []
-            for dataset in datasets:
-                combined_prompts.extend(extract_prompt(load_data(dataset), dataset))
-            df = pd.DataFrame(combined_prompts, columns=['text'])
-            df.to_csv(f'{directory}/prompts_combined.csv', index=False)
+
+    if args.all_prompts:
+        df = pd.DataFrame(combined_prompts, columns=['text'])
+        df.to_csv(f'{directory}/prompts_combined.csv', index=False)
 
     print("Script finished running successfully. Check your files.")
 
