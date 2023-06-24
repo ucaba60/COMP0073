@@ -33,7 +33,10 @@ def remove_prefix(dataset_name, data):
     texts (list): The list of texts after the prefix has been removed.
     labels (list): The list of labels corresponding to the texts.
     """
-    texts, labels = zip(*data)
+
+
+    texts = data['text'].tolist()
+    labels = data['label'].tolist()
 
     if dataset_name == 'pubmed_qa':
         texts = [text.split("Answer:", 1)[1].strip() for text in texts]  # Strip the 'Answer:' prefix'

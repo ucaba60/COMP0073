@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="JUPYTER WITH WORKING REGRESSION">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Loader works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5/dataset_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5/dataset_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_0.5/log_reg.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5/log_reg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_0.5/summary_statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5/summary_statistics.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,13 +98,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00033" summary="AVERAGE WORD LENGHT INCORPORATED">
-      <created>1687083955248</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1687083955248</updated>
     </task>
     <task id="LOCAL-00034" summary="Reading scores incorporated and tested">
       <created>1687084668371</created>
@@ -441,7 +435,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687617804532</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Loader works">
+      <created>1687618736277</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1687618736277</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,7 +457,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Incorporated cnn_dailymail -WIP" />
     <MESSAGE value="Added docstrings" />
     <MESSAGE value="." />
     <MESSAGE value="SCIBERT RESULTS -IMPORTANT" />
@@ -481,7 +481,8 @@
     <MESSAGE value="version 0.5 dataset_loader.py" />
     <MESSAGE value="summary_stats_v0.2.py WORKING FOR REGRESSION" />
     <MESSAGE value="JUPYTER WITH WORKING REGRESSION" />
-    <option name="LAST_COMMIT_MESSAGE" value="JUPYTER WITH WORKING REGRESSION" />
+    <MESSAGE value="Loader works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Loader works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -2,6 +2,41 @@ import pandas as pd
 from summary_statistics import count_pos_tags_and_special_elements, calculate_readability_scores, \
     calculate_average_word_length, calculate_perplexity, calculate_average_sentence_length, \
     load_model, remove_prefix
+import os
+import spacy
+import argparse
+
+
+nlp = spacy.load('en_core_web_sm')
+FUNCTION_WORDS = {'a', 'in', 'of', 'the'}
+
+
+def combine_data_files(data_files):
+    """
+    This function reads all the files from the given list of file paths and
+    combines them into a large DataFrame.
+
+    Args:
+    data_files (list of str): The list of file paths.
+
+    Returns:
+    combined_data (DataFrame): A DataFrame combining all the data from the files.
+    """
+    # Initialize an empty list to store individual DataFrames
+    data_frames = []
+
+    for file in data_files:
+        # Check if the file exists
+        if os.path.isfile(file):
+            # Load the file into a DataFrame and append it to the list
+            data_frames.append(pd.read_csv(file))
+        else:
+            print(f"The file '{file}' does not exist.")
+
+    # Concatenate all the DataFrames in the list
+    combined_data = pd.concat(data_frames, ignore_index=True)
+
+    return combined_data
 
 
 def prepare_data_for_regression(data, dataset_name):
@@ -84,3 +119,77 @@ def prepare_data_for_regression(data, dataset_name):
     data_matrix = pd.DataFrame(feature_list).fillna(0)
 
     return data_matrix
+
+
+def prepare_and_save_datasets(datasets, output_dir):
+    """
+    Prepare data for regression for all datasets, save them, and return a combined DataFrame.
+
+    Args:
+    datasets (list of str): The list of datasets.
+    output_dir (str): The directory where to save the prepared data.
+
+    Returns:
+    combined_data (DataFrame): The combined DataFrame with prepared data from all datasets.
+    """
+    output_dir = 'Model_Ready_Data'
+    data_frames = []
+    os.makedirs(output_dir, exist_ok=True)
+
+    for dataset_name in datasets:
+        print(f"Preparing data for regression for dataset '{dataset_name}'...")
+
+        # Load the data
+        data = pd.read_csv(f'Labelled_Data/{dataset_name}_preprocessed_data.csv')
+
+        # Prepare the data for regression
+        prepared_data = prepare_data_for_regression(data, dataset_name)
+
+        print(f"Data prepared for dataset '{dataset_name}'. Saving to file...")
+
+        # Save the prepared data
+        prepared_data.to_csv(f'{output_dir}/{dataset_name}_reg_ready.csv', index=False)
+
+        print(f"Data for dataset '{dataset_name}' saved successfully.")
+
+        data_frames.append(prepared_data)
+
+    print("Combining prepared data...")
+
+    # Combine the prepared data
+    combined_data = pd.concat(data_frames, ignore_index=True)
+
+    print("Data combined successfully.")
+
+    return combined_data
+
+
+def parse_arguments():
+    """
+    Parse command-line arguments.
+
+    Returns:
+    args: command-line arguments
+    """
+    parser = argparse.ArgumentParser(description="Prepare datasets for regression.")
+    parser.add_argument('--datasets', nargs='+', help='List of datasets to process')
+
+    return parser.parse_args()
+
+
+def main():
+    # Parse the command-line arguments
+    args = parse_arguments()
+
+    # Prepare and save the datasets
+    output_dir = 'Model_Ready_Data'
+    combined_data = prepare_and_save_datasets(args.datasets, output_dir)
+
+    # Save the combined data
+    combined_data.to_csv(f'{output_dir}/combined_data_reg_ready.csv', index=False)
+
+
+if __name__ == "__main__":
+    main()
+
+
