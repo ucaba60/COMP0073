@@ -35,6 +35,10 @@ def remove_prefix(dataset_name, data):
         texts = [text.split("Story:", 1)[1].strip() for text in texts]  # Stripping the 'Story: ' string
     elif dataset_name == 'cnn_dailymail':
         texts = [text.split("Article:", 1)[1].strip() for text in texts]  # Stripping the 'Article: ' string
+    elif dataset_name == 'gpt':
+        texts = [text.split("Answer:", 1)[1].strip() if "Answer:" in text else text for text in texts]
+        texts = [text.split("Story:", 1)[1].strip() if "Story:" in text else text for text in texts]
+        texts = [text.split("Article:", 1)[1].strip() if "Article:" in text else text for text in texts]
 
     return texts, labels
 
@@ -116,19 +120,18 @@ def calculate_readability_scores(text):
 
 def prepare_data_for_regression(data, dataset_name):
     """
-       This function prepares the data for regression analysis by extracting features and labels from the data.
+    This function prepares the data for regression analysis by extracting features and labels from the data.
 
-       Args:
-       data (list of tuples): The data from the dataset. Each element of the list is a tuple, where the first element
-       is the text and the second element is its label.
+    Args:
+    data (list of tuples): The data from the dataset. Each element of the list is a tuple, where the first element
+    is the text and the second element is its label.
 
-       Returns:
-       feature_matrix (DataFrame): A DataFrame where each row represents a text and each column represents a feature.
-       label_vector (Series): A Series where each element is the label of a text.
+    Returns:
+    data_matrix (DataFrame): A DataFrame where each row represents a text, each column represents a feature,
+                            and the last column is the label.
     """
     # Initialize lists to store features and labels
     feature_list = []
-    label_list = []
 
     # Load the model and tokenizer
     model, tokenizer = load_model()
@@ -150,30 +153,51 @@ def prepare_data_for_regression(data, dataset_name):
         avg_sentence_length = calculate_average_sentence_length([text])
 
         # Calculate the perplexity of the text and average sentence perplexity
+        # Truncate the text to the first 512 tokens
+        text_encoded = tokenizer.encode(text, truncation=True, max_length=510)
+        text = tokenizer.decode(text_encoded)
+
         text_perplexity = calculate_perplexity(text, model, tokenizer)
         sentence_perplexities = [calculate_perplexity(sentence.text, model, tokenizer) for sentence in nlp(text).sents]
         sentence_perplexities = [p for p in sentence_perplexities if p is not None]
         avg_sentence_perplexity = sum(sentence_perplexities) / len(
             sentence_perplexities) if sentence_perplexities else None
 
+        # Calculate the frequency of uppercase letters
+        uppercase_freq = sum(1 for char in text if char.isupper()) / len(text)
+
         # Prepare a dictionary to append to the feature list
-        features = {**pos_counts, **punctuation_counts, **function_word_counts,
+        features = {
+                    'ADJ': pos_counts.get('ADJ', 0),
+                    'ADV': pos_counts.get('ADV', 0),
+                    'CONJ': pos_counts.get('CONJ', 0),
+                    'NOUN': pos_counts.get('NOUN', 0),
+                    'NUM': pos_counts.get('NUM', 0),
+                    'VERB': pos_counts.get('VERB', 0),
+                    'COMMAS': punctuation_counts.get(',', 0),
+                    'FULLSTOPS': punctuation_counts.get('.', 0),
+                    'SPECIAL-': punctuation_counts.get('-', 0),
+                    'FUNCTION-A': function_word_counts.get('a', 0),
+                    'FUNCTION-IN': function_word_counts.get('in', 0),
+                    'FUNCTION-OF': function_word_counts.get('of', 0),
+                    'FUNCTION-THE': function_word_counts.get('the', 0),
+                    'uppercase_freq': uppercase_freq,  # new feature
                     'flesch_reading_ease': flesch_reading_ease,
                     'flesch_kincaid_grade_level': flesch_kincaid_grade_level,
-                    'avg_word_length': avg_word_length, 'avg_sentence_length': avg_sentence_length,
-                    'text_perplexity': text_perplexity, 'avg_sentence_perplexity': avg_sentence_perplexity}
+                    'avg_word_length': avg_word_length,
+                    'avg_sentence_length': avg_sentence_length,
+                    'text_perplexity': text_perplexity,
+                    'avg_sentence_perplexity': avg_sentence_perplexity,
+                    'label': label
+                    }
 
-        # Add the feature dictionary and the label to their respective lists
+        # Add the feature dictionary to the feature list
         feature_list.append(features)
-        label_list.append(label)
 
     # Convert the list of dictionaries into a DataFrame
-    feature_matrix = pd.DataFrame(feature_list).fillna(0)
+    data_matrix = pd.DataFrame(feature_list).fillna(0)
 
-    # Convert the list of labels into a Series
-    label_vector = pd.Series(label_list)
-
-    return feature_matrix, label_vector
+    return data_matrix
 
 
 def load_and_count(dataset_name, data):
@@ -281,7 +305,6 @@ def calculate_average_sentence_length(texts):
 
 
 def calculate_perplexity(text, model, tokenizer):
-    # CHECKED
     """
     Calculates the perplexity of a text using a language model and tokenizer.
 
@@ -296,8 +319,8 @@ def calculate_perplexity(text, model, tokenizer):
 
     try:
         input_ids = tokenizer.encode(text, return_tensors='pt')
-        # Truncate the text if it's too long for the model
-        input_ids = input_ids[:, :model.config.max_position_embeddings]
+        # Truncate the text to the first 512 tokens
+        input_ids = input_ids[:, :512]
 
         with torch.no_grad():
             outputs = model(input_ids, labels=input_ids)
@@ -305,7 +328,7 @@ def calculate_perplexity(text, model, tokenizer):
             perplexity = torch.exp(loss)
         return perplexity.item()
     except Exception as e:
-        print(f"Tokens > 512, ignoring... in calculate_perplexity: {e}")
+        print(f"An error occurred in calculate_perplexity: {e}")
         return None
 
 
@@ -404,3 +427,4 @@ def plot_perplexities(sentence_perplexities, text_perplexities):
     plt.xlabel('Perplexity')
     plt.xlim(0, 10)  # Limit x-axis to 10 for text perplexity
     plt.show()
+
