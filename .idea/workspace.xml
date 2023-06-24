@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Commented out max_tokens doesn't make sense&#10;T1_PREPROCESSED">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/TESTING GPT RESULTS COMPARABILITY-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/TESTING GPT RESULTS COMPARABILITY-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/TESTING GPT RESULTS COMPARABILITY.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/TESTING GPT RESULTS COMPARABILITY.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="working on regerssion in juypyter" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,13 +94,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00021" summary="PubMed Fully working + some tested">
-      <created>1686906645850</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1686906645850</updated>
     </task>
     <task id="LOCAL-00022" summary="PubMed+WP trying output">
       <created>1686911865469</created>
@@ -443,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687473527392</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="working on regerssion in juypyter">
+      <created>1687478094634</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1687478094634</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +453,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Save as csv" />
     <MESSAGE value="AVERAGE WORD LENGHT INCORPORATED" />
     <MESSAGE value="Reading scores incorporated and tested" />
     <MESSAGE value="Little optimisation" />
@@ -483,7 +477,8 @@
     <MESSAGE value="Increasing to sample of 200 initially -&gt; 554 TOTAL after pre-processing!&#10;GPT prompting 100 tokens for pubmed 1000 for rest." />
     <MESSAGE value="TESTING COMPARABILITY" />
     <MESSAGE value="Commented out max_tokens doesn't make sense&#10;T1_PREPROCESSED" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commented out max_tokens doesn't make sense&#10;T1_PREPROCESSED" />
+    <MESSAGE value="working on regerssion in juypyter" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on regerssion in juypyter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
