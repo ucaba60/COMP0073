@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Regression WORKS">
-      <change afterPath="$PROJECT_DIR$/version_0.5/dataset_loader.py" afterDir="false" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="version 0.5 dataset_loader.py">
+      <change afterPath="$PROJECT_DIR$/version_0.5/gpt_sample.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/version_0.5/log_reg.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/version_0.5/summary_statistics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/TESTING GPT RESULTS COMPARABILITY-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/.ipynb_checkpoints/TESTING GPT RESULTS COMPARABILITY-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/TESTING GPT RESULTS COMPARABILITY.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic_Regression/JupyterNotebooks/TESTING GPT RESULTS COMPARABILITY.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_0.5/dataset_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5/dataset_loader.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,13 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Processing and gen WORK AND TESTED">
-      <created>1687080793288</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1687080793288</updated>
     </task>
     <task id="LOCAL-00029" summary="Cleanup">
       <created>1687082584032</created>
@@ -443,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687595743416</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="version 0.5 dataset_loader.py">
+      <created>1687598917525</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1687598917525</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +459,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Reading scores incorporated and tested" />
     <MESSAGE value="Little optimisation" />
     <MESSAGE value="VERSION 2 - WORKS WITH PUBMED/WRITINGPROMTS ADDING DAILYMAIL" />
     <MESSAGE value="Incorporated cnn_dailymail -WIP" />
@@ -483,7 +483,8 @@
     <MESSAGE value="Commented out max_tokens doesn't make sense&#10;T1_PREPROCESSED" />
     <MESSAGE value="working on regerssion in juypyter" />
     <MESSAGE value="Regression WORKS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Regression WORKS" />
+    <MESSAGE value="version 0.5 dataset_loader.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 0.5 dataset_loader.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
