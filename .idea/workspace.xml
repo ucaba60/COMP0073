@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="JUPYTER WITH WORKING REGRESSION">
-      <change afterPath="$PROJECT_DIR$/version_0.5/Labelled_Data/t1_responses.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/version_0.5/dataset_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5/dataset_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5/gpt_sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5/gpt_sample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5/log_reg.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5/log_reg.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,13 +97,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Save as csv">
-      <created>1687083397796</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1687083397796</updated>
     </task>
     <task id="LOCAL-00033" summary="AVERAGE WORD LENGHT INCORPORATED">
       <created>1687083955248</created>
@@ -444,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687611920840</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="JUPYTER WITH WORKING REGRESSION">
+      <created>1687617804532</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1687617804532</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

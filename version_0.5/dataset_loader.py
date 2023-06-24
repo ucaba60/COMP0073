@@ -8,7 +8,7 @@ import argparse
 import glob
 
 # Constants
-DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail']
+DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail', 'gpt']
 DATA_PATH = './data/writingPrompts'
 NUM_EXAMPLES = 200
 TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]', '[ CC ]', '[ RF ]',
@@ -70,6 +70,26 @@ def load_pubmed(num_examples=NUM_EXAMPLES):
     """
     data = datasets.load_dataset('pubmed_qa', 'pqa_labeled', split=f'train[:{num_examples}]')
     data = [(f'Question: {q} Answer: {a}', 0) for q, a in zip(data['question'], data['long_answer'])]
+    return data
+
+
+def load_gpt(dataset_name='gpt'):
+    """
+    Loads the GPT preprocessed dataset.
+
+    Args:
+        dataset_name (str, optional): Name of the preprocessed GPT dataset. Defaults to 'gpt'.
+
+    Returns:
+        list: List of tuples where each tuple is a text-label pair.
+    """
+    file_path = 'Labelled_Data/t1_preprocessed.csv'
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"The file '{file_path}' does not exist.")
+
+    df = pd.read_csv(file_path)
+    data = [(row['Text'], row['Label']) for index, row in df.iterrows()]
+
     return data
 
 
@@ -176,6 +196,8 @@ def load_data(dataset_name):
         return load_writingPrompts()
     elif dataset_name == 'cnn_dailymail':
         return load_cnn_daily_mail()
+    elif dataset_name == 'gpt':
+        return load_gpt()
     else:
         raise ValueError(f"Dataset name {dataset_name} not recognized.")
 
@@ -207,8 +229,10 @@ def preprocess_data(dataset):
         long_data = [(x, y) for x, y in data if len(x.split()) > 250]
         if len(long_data) > 0:
             data = long_data
-        print(f"Loaded and pre-processed {len(data)} prompts/stories[summaries/articles] from the dataset")  # debug
+        print(f"Loaded and pre-processed {len(data)} entries from the dataset {dataset}")  # debug
         # print
+    else:
+        print(f"Loaded and pre-processed {len(data)} entries from the dataset {dataset}")
 
     return data
 
@@ -230,7 +254,7 @@ def convert_to_csv(data, dataset_name, directory='Labelled_Data'):
         os.makedirs(directory)
 
     # Check if the file already exists
-    file_path = f'{directory}/{dataset_name}_Human_data.csv'
+    file_path = f'{directory}/{dataset_name}_preprocessed_data.csv'
     if os.path.exists(file_path):
         overwrite = input(f"A file named '{file_path}' already exists. Do you want to overwrite it? (y/n): ")
         if overwrite.lower() != 'y':
