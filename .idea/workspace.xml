@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Regression_ready+ files">
-      <change afterPath="$PROJECT_DIR$/version_0.5/svm.py" afterDir="false" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Working on SVM">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_0.5/svm.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5/svm.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,16 +43,16 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/version_0.5/Labelled_Data",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/version_0.5/Labelled_Data&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\version_0.5\Labelled_Data" />
@@ -97,13 +97,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686476539356</updated>
-    </task>
-    <task id="LOCAL-00036" summary="VERSION 2 - WORKS WITH PUBMED/WRITINGPROMTS ADDING DAILYMAIL">
-      <created>1687165214674</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1687165214674</updated>
     </task>
     <task id="LOCAL-00037" summary="Incorporated cnn_dailymail -WIP">
       <created>1687168057007</created>
@@ -441,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687625159025</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Working on SVM">
+      <created>1687626264292</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1687626264292</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,7 +456,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="." />
     <MESSAGE value="SCIBERT RESULTS -IMPORTANT" />
     <MESSAGE value="gpt-2 results" />
     <MESSAGE value="JupyterNotebooks + Tests of Regression vectors" />
@@ -481,7 +480,8 @@
     <MESSAGE value="JUPYTER WITH WORKING REGRESSION" />
     <MESSAGE value="Loader works" />
     <MESSAGE value="Regression_ready+ files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Regression_ready+ files" />
+    <MESSAGE value="Working on SVM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on SVM" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
