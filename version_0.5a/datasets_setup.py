@@ -73,24 +73,24 @@ def load_pubmed(num_examples=NUM_EXAMPLES):
     return data
 
 
-def load_gpt():
+def load_gpt(file_name):
     """
     Loads the GPT preprocessed dataset.
 
     Args:
-
+        file_name (str): Name of the csv file containing the GPT dataset.
 
     Returns:
         list: List of tuples where each tuple is a text-label pair.
     """
-    file_path = 'Labelled_Data/t1_preprocessed.csv'
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"The file '{file_path}' does not exist.")
+    if not os.path.exists(file_name):
+        raise FileNotFoundError(f"The file '{file_name}' does not exist.")
 
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(file_name)
     data = [(row['Text'], row['Label']) for index, row in df.iterrows()]
 
     return data
+
 
 
 def load_writingPrompts(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
@@ -235,21 +235,53 @@ def preprocess_data(dataset):
     return data
 
 
-def preprocess_and_save():
+def preprocess_and_save(gpt_dataset=None):
     """
     Preprocesses the datasets, combines them, and saves the result to a .csv file.
+    Optional argument gpt_dataset allows preprocessing the GPT dataset and combining it with existing datasets.
+
+    Args:
+        gpt_dataset (str, optional): Name of the GPT dataset csv file (without the .csv extension).
+
+    Returns:
+        None, saves the combined data to a .csv file.
     """
-    pubmed_data = preprocess_data('pubmed_qa')
-    # gpt_data = preprocess_data('gpt')
-    writingprompts_data = preprocess_data('writingprompts')
-    cnn_daily_mail_data = preprocess_data('cnn_dailymail')
+    if gpt_dataset:
+        # Load and preprocess the GPT dataset
+        gpt_data = load_data('gpt')
+        gpt_data = list(dict.fromkeys(gpt_data))
+        gpt_data = [(strip_newlines(q).strip(), a) for q, a in gpt_data]
 
-    combined_data = pubmed_data + writingprompts_data + cnn_daily_mail_data
+        # Load the already preprocessed data from the other datasets
+        combined_df = pd.read_csv('combined_source_data.csv')
+        combined_data = list(zip(combined_df['Text'], combined_df['Label']))
 
+        # Combine the data
+        combined_data += gpt_data
+
+        output_file = 'full_data.csv'
+        print_message = f"Combined dataset (including GPT) saved to '{output_file}' with {len(combined_data)} entries."
+
+    else:
+        # Preprocess all the datasets
+        pubmed_data = preprocess_data('pubmed_qa')
+        writingprompts_data = preprocess_data('writingprompts')
+        cnn_daily_mail_data = preprocess_data('cnn_dailymail')
+
+        combined_data = pubmed_data + writingprompts_data + cnn_daily_mail_data
+
+        output_file = 'combined_source_data.csv'
+        print_message = f"Combined dataset saved to '{output_file}' with {len(combined_data)} entries."
+
+    # Save the combined data to a .csv file
     df = pd.DataFrame(combined_data, columns=['Text', 'Label'])
-    df.to_csv('combined_source_data.csv', index=False)
-    print(f"Combined dataset saved to 'combined_source_data.csv' with {len(df)} entries.")
+    df.to_csv(output_file, index=False)
 
+    print(print_message)
+
+
+
+preprocess_and_save("t1_responses_preprocessed")
 
 
 

@@ -84,14 +84,15 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
 
 # ------------------------------------------------------------------------------------------#
 
-def extract_and_combine(response_csv_path, output_csv_path):
+
+def extract_and_combine(response_csv_path):
     """
     Load 'Prompt' and 'Response' from the generated responses csv file, remove the '<<RESP>>' string,
-    combine them in a new column 'Text', add a label 1 to every instance, and save to a new csv file.
+    adjust the format to match the original datasets, add a label 1 to every instance,
+    and save to a new csv file.
 
     Args:
         response_csv_path (str): Path to the csv file containing the generated responses.
-        output_csv_path (str): Path to the csv file where the combined text and labels will be saved.
 
     Returns:
         None, generates a csv file with the combined text and labels.
@@ -102,8 +103,18 @@ def extract_and_combine(response_csv_path, output_csv_path):
     # Remove the '<<RESP>>' string from each response
     df['Response'] = df['Response'].str.replace('<<RESP>> ', '')
 
-    # Combine the prompt and the response in a new column 'Text'
-    df['Text'] = df['Prompt'] + ' ' + df['Response']
+    # Combine the prompt and the response in a new column 'Text' with adjustments for specific prompts
+    df['Text'] = df.apply(
+        lambda row: (
+            'Prompt: ' + row['Prompt'].replace(' Continue the story:', '') + ' Story: ' + row['Response']
+            if row['Prompt'].endswith('Continue the story:')
+            else (
+                'Summary: ' + row['Prompt'].replace('Write a news article based on the following summary: ', '') + ' Article: ' + row['Response']
+                if row['Prompt'].startswith('Write a news article based on the following summary:')
+                else row['Prompt'] + ' ' + row['Response']
+            )
+        ), axis=1
+    )
 
     # Add a new column 'Label' with value 1 to each instance
     df['Label'] = 1
@@ -115,11 +126,21 @@ def extract_and_combine(response_csv_path, output_csv_path):
     base_path, extension = os.path.splitext(response_csv_path)
     output_csv_path = f"{base_path}_preprocessed{extension}"
 
+    # Check if the output file already exists
+    if os.path.isfile(output_csv_path):
+        overwrite = input(f"{output_csv_path} already exists. Do you want to overwrite it? (y/n): ")
+        if overwrite.lower() != 'y':
+            print("Operation cancelled.")
+            return
+
     # Save the DataFrame to a CSV file
     df.to_csv(output_csv_path, index=False)
 
 
+
 # ------------------------------------------------------------------------------------------#
+
+extract_and_combine('t1_responses.csv')
 
 def extract_prompts_and_save():
     """
@@ -175,4 +196,4 @@ def append_to_source_and_save(preprocessed_csv_path, source_csv_path='combined_s
     df_combined.to_csv(output_csv_path, index=False)
 
 
-append_to_source_and_save("t1_preprocessed.csv")
+# append_to_source_and_save("t1_preprocessed.csv")
