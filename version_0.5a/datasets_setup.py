@@ -233,3 +233,23 @@ def preprocess_data(dataset):
         print(f"Loaded and pre-processed {len(data)} entries from the dataset {dataset}")
 
     return data
+
+
+def preprocess_and_save():
+    """
+    Preprocesses the datasets, combines them, and saves the result to a .csv file.
+    """
+    pubmed_data = preprocess_data('pubmed_qa')
+    # gpt_data = preprocess_data('gpt')
+    writingprompts_data = preprocess_data('writingprompts')
+    cnn_daily_mail_data = preprocess_data('cnn_dailymail')
+
+    combined_data = pubmed_data + writingprompts_data + cnn_daily_mail_data
+
+    df = pd.DataFrame(combined_data, columns=['Text', 'Label'])
+    df.to_csv('combined_source_data.csv', index=False)
+    print(f"Combined dataset saved to 'combined_source_data.csv' with {len(df)} entries.")
+
+
+
+
