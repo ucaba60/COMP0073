@@ -254,6 +254,7 @@ def calculate_cosine_similarity(text1, text2, model, tokenizer):
 
     return cosine_similarity
 
+
 def extract_prompts_and_texts(data):
     """
     This function extracts prompts and texts from the data.
@@ -270,20 +271,27 @@ def extract_prompts_and_texts(data):
     full_texts, _ = zip(*data)
     texts, labels = remove_prefix(data)
 
-    starting_points = ["Question:", "Prompt:", "Article:"]
-    end_points = ["Answer:", "Story:", "Summary:"]
+    starting_points = ["Question:", "Prompt:", "Summary:"]
+    end_points = ["Answer:", "Story:", "Article:"]
 
     for full_text, text in zip(full_texts, texts):
+        full_text = full_text.strip()  # Remove leading/trailing white spaces
+        text = text.strip()
         prompt = None
         for start, end in zip(starting_points, end_points):
+            start = start.strip()
+            end = end.strip()
             if start in full_text and end in full_text:
                 _, temp_prompt = full_text.split(start, 1)
-                prompt, _ = temp_prompt.split(end, 1)
-                prompt = prompt.strip()
+                if end in temp_prompt: # Check if end is present in temp_prompt before splitting
+                    prompt, _ = temp_prompt.split(end, 1)
+                    prompt = prompt.strip()
+                else:
+                    print(f"WARNING: Unable to find the end string '{end}' in temp_prompt for full text: {full_text} and text: {text}")
                 break
 
         if prompt is None:
-            print(f"WARNING: No prompt extracted for text: {text}")
+            print(f"WARNING: No prompt extracted for full text: {full_text} and text: {text}")
             prompt = ""  # use an empty string if no prompt is found
 
         prompts_and_texts.append((prompt, text))  # append the prompt and text to the list
@@ -291,7 +299,7 @@ def extract_prompts_and_texts(data):
     return prompts_and_texts
 
 
-def calculate_cosine_similarities_for_dataset(dataset_name, model, tokenizer):
+def calculate_cosine_similarities_for_dataset(model, tokenizer):
     """
     This function calculates cosine similarities for all (prompt, text) pairs in a dataset.
 
@@ -304,7 +312,7 @@ def calculate_cosine_similarities_for_dataset(dataset_name, model, tokenizer):
     cosine_similarities (list of floats): The list of cosine similarities.
     """
 
-    prompts_and_texts = extract_prompts_and_texts(dataset_name, data)
+    prompts_and_texts = extract_prompts_and_texts(data)
 
     cosine_similarities = []
     for prompt, text in prompts_and_texts:

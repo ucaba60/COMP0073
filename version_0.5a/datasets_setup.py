@@ -9,7 +9,7 @@ import tiktoken
 # Constants
 DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail', 'gpt']
 DATA_PATH = './data/writingPrompts'
-NUM_EXAMPLES = 200
+NUM_EXAMPLES = 300
 TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]', '[ CC ]', '[ RF ]',
         '[ wp ]', '[ Wp ]', '[ RF ]', '[ WP/MP ]']
 directory = 'Dataset_Data/'
@@ -239,17 +239,21 @@ def preprocess_data(dataset):
     return data
 
 
-def preprocess_and_save(gpt_dataset=None):
+def preprocess_and_save(gpt_dataset=None, output_folder = 'extracted_data'):
     """
     Preprocesses the datasets, combines them, and saves the result to a .csv file.
     Optional argument gpt_dataset allows preprocessing the GPT dataset and combining it with existing datasets.
 
     Args:
+        output_folder: folder where the extracted data will be saved
         gpt_dataset (str, optional): Name of the GPT dataset csv file (without the .csv extension).
 
     Returns:
         None, saves the combined data to a .csv file.
     """
+
+    os.makedirs(output_folder, exist_ok=True)
+
     if gpt_dataset:
         # Load and preprocess the GPT dataset
         gpt_data = load_data('gpt', gpt_dataset)
@@ -257,7 +261,7 @@ def preprocess_and_save(gpt_dataset=None):
         gpt_data = [(strip_newlines(q).strip(), a) for q, a in gpt_data]
 
         # Load the already preprocessed data from the other datasets
-        combined_df = pd.read_csv('combined_source_data.csv')
+        combined_df = pd.read_csv(os.path.join(output_folder, 'combined_source_data.csv'))
         combined_data = list(zip(combined_df['Text'], combined_df['Label']))
 
         # Combine the data
@@ -275,16 +279,23 @@ def preprocess_and_save(gpt_dataset=None):
 
         output_file = 'combined_source_data.csv'
 
-    if os.path.exists(output_file):
-        overwrite = input(f"'{output_file}' already exists. Do you want to overwrite it? (y/n): ")
+    output_file_path = os.path.join(output_folder, output_file)
+
+    if os.path.exists(output_file_path):
+        overwrite = input(f"'{output_file_path}' already exists. Do you want to overwrite it? (y/n): ")
         if overwrite.lower() != 'y':
-            print(f"Not overwriting existing file '{output_file}'. Exiting...")
+            print(f"Not overwriting existing file '{output_file_path}'. Exiting...")
             return
 
     # Save the combined data to a .csv file
     df = pd.DataFrame(combined_data, columns=['Text', 'Label'])
-    df.to_csv(output_file, index=False)
+    df.to_csv(output_file_path, index=False)
 
-    print(f"Combined dataset saved to '{output_file}' with {len(combined_data)} entries.")
+    print(f"Combined dataset saved to '{output_file_path}' with {len(combined_data)} entries.")
 
 
+
+# preprocess_and_save(output_folder = 'extracted_data')
+
+
+# preprocess_and_save( gpt_dataset='extracted_data/t1_responses_preprocessed.csv', output_folder = 'extracted_data')

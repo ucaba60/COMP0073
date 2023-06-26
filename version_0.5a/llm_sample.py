@@ -5,17 +5,17 @@ import csv
 import os
 
 # Constants
-BATCH_SIZE = 5  # Define the batch size
+BATCH_SIZE = 10  # Define the batch size
 openai.api_key = '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'
 
 
-def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-turbo", temperature=1):
+def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5-turbo", temperature=1):
     """
     Generate GPT-3 responses for a list of prompts saved in a csv file.
 
     Args:
         prompt_csv_path (str): Path to the csv file containing the prompts.
-        response_csv_path (str): Base path to the csv file where the responses will be saved.
+        response_folder_path (str): Path to the folder where the responses will be saved.
         model (str, optional): The ID of the model to use. Defaults to "gpt-3.5-turbo".
         temperature (float, optional): Determines the randomness of the AI's output. Defaults to 1, as per OpenAI docs.
 
@@ -25,10 +25,13 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
 
     # Load the prompts
     df = pd.read_csv(prompt_csv_path)
-    prompts = df['text'].tolist()
+    prompts = df['Prompt'].tolist()
 
     # Initialize the starting point
     start = 0
+
+    # Construct the response file path
+    response_csv_path = os.path.join(response_folder_path, f"t{temperature}_responses.csv")
 
     # Check if the response file already exists
     if os.path.exists(response_csv_path):
@@ -42,11 +45,6 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
         responses = []
 
         for prompt in batch:
-            # Define max tokens based on the current index
-            # The first 150 entries will have 100 max tokens, the rest will have 1000
-            # This is because the first 150 entries are short prompts/responses, while the rest are longer
-            # max_tokens = 100 if i < 150 else 1000
-
             # Generate the response
             response = openai.ChatCompletion.create(
                 model=model,
@@ -66,9 +64,6 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
             'Response': responses
         })
 
-        # Append temperature value to the base filename
-        response_csv_path = f"{response_csv_path}_t{temperature}_responses.csv"
-
         # Write the DataFrame to the CSV file, appending if it already exists
         if os.path.exists(response_csv_path):
             response_df.to_csv(response_csv_path, mode='a', header=False, index=False)
@@ -80,7 +75,7 @@ def generate_gpt_responses(prompt_csv_path, response_csv_path, model="gpt-3.5-tu
 
 # ------------------------------------------------------------------------------------------#
 
-# generate_gpt_responses("Labelled_Data/prompts.csv", "Labelled_Data/t1_responses.csv")
+# generate_gpt_responses('extracted_data/prompts.csv', 'extracted_data', temperature=1)
 
 # ------------------------------------------------------------------------------------------#
 
@@ -140,14 +135,23 @@ def extract_and_combine(response_csv_path):
 
 # ------------------------------------------------------------------------------------------#
 
+# extract_and_combine('extracted_data/t1_responses.csv')
 
+# ------------------------------------------------------------------------------------------#
 
-def extract_prompts_and_save():
+def extract_prompts_and_save(file_folder_path):
     """
     Extracts prompts from the combined dataset and saves them to a .csv file.
+
+    Args:
+        file_folder_path (str): The path to the folder where the combined_source_data.csv file is located.
+
+    Returns:
+        None, saves the prompts to a .csv file.
     """
     # Load the combined dataset
-    df = pd.read_csv('combined_source_data.csv')
+    combined_data_file = os.path.join(file_folder_path, 'combined_source_data.csv')
+    df = pd.read_csv(combined_data_file)
     combined_data = list(zip(df['Text'], df['Label']))
 
     # Extract prompts from the combined data
@@ -165,33 +169,11 @@ def extract_prompts_and_save():
 
     # Save the prompts to a new CSV file
     df_prompts = pd.DataFrame(prompts, columns=['Prompt'])
-    df_prompts.to_csv('prompts.csv', index=False)
-    print(f"Prompts extracted and saved to 'prompts.csv' with {len(df_prompts)} entries.")
+    df_prompts.to_csv(os.path.join(file_folder_path, 'prompts.csv'), index=False)
+    print(f"Prompts extracted and saved to '{os.path.join(file_folder_path, 'prompts.csv')}' with {len(df_prompts)}"
+          f" entries.")
 
 
-def append_to_source_and_save(preprocessed_csv_path, source_csv_path='combined_source_data.csv',
-                              output_csv_path='llm_and_human_data.csv'):
-    """
-    Appends a preprocessed CSV file to a source CSV file and saves the result in a new CSV file.
+# extract_prompts_and_save("extracted_data")
 
-    Args:
-        preprocessed_csv_path (str): Path to the preprocessed CSV file to be appended.
-        source_csv_path (str, optional): Path to the source CSV file. Defaults to 'combined_source_data.csv'.
-        output_csv_path (str, optional): Path to the CSV file where the result will be saved.
-                                         Defaults to 'llm_and_human_data.csv'.
-
-    Returns:
-        None, generates a csv file with the combined data.
-    """
-    # Load the source data
-    df_source = pd.read_csv(source_csv_path)
-
-    # Load the preprocessed data
-    df_preprocessed = pd.read_csv(preprocessed_csv_path)
-
-    # Append the preprocessed data to the source data
-    df_combined = pd.concat([df_source, df_preprocessed], ignore_index=True)
-
-    # Save the combined data to a CSV file
-    df_combined.to_csv(output_csv_path, index=False)
 

@@ -11,34 +11,6 @@ nlp = spacy.load('en_core_web_sm')
 FUNCTION_WORDS = {'a', 'in', 'of', 'the'}
 
 
-def combine_data_files(data_files):
-    """
-    This function reads all the files from the given list of file paths and
-    combines them into a large DataFrame.
-
-    Args:
-    data_files (list of str): The list of file paths.
-
-    Returns:
-    combined_data (DataFrame): A DataFrame combining all the data from the files.
-    """
-    # Initialize an empty list to store individual DataFrames
-    data_frames = []
-
-    for file in data_files:
-        # Check if the file exists
-        if os.path.isfile(file):
-            # Load the file into a DataFrame and append it to the list
-            data_frames.append(pd.read_csv(file))
-        else:
-            print(f"The file '{file}' does not exist.")
-
-    # Concatenate all the DataFrames in the list
-    combined_data = pd.concat(data_frames, ignore_index=True)
-
-    return combined_data
-
-
 def prepare_data_for_regression(data_file):
     """
     This function prepares the data for regression analysis by extracting features and labels from the data.
@@ -147,6 +119,9 @@ def prepare_data_for_regression(data_file):
         data_matrix.to_csv('data_matrix.csv', index=False)
 
     return data_matrix
+
+
+prepare_data_for_regression('extracted_data/full_data.csv')
 
 
 def prepare_and_save_datasets(datasets, output_dir, full_data_path=None):
