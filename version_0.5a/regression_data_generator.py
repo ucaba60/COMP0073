@@ -11,12 +11,13 @@ nlp = spacy.load('en_core_web_sm')
 FUNCTION_WORDS = {'a', 'in', 'of', 'the'}
 
 
-def prepare_data_for_regression(data_file):
+def prepare_data_for_regression(data_file, save_file='data_matrix.csv'):
     """
     This function prepares the data for regression analysis by extracting features and labels from the data.
 
     Args:
     data_file (str): The path to the full_data.csv file.
+    save_file (str): The path to the file where the processed data will be saved.
 
     Returns:
     data_matrix (DataFrame): A DataFrame where each row represents a text, each column represents a feature,
@@ -34,11 +35,23 @@ def prepare_data_for_regression(data_file):
     # Load the model and tokenizer
     model, tokenizer = load_model()
 
+    # Load saved data if it exists
+    if os.path.exists(save_file):
+        saved_data = pd.read_csv(save_file)
+        processed_rows = len(saved_data)
+    else:
+        saved_data = pd.DataFrame()
+        processed_rows = 0
+
     # Remove prefixes
     texts, labels = remove_prefix(data)
     prompts_and_texts = extract_prompts_and_texts(data)
 
-    for (prompt, text), label in zip(prompts_and_texts, labels):
+    for i, ((prompt, text), label) in enumerate(zip(prompts_and_texts, labels)):
+        # Skip rows that have already been processed
+        if i < processed_rows:
+            continue
+
         # Count POS tags in the text
         pos_counts, punctuation_counts, function_word_counts = count_pos_tags_and_special_elements(text)
 
@@ -107,16 +120,18 @@ def prepare_data_for_regression(data_file):
         # Add the feature dictionary to the feature list
         feature_list.append(features)
 
-    # Convert the list of dictionaries into a DataFrame
-    data_matrix = pd.DataFrame(feature_list).fillna(0)
+        # Convert the list of dictionaries into a DataFrame
+        new_data = pd.DataFrame(feature_list).fillna(0)
 
-    # Check if the file already exists
-    if os.path.exists('data_matrix.csv'):
-        overwrite = input('File data_matrix.csv already exists. Do you want to overwrite it? (y/n): ')
-        if overwrite.lower() == 'y':
-            data_matrix.to_csv('data_matrix.csv', index=False)
-    else:
-        data_matrix.to_csv('data_matrix.csv', index=False)
+        # Append new data to saved data and save
+        data_matrix = pd.concat([saved_data, new_data])
+        data_matrix.to_csv(save_file, index=False)
+
+        # Clear the feature list for the next batch
+        feature_list.clear()
+
+        # Print progress
+        print(f"Processed row {i + 1} of {len(data)}")
 
     return data_matrix
 
