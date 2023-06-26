@@ -83,6 +83,9 @@ def load_gpt(file_name):
     Returns:
         list: List of tuples where each tuple is a text-label pair.
     """
+    if not file_name.endswith('.csv'):
+        file_name += '.csv'
+
     if not os.path.exists(file_name):
         raise FileNotFoundError(f"The file '{file_name}' does not exist.")
 
@@ -90,7 +93,6 @@ def load_gpt(file_name):
     data = [(row['Text'], row['Label']) for index, row in df.iterrows()]
 
     return data
-
 
 
 def load_writingPrompts(data_path=DATA_PATH, num_examples=NUM_EXAMPLES):
@@ -177,12 +179,13 @@ def load_cnn_daily_mail(num_examples=NUM_EXAMPLES):
     return data
 
 
-def load_data(dataset_name):
+def load_data(dataset_name, gpt_filename=None):
     """
        Loads a dataset based on its name.
 
        Args:
            dataset_name (str): Name of the dataset to load.
+           gpt_filename (str, optional): Name of the csv file containing the GPT dataset.
 
        Returns:
            list: List of data from the specified dataset.
@@ -197,7 +200,9 @@ def load_data(dataset_name):
     elif dataset_name == 'cnn_dailymail':
         return load_cnn_daily_mail()
     elif dataset_name == 'gpt':
-        return load_gpt()
+        if gpt_filename is None:
+            raise ValueError("A filename must be provided to load the GPT dataset.")
+        return load_gpt(gpt_filename)
     else:
         raise ValueError(f"Dataset name {dataset_name} not recognized.")
 
@@ -248,7 +253,7 @@ def preprocess_and_save(gpt_dataset=None):
     """
     if gpt_dataset:
         # Load and preprocess the GPT dataset
-        gpt_data = load_data('gpt')
+        gpt_data = load_data('gpt', gpt_dataset)
         gpt_data = list(dict.fromkeys(gpt_data))
         gpt_data = [(strip_newlines(q).strip(), a) for q, a in gpt_data]
 
@@ -260,7 +265,6 @@ def preprocess_and_save(gpt_dataset=None):
         combined_data += gpt_data
 
         output_file = 'full_data.csv'
-        print_message = f"Combined dataset (including GPT) saved to '{output_file}' with {len(combined_data)} entries."
 
     else:
         # Preprocess all the datasets
@@ -271,17 +275,17 @@ def preprocess_and_save(gpt_dataset=None):
         combined_data = pubmed_data + writingprompts_data + cnn_daily_mail_data
 
         output_file = 'combined_source_data.csv'
-        print_message = f"Combined dataset saved to '{output_file}' with {len(combined_data)} entries."
+
+    if os.path.exists(output_file):
+        overwrite = input(f"'{output_file}' already exists. Do you want to overwrite it? (y/n): ")
+        if overwrite.lower() != 'y':
+            print(f"Not overwriting existing file '{output_file}'. Exiting...")
+            return
 
     # Save the combined data to a .csv file
     df = pd.DataFrame(combined_data, columns=['Text', 'Label'])
     df.to_csv(output_file, index=False)
 
-    print(print_message)
-
-
-
-preprocess_and_save("t1_responses_preprocessed")
-
+    print(f"Combined dataset saved to '{output_file}' with {len(combined_data)} entries.")
 
 

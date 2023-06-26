@@ -21,12 +21,11 @@ nlp = spacy.load('en_core_web_sm')
 FUNCTION_WORDS = {'a', 'in', 'of', 'the'}
 
 
-def remove_prefix(dataset_name, data):
+def remove_prefix(data):
     """
     This function removes a predefined prefix from each text in a given dataset.
 
     Args:
-    dataset_name (str): The name of the dataset.
     data (list of tuples): The data from the dataset. Each element of the list is a tuple, where the first element
     is the text and the second element is its label.
 
@@ -37,16 +36,10 @@ def remove_prefix(dataset_name, data):
 
     texts, labels = zip(*data)
 
-    if dataset_name == 'pubmed_qa':
-        texts = [text.split("Answer:", 1)[1].strip() for text in texts if "Answer:" in text]
-    elif dataset_name == 'writingprompts':
-        texts = [text.split("Story:", 1)[1].strip() for text in texts if "Story:" in text]
-    elif dataset_name == 'cnn_dailymail':
-        texts = [text.split("Article:", 1)[1].strip() for text in texts if "Article:" in text]
-    elif dataset_name == 'gpt':
-        texts = [text.split("Answer:", 1)[1].strip() if "Answer:" in text else text for text in texts]
-        texts = [text.split("Story:", 1)[1].strip() if "Story:" in text else text for text in texts]
-        texts = [text.split("Article:", 1)[1].strip() if "Article:" in text else text for text in texts]
+    prefixes = ["Answer:", "Story:", "Article:"]
+
+    for prefix in prefixes:
+        texts = [text.split(prefix, 1)[1].strip() if prefix in text else text for text in texts]
 
     return list(texts), list(labels)
 
@@ -270,13 +263,11 @@ def calculate_cosine_similarity(text1, text2, model, tokenizer):
 
     return cosine_similarity
 
-
-def extract_prompts_and_texts(dataset_name, data):
+def extract_prompts_and_texts(data):
     """
-    This function extracts prompts and texts from the data for a specified dataset.
+    This function extracts prompts and texts from the data.
 
     Args:
-    dataset_name (str): The name of the dataset.
     data (list of tuples): The data. Each tuple consists of a text (including prompt) and a label.
 
     Returns:
@@ -286,42 +277,24 @@ def extract_prompts_and_texts(dataset_name, data):
     prompts_and_texts = []
 
     full_texts, _ = zip(*data)
-    texts, labels = remove_prefix(dataset_name, data)
+    texts, labels = remove_prefix(data)
 
     starting_points = ["Question:", "Prompt:", "Article:"]
     end_points = ["Answer:", "Story:", "Summary:"]
 
     for full_text, text in zip(full_texts, texts):
-        # Split the full_text depending on the dataset
-        if dataset_name == 'pubmed_qa':
-            split_text = full_text.split("Question:", 1)
-            if len(split_text) == 2:
-                _, temp_prompt = split_text
-                prompt, _ = temp_prompt.split("Answer:", 1)
-        elif dataset_name == 'writingprompts':
-            split_text = full_text.split("Prompt:", 1)
-            if len(split_text) == 2:
-                _, temp_prompt = split_text
-                prompt, _ = temp_prompt.split("Story:", 1)
-        elif dataset_name == 'cnn_dailymail':
-            split_text = full_text.split("Article:", 1)
-            if len(split_text) == 2:
-                _, temp_prompt = split_text
-                prompt, _ = temp_prompt.split("Summary:", 1)
-        elif dataset_name == 'gpt':
-            # Identify the starting point for each entry in the 'gpt' dataset
-            for starting_point in starting_points:
-                if starting_point in full_text:
-                    split_text = full_text.split(starting_point, 1)
-                    if len(split_text) == 2:
-                        _, temp_prompt = split_text
-                        for end_point in end_points:
-                            if end_point in temp_prompt:
-                                prompt, _ = temp_prompt.split(end_point, 1)
-                                break
-                    break
+        prompt = None
+        for start, end in zip(starting_points, end_points):
+            if start in full_text and end in full_text:
+                _, temp_prompt = full_text.split(start, 1)
+                prompt, _ = temp_prompt.split(end, 1)
+                prompt = prompt.strip()
+                break
 
-        prompt = prompt.strip()  # remove leading and trailing whitespaces
+        if prompt is None:
+            print(f"WARNING: No prompt extracted for text: {text}")
+            prompt = ""  # use an empty string if no prompt is found
+
         prompts_and_texts.append((prompt, text))  # append the prompt and text to the list
 
     return prompts_and_texts

@@ -39,18 +39,23 @@ def combine_data_files(data_files):
     return combined_data
 
 
-def prepare_data_for_regression(data, dataset_name):
+def prepare_data_for_regression(data_file):
     """
     This function prepares the data for regression analysis by extracting features and labels from the data.
 
     Args:
-    data (list of tuples): The data from the dataset. Each element of the list is a tuple, where the first element
-    is the text and the second element is its label.
+    data_file (str): The path to the full_data.csv file.
 
     Returns:
     data_matrix (DataFrame): A DataFrame where each row represents a text, each column represents a feature,
                             and the last column is the label.
     """
+    # Load the data
+    data = pd.read_csv(data_file)
+
+    # Convert the DataFrame to a list of tuples
+    data = list(data.itertuples(index=False, name=None))
+
     # Initialize lists to store features and labels
     feature_list = []
 
@@ -58,8 +63,8 @@ def prepare_data_for_regression(data, dataset_name):
     model, tokenizer = load_model()
 
     # Remove prefixes
-    texts, labels = remove_prefix(dataset_name, data)
-    prompts_and_texts = extract_prompts_and_texts(dataset_name, data)
+    texts, labels = remove_prefix(data)
+    prompts_and_texts = extract_prompts_and_texts(data)
 
     for (prompt, text), label in zip(prompts_and_texts, labels):
         # Count POS tags in the text
@@ -133,16 +138,25 @@ def prepare_data_for_regression(data, dataset_name):
     # Convert the list of dictionaries into a DataFrame
     data_matrix = pd.DataFrame(feature_list).fillna(0)
 
+    # Check if the file already exists
+    if os.path.exists('data_matrix.csv'):
+        overwrite = input('File data_matrix.csv already exists. Do you want to overwrite it? (y/n): ')
+        if overwrite.lower() == 'y':
+            data_matrix.to_csv('data_matrix.csv', index=False)
+    else:
+        data_matrix.to_csv('data_matrix.csv', index=False)
+
     return data_matrix
 
 
-def prepare_and_save_datasets(datasets, output_dir):
+def prepare_and_save_datasets(datasets, output_dir, full_data_path=None):
     """
     Prepare data for regression for all datasets, save them, and return a combined DataFrame.
 
     Args:
     datasets (list of str): The list of datasets.
     output_dir (str): The directory where to save the prepared data.
+    full_data_path (str): The path to the full_data.csv file.
 
     Returns:
     combined_data (DataFrame): The combined DataFrame with prepared data from all datasets.
@@ -151,21 +165,39 @@ def prepare_and_save_datasets(datasets, output_dir):
     data_frames = []
     os.makedirs(output_dir, exist_ok=True)
 
-    for dataset_name in datasets:
-        print(f"Preparing data for regression for dataset '{dataset_name}'...")
+    if full_data_path is None:
+        for dataset_name in datasets:
+            print(f"Preparing data for regression for dataset '{dataset_name}'...")
 
-        # Load the data
-        data = pd.read_csv(f'Labelled_Data/{dataset_name}_preprocessed_data.csv')
+            # Load the data
+            data = pd.read_csv(f'Labelled_Data/{dataset_name}_preprocessed_data.csv')
+
+            # Prepare the data for regression
+            prepared_data = prepare_data_for_regression(data, dataset_name)
+
+            print(f"Data prepared for dataset '{dataset_name}'. Saving to file...")
+
+            # Save the prepared data
+            prepared_data.to_csv(f'{output_dir}/{dataset_name}_reg_ready.csv', index=False)
+
+            print(f"Data for dataset '{dataset_name}' saved successfully.")
+
+            data_frames.append(prepared_data)
+    else:
+        print(f"Preparing data for regression for full dataset from '{full_data_path}'...")
+
+        # Load the full data
+        full_data = pd.read_csv(full_data_path)
 
         # Prepare the data for regression
-        prepared_data = prepare_data_for_regression(data, dataset_name)
+        prepared_data = prepare_data_for_regression(full_data, "full_data")
 
-        print(f"Data prepared for dataset '{dataset_name}'. Saving to file...")
+        print(f"Data prepared for full dataset. Saving to file...")
 
         # Save the prepared data
-        prepared_data.to_csv(f'{output_dir}/{dataset_name}_reg_ready.csv', index=False)
+        prepared_data.to_csv(f'{output_dir}/full_data_reg_ready.csv', index=False)
 
-        print(f"Data for dataset '{dataset_name}' saved successfully.")
+        print(f"Data for full dataset saved successfully.")
 
         data_frames.append(prepared_data)
 

@@ -109,7 +109,8 @@ def extract_and_combine(response_csv_path):
             'Prompt: ' + row['Prompt'].replace(' Continue the story:', '') + ' Story: ' + row['Response']
             if row['Prompt'].endswith('Continue the story:')
             else (
-                'Summary: ' + row['Prompt'].replace('Write a news article based on the following summary: ', '') + ' Article: ' + row['Response']
+                'Summary: ' + row['Prompt'].replace('Write a news article based on the following summary: ',
+                                                    '') + ' Article: ' + row['Response']
                 if row['Prompt'].startswith('Write a news article based on the following summary:')
                 else row['Prompt'] + ' ' + row['Response']
             )
@@ -137,10 +138,9 @@ def extract_and_combine(response_csv_path):
     df.to_csv(output_csv_path, index=False)
 
 
-
 # ------------------------------------------------------------------------------------------#
 
-extract_and_combine('t1_responses.csv')
+
 
 def extract_prompts_and_save():
     """
@@ -195,5 +195,3 @@ def append_to_source_and_save(preprocessed_csv_path, source_csv_path='combined_s
     # Save the combined data to a CSV file
     df_combined.to_csv(output_csv_path, index=False)
 
-
-# append_to_source_and_save("t1_preprocessed.csv")
