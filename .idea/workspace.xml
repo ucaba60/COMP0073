@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="EVERYTING WORKING -ADDED COUNTER">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="DATA_MATRIX 1650">
+      <change afterPath="$PROJECT_DIR$/version_0.5a/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5a/regression_data_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/regression_data_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_0.5a/.ipynb_checkpoints/testing-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_0.5a/testing.ipynb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -441,7 +443,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,7 +458,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Better docstrings, CHECKPOINT 1" />
     <MESSAGE value="RoBERTa - instead of SciBert- BETTER RESULTS" />
     <MESSAGE value="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample" />
     <MESSAGE value="SAMPLE T1 -COMPLETE" />
@@ -481,7 +482,8 @@
     <MESSAGE value="delete redundant files" />
     <MESSAGE value="EVERYTHING TESTED AND WOKRING" />
     <MESSAGE value="EVERYTING WORKING -ADDED COUNTER" />
-    <option name="LAST_COMMIT_MESSAGE" value="EVERYTING WORKING -ADDED COUNTER" />
+    <MESSAGE value="DATA_MATRIX 1650" />
+    <option name="LAST_COMMIT_MESSAGE" value="DATA_MATRIX 1650" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
