@@ -90,7 +90,7 @@ def prepare_data_for_regression(data_file, save_file='data_matrix.csv', chunk_si
                 features = {
                     'ADJ': pos_counts.get('ADJ', 0),
                     'ADV': pos_counts.get('ADV', 0),
-                    'CONJ': pos_counts.get('CONJ', 0),
+                    'CONJ': pos_counts.get('CCONJ', 0),
                     'NOUN': pos_counts.get('NOUN', 0),
                     'NUM': pos_counts.get('NUM', 0),
                     'VERB': pos_counts.get('VERB', 0),
