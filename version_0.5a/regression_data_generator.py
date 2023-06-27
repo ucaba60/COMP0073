@@ -142,7 +142,7 @@ def prepare_data_for_regression(data_file, save_file='data_matrix.csv', chunk_si
     return saved_data
 
 
-prepare_data_for_regression('extracted_data/full_data.csv')
+prepare_data_for_regression('extracted_data/full_data.csv',save_file='data_matrix_v2.csv')
 
 
 def prepare_and_save_datasets(datasets, output_dir, full_data_path=None):

@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="testing model and such">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Metrics testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5a/.ipynb_checkpoints/ensamble_method-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/.ipynb_checkpoints/ensamble_method-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5a/ensamble_method.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/ensamble_method.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/version_0.5a/regression_data_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/regression_data_generator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -443,7 +441,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +456,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ProjectCheckpoint1- COMPLETE. WIP OpenAI sample" />
     <MESSAGE value="SAMPLE T1 -COMPLETE" />
     <MESSAGE value="remove redundant code" />
     <MESSAGE value="Getting GPT Prompts WORKS! NEEDS CLEANUP" />
@@ -483,7 +480,8 @@
     <MESSAGE value="EVERYTING WORKING -ADDED COUNTER" />
     <MESSAGE value="DATA_MATRIX 1650" />
     <MESSAGE value="testing model and such" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing model and such" />
+    <MESSAGE value="Metrics testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Metrics testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
