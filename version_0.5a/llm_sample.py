@@ -4,12 +4,92 @@ import time
 import csv
 import os
 
+import torch
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+
 # Constants
 BATCH_SIZE = 10  # Define the batch size
 openai.api_key = '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'
 
+from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModelForSeq2SeqLM
 
-def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5-turbo", temperature=1):
+
+def generate_gpt2_responses(prompt_csv_path, response_folder_path, temperature=1):
+    """
+    Generate responses for a list of prompts saved in a csv file using the GPT-2 model.
+
+    Args:
+        prompt_csv_path (str): Path to the csv file containing the prompts.
+        response_folder_path (str): Path to the folder where the responses will be saved.
+        temperature (float, optional): Determines the randomness of the AI's output. Defaults to 1.
+
+    Returns:
+        None, generates a csv file with the responses.
+    """
+
+    # Load the GPT-2 model and tokenizer
+    model = GPT2LMHeadModel.from_pretrained("gpt2")
+    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+
+    # Load the prompts
+    df = pd.read_csv(prompt_csv_path)
+    prompts = df['Prompt'].tolist()
+
+    # Construct the response file path
+    response_csv_path = os.path.join(response_folder_path, f"gpt2_t{temperature}_responses.csv")
+
+    # Check if the response file already exists
+    if os.path.exists(response_csv_path):
+        # Load the existing responses
+        existing_responses_df = pd.read_csv(response_csv_path)
+
+        # Determine the starting point based on the number of existing responses
+        start = len(existing_responses_df)
+    else:
+        start = 0
+
+    for i in range(start, len(prompts)):
+        # Encode the prompt
+        input_ids = tokenizer.encode(prompts[i], return_tensors="pt")
+
+        # Generate a response
+        output = model.generate(
+            input_ids,
+            attention_mask=torch.ones_like(input_ids),  # Set all positions to 1 (i.e., no padding)
+            pad_token_id=tokenizer.eos_token_id,  # Use the EOS token as the PAD token
+            do_sample=True,
+            max_length=1024,  # Use GPT-2's maximum sequence length
+            temperature=temperature
+        )
+
+        # Calculate the number of tokens in the prompt
+        prompt_length = input_ids.shape[-1]
+
+        # Decode only the response, excluding the prompt
+        response = tokenizer.decode(output[0, prompt_length:], skip_special_tokens=True)
+
+        # Save the prompt and response to a DataFrame
+        response_df = pd.DataFrame({
+            'Prompt': [prompts[i]],
+            'Response': [response]
+        })
+
+        # Append the DataFrame to the CSV file
+        if os.path.exists(response_csv_path):
+            response_df.to_csv(response_csv_path, mode='a', header=False, index=False)
+        else:
+            response_df.to_csv(response_csv_path, mode='w', index=False)
+
+        print(f"Prompt {i + 1} of {len(prompts)} processed")
+
+    print(f"All prompts processed. Responses saved to {response_csv_path}.")
+
+
+generate_gpt2_responses("extracted_data/prompts.csv", "extracted_data", temperature=1)
+
+
+def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5-turbo", temperature=0.5):
     """
     Generate GPT-3 responses for a list of prompts saved in a csv file.
 
@@ -173,7 +253,4 @@ def extract_prompts_and_save(file_folder_path):
     print(f"Prompts extracted and saved to '{os.path.join(file_folder_path, 'prompts.csv')}' with {len(df_prompts)}"
           f" entries.")
 
-
 # extract_prompts_and_save("extracted_data")
-
-
