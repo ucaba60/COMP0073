@@ -7,7 +7,6 @@ import os
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
-
 # Constants
 BATCH_SIZE = 10  # Define the batch size
 openai.api_key = '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'
@@ -86,7 +85,7 @@ def generate_gpt2_responses(prompt_csv_path, response_folder_path, temperature=1
     print(f"All prompts processed. Responses saved to {response_csv_path}.")
 
 
-generate_gpt2_responses("extracted_data/prompts.csv", "extracted_data", temperature=1)
+# generate_gpt2_responses("extracted_data/prompts.csv", "extracted_data", temperature=1)
 
 
 def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5-turbo", temperature=0.5):
@@ -215,9 +214,69 @@ def extract_and_combine(response_csv_path):
 
 # ------------------------------------------------------------------------------------------#
 
-# extract_and_combine('extracted_data/t1_responses.csv')
+# extract_and_combine('extracted_data/gpt2_t1_responses.csv')
 
 # ------------------------------------------------------------------------------------------#
+
+def regenerate_responses(response_csv_path, model_name="gpt2", temperature=1):
+    """
+    Check the csv file containing generated responses for any NaN values.
+    If any are found, regenerate the responses using the provided model.
+
+    Args:
+        response_csv_path (str): Path to the csv file containing the generated responses.
+        model_name (str, optional): The name of the model to use. Defaults to "gpt2".
+        temperature (float, optional): Determines the randomness of the AI's output. Defaults to 1.
+
+    Returns:
+        None, updates the csv file with the regenerated responses.
+    """
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    # Load the model and tokenizer
+    model = GPT2LMHeadModel.from_pretrained(model_name).to(device)
+    tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+
+    # Load the responses
+    df = pd.read_csv(response_csv_path)
+
+    # Iterate over the DataFrame
+    for i, row in df.iterrows():
+        if pd.isnull(row['Response']):
+            # Encode the prompt
+            input_ids = tokenizer.encode(row['Prompt'], return_tensors="pt").to(device)
+
+            # Generate a response
+            output = model.generate(
+                input_ids,
+                do_sample=True,
+                max_length=1024,  # Use GPT-2's maximum sequence length
+                temperature=temperature
+            )
+
+            # Calculate the number of tokens in the prompt
+            prompt_length = input_ids.shape[-1]
+
+            # Decode only the response, excluding the prompt
+            response = tokenizer.decode(output[0, prompt_length:], skip_special_tokens=True)
+
+            # Replace the NaN response with the new one
+            df.at[i, 'Response'] = response
+
+            print(f"Regenerated response for prompt {i + 1} of {len(df)}")
+
+    # Save the DataFrame back to the CSV file
+    df.to_csv(response_csv_path, index=False)
+
+    print(f"All NaN responses regenerated. Updated responses saved to {response_csv_path}.")
+
+
+# regenerate_responses('extracted_data/gpt2_t1_responses.csv')
+#
+# df = pd.read_csv("extracted_data/gpt2_t1_responses.csv")
+# nan_rows = df[df.isna().any(axis=1)]
+# print(nan_rows)
+
 
 def extract_prompts_and_save(file_folder_path):
     """

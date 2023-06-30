@@ -5,7 +5,6 @@ import os
 import random
 import tiktoken
 
-
 # Constants
 DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail', 'gpt']
 DATA_PATH = './data/writingPrompts'
@@ -239,7 +238,7 @@ def preprocess_data(dataset):
     return data
 
 
-def preprocess_and_save(gpt_dataset=None, output_folder = 'extracted_data'):
+def preprocess_and_save(gpt_dataset=None, output_folder='extracted_data'):
     """
     Preprocesses the datasets, combines them, and saves the result to a .csv file.
     Optional argument gpt_dataset allows preprocessing the GPT dataset and combining it with existing datasets.
@@ -267,7 +266,7 @@ def preprocess_and_save(gpt_dataset=None, output_folder = 'extracted_data'):
         # Combine the data
         combined_data += gpt_data
 
-        output_file = 'full_data.csv'
+        output_file = 'full_data_gpt2.csv'
 
     else:
         # Preprocess all the datasets
@@ -293,9 +292,7 @@ def preprocess_and_save(gpt_dataset=None, output_folder = 'extracted_data'):
 
     print(f"Combined dataset saved to '{output_file_path}' with {len(combined_data)} entries.")
 
-
-
 # preprocess_and_save(output_folder = 'extracted_data')
 
 
-# preprocess_and_save( gpt_dataset='extracted_data/t1_responses_preprocessed.csv', output_folder = 'extracted_data')
+# preprocess_and_save( gpt_dataset='extracted_data/gpt2_t1_responses_preprocessed.csv', output_folder = 'extracted_data')
