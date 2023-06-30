@@ -35,20 +35,21 @@ def prepare_data_for_regression(data_file, save_file='data_matrix.csv', chunk_si
         saved_data = pd.DataFrame()
         processed_rows = 0
 
-    total_rows_processed = processed_rows  # total rows processed in this session
+    total_rows_processed = 0  # total rows processed in this session
 
     for chunk in pd.read_csv(data_file, chunksize=chunk_size):
         feature_list = []
+
+        # Skip chunks that have already been processed
+        if total_rows_processed < processed_rows:
+            total_rows_processed += len(chunk)
+            continue
+
         data = list(chunk.itertuples(index=False, name=None))
         texts, labels = remove_prefix(data)
         prompts_and_texts = extract_prompts_and_texts(data)
 
         for i, ((prompt, text), label) in enumerate(zip(prompts_and_texts, labels)):
-            # Skip rows that have already been processed
-            if total_rows_processed < processed_rows:
-                total_rows_processed += 1
-                continue
-
             try:
                 # Count POS tags in the text
                 pos_counts, punctuation_counts, function_word_counts = count_pos_tags_and_special_elements(text)
@@ -67,7 +68,8 @@ def prepare_data_for_regression(data_file, save_file='data_matrix.csv', chunk_si
                 text = tokenizer.decode(text_encoded)
                 text = text.replace('<s>', '').replace('</s>', '')
                 text_perplexity = calculate_perplexity(text, model, tokenizer)
-                sentence_perplexities = [calculate_perplexity(sentence.text, model, tokenizer) for sentence in nlp(text).sents]
+                sentence_perplexities = [calculate_perplexity(sentence.text, model, tokenizer) for sentence in
+                                         nlp(text).sents]
                 sentence_perplexities = [p for p in sentence_perplexities if p is not None]
                 avg_sentence_perplexity = sum(sentence_perplexities) / len(
                     sentence_perplexities) if sentence_perplexities else None
@@ -79,10 +81,12 @@ def prepare_data_for_regression(data_file, save_file='data_matrix.csv', chunk_si
                 prompt_text_cosine_similarity = calculate_cosine_similarity(prompt, text, model, tokenizer)
 
                 # Calculate the average cosine similarity for sentences in the text
-                sentence_cosine_similarities = calculate_cosine_similarities_for_sentences_in_text(text, model, tokenizer)
+                sentence_cosine_similarities = calculate_cosine_similarities_for_sentences_in_text(text, model,
+                                                                                                   tokenizer)
                 avg_sentence_cosine_similarity = None
                 if sentence_cosine_similarities:
-                    avg_sentence_cosine_similarity = sum(sentence_cosine_similarities) / len(sentence_cosine_similarities)
+                    avg_sentence_cosine_similarity = sum(sentence_cosine_similarities) / len(
+                        sentence_cosine_similarities)
                 else:
                     print("WARNING: No sentence cosine similarities calculated for text:", text)
 
@@ -142,7 +146,7 @@ def prepare_data_for_regression(data_file, save_file='data_matrix.csv', chunk_si
     return saved_data
 
 
-prepare_data_for_regression('extracted_data/full_data.csv',save_file='data_matrix_v2.csv')
+# prepare_data_for_regression('extracted_data/full_data_gpt2.csv', save_file='data_matrix_gpt2.csv')
 
 
 def prepare_and_save_datasets(datasets, output_dir, full_data_path=None):

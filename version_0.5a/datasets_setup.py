@@ -238,14 +238,15 @@ def preprocess_data(dataset):
     return data
 
 
-def preprocess_and_save(gpt_dataset=None, output_folder='extracted_data'):
+def preprocess_and_save(gpt_dataset=None, user_string=None, output_folder='extracted_data'):
     """
     Preprocesses the datasets, combines them, and saves the result to a .csv file.
     Optional argument gpt_dataset allows preprocessing the GPT dataset and combining it with existing datasets.
 
     Args:
-        output_folder: folder where the extracted data will be saved
         gpt_dataset (str, optional): Name of the GPT dataset csv file (without the .csv extension).
+        user_string (str, optional): User-defined string to be included in the output file name.
+        output_folder: folder where the extracted data will be saved
 
     Returns:
         None, saves the combined data to a .csv file.
@@ -266,7 +267,10 @@ def preprocess_and_save(gpt_dataset=None, output_folder='extracted_data'):
         # Combine the data
         combined_data += gpt_data
 
-        output_file = 'full_data_gpt2.csv'
+        if user_string:
+            output_file = f'full_data_{user_string}.csv'
+        else:
+            output_file = 'full_data.csv'
 
     else:
         # Preprocess all the datasets
@@ -291,6 +295,7 @@ def preprocess_and_save(gpt_dataset=None, output_folder='extracted_data'):
     df.to_csv(output_file_path, index=False)
 
     print(f"Combined dataset saved to '{output_file_path}' with {len(combined_data)} entries.")
+
 
 # preprocess_and_save(output_folder = 'extracted_data')
 

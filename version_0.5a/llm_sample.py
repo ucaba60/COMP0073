@@ -14,29 +14,28 @@ openai.api_key = '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'
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModelForSeq2SeqLM
 
 
-def generate_gpt2_responses(prompt_csv_path, response_folder_path, temperature=1):
+def generate_gpt2_responses(prompt_csv_path, response_folder_path):
     """
     Generate responses for a list of prompts saved in a csv file using the GPT-2 model.
 
     Args:
         prompt_csv_path (str): Path to the csv file containing the prompts.
         response_folder_path (str): Path to the folder where the responses will be saved.
-        temperature (float, optional): Determines the randomness of the AI's output. Defaults to 1.
 
     Returns:
         None, generates a csv file with the responses.
     """
 
     # Load the GPT-2 model and tokenizer
-    model = GPT2LMHeadModel.from_pretrained("gpt2")
-    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+    model = GPT2LMHeadModel.from_pretrained("gpt2-large")
+    tokenizer = GPT2Tokenizer.from_pretrained("gpt2-large")
 
     # Load the prompts
     df = pd.read_csv(prompt_csv_path)
     prompts = df['Prompt'].tolist()
 
     # Construct the response file path
-    response_csv_path = os.path.join(response_folder_path, f"gpt2_t{temperature}_responses.csv")
+    response_csv_path = os.path.join(response_folder_path, f"gpt2_tdefault_responses.csv")
 
     # Check if the response file already exists
     if os.path.exists(response_csv_path):
@@ -59,7 +58,6 @@ def generate_gpt2_responses(prompt_csv_path, response_folder_path, temperature=1
             pad_token_id=tokenizer.eos_token_id,  # Use the EOS token as the PAD token
             do_sample=True,
             max_length=1024,  # Use GPT-2's maximum sequence length
-            temperature=temperature
         )
 
         # Calculate the number of tokens in the prompt
@@ -85,7 +83,7 @@ def generate_gpt2_responses(prompt_csv_path, response_folder_path, temperature=1
     print(f"All prompts processed. Responses saved to {response_csv_path}.")
 
 
-# generate_gpt2_responses("extracted_data/prompts.csv", "extracted_data", temperature=1)
+generate_gpt2_responses("extracted_data/prompts.csv", "extracted_data")
 
 
 def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5-turbo", temperature=0.5):
@@ -218,7 +216,7 @@ def extract_and_combine(response_csv_path):
 
 # ------------------------------------------------------------------------------------------#
 
-def regenerate_responses(response_csv_path, model_name="gpt2", temperature=1):
+def regenerate_responses(response_csv_path, model_name="gpt2-large", temperature=1):
     """
     Check the csv file containing generated responses for any NaN values.
     If any are found, regenerate the responses using the provided model.
