@@ -86,7 +86,7 @@ def generate_gpt2_responses(prompt_csv_path, response_folder_path):
 generate_gpt2_responses("extracted_data/prompts.csv", "extracted_data")
 
 
-def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5-turbo", temperature=0.5):
+def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5-turbo", temperature=1):
     """
     Generate GPT-3 responses for a list of prompts saved in a csv file.
 

@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="GPT2">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="GPT2 normal data matrix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5a/datasets_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/datasets_setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5a/llm_sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/llm_sample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5a/regression_data_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/regression_data_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_0.5a/data_matrix_v2.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -443,7 +441,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +456,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Getting GPT Prompts WORKS! NEEDS CLEANUP" />
     <MESSAGE value="Increasing to sample of 200 initially -&gt; 554 TOTAL after pre-processing!&#10;GPT prompting 100 tokens for pubmed 1000 for rest." />
     <MESSAGE value="TESTING COMPARABILITY" />
     <MESSAGE value="Commented out max_tokens doesn't make sense&#10;T1_PREPROCESSED" />
@@ -483,7 +480,8 @@
     <MESSAGE value="Metrics testing" />
     <MESSAGE value="added CCONJ" />
     <MESSAGE value="GPT2" />
-    <option name="LAST_COMMIT_MESSAGE" value="GPT2" />
+    <MESSAGE value="GPT2 normal data matrix" />
+    <option name="LAST_COMMIT_MESSAGE" value="GPT2 normal data matrix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
