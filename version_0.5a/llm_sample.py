@@ -14,11 +14,12 @@ openai.api_key = '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'
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModelForSeq2SeqLM
 
 
-def generate_gpt2_responses(prompt_csv_path, response_folder_path):
+def generate_gpt2_responses(prompt_csv_path, response_folder_path, temperature=1):
     """
     Generate responses for a list of prompts saved in a csv file using the GPT-2 model.
 
     Args:
+        temperature (float): The temerature to use for the generation.
         prompt_csv_path (str): Path to the csv file containing the prompts.
         response_folder_path (str): Path to the folder where the responses will be saved.
 
@@ -58,6 +59,7 @@ def generate_gpt2_responses(prompt_csv_path, response_folder_path):
             pad_token_id=tokenizer.eos_token_id,  # Use the EOS token as the PAD token
             do_sample=True,
             max_length=1024,  # Use GPT-2's maximum sequence length
+            temperature=temperature,  # Use the specified temperature
         )
 
         # Calculate the number of tokens in the prompt
