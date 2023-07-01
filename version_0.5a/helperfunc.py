@@ -203,6 +203,7 @@ def calculate_perplexity(text, model, tokenizer):
     try:
         input_ids = tokenizer.encode(text, return_tensors='pt')
         # Truncate the text to the first 512 tokens
+        # this step has the extra effect of removing examples with low-quality/garbage content (DetectGPT)
         input_ids = input_ids[:, :512]
 
         with torch.no_grad():
