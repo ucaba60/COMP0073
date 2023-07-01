@@ -7469,3 +7469,740 @@ The neighborhood has endured controversy and increased crime for a number of yea
 Earlier this year, on a small hillside, a neighbor wrote on his Facebook page that he had ""got a call that a man with an AK-47 opened fire, went on a rampage firing at his neighbors' heads down hill. There is a police station on the hill there."" A similar incident occurred in February 2015 at the intersection of East 6th and South Hill, when someone walked up from behind with a small bomb on them, before walking back across the street. There was an 11-month standoff in which police used explosives and tear gas to bring the man > down, with authorities now saying they've found and arrested one of two suspects.
 
 While she has no comment about these matters, the woman did say she can tell someone out there ""got what they deserved for being racist, but imagery is just pictures. Words alone take you to the heart."""
+`` kill the child. it 's the right thing to do. '' Continue the story:," <<linkreplace ""We need to do this."" txt:""You should help her."" ""<<print $goodboy>>'' We have a feeling you know what you're doing. You'll find a way to break her."">> '' <<if $mom.control.slaves>> [[Continue|ResetMom]] <</if>> • [[Change outfits|ChangeUpCostume]] <<set $badboy to true>> <<set $goodboy to true>> <<set $finished to false>> <<continue ""You'll help her break the neck..."">> << CorvetteDriver>> <<if $SlutLaurenConcealed>> ''Laughing, you drop her off at the police station.'' <<else>>\ ''Laughing, you get into a quick car chase with two women. You think you've gotten them to tell you about the dress code at their office, but the men get away.'' <<case 2>>\ <<set $finished to true>>\ ''You can't stop giggling at the irony of working for a slutt and now she's trying to get you away. Her panties are hanging off her legs and this makes you even more tempted."">>\ <<case 3>>\ <<set $finished to true>>\ ''You're still giggling when you spot a small window that leads down to the subway. You'd guess that most subway drivers don't want to go as far as you have, but you think there's a way to get the job done without them."">>\ <<case 4>>\ <<set $finished to true>>\ ''You can't help but smile at how the story has turned out so far. You've found a couple of women who can help you get a job as a prostitute but you've got one big problem: they won't let you in.'' <<case 5>>\ <<set $finished to true>>\ ''You're getting more and more enthusiastic every second the story plays out. You can't help but think of the dress code for your office and you feel yourself getting hotter and hotter."">>\ <<case 6>>\ <<set $ fearsome to true, $naked to true, $nakedSlut to true, $nudeSlut to true, $smooch to false, $porn to true, $convo to false, $GoodBoy to true, $Mom to true, $Sister to true, $brother to true>>\ <<case 7>>\ <<set $finished to true>>\ ""You have no idea how the women you just killed are going to react when they figure out they've had a child and a boyfriend. You would prefer not to have to kill them but you know you have to finish this job."">>\ <<case 8>>\ <<set $finished to true>>\ ''Seeing the blood dripping down your leg makes you start to get hard."">>\ <<case 9>>\ <<set $sweat to true, $naked to true, $nudeSlut to true, $smooch to false, $porn to true, $convo to false, $GoodBoy to true, $Mom to true, $Sister to true, $Brother to true, $Mimmo to true, $GoodGirl to true, $Mom to true, $Sister to true, $Brother to true, $Masturbate to false, $goodboy to true>>\ <<case 10>>\ <<set $finished to true>>\ ''You're already hard enough to reach around your cock when the story goes wrong."">>\ <<case 11>>\ • [[Continue|ResetMom]] <<set $goodbye to true, $badboy to true, $goodgirl to true, $naked to true, $nudeSlut to true, $smooch to false, $polo to true, $convo to false, $GoodBoy to true, $Mom to true, $Sister to true, $Brother to true, $Masturbate to false, $GoodGirl to true]] <<set $finished to true>>\ ''The story starts to unravel. All of a sudden, <<if $player.isMale>>\ [[you hear footsteps as you turn off the street]]<<else>>\ [[a knock on the door as you turn on the street]]<<endif>> is followed by a kiss. With no idea, you decide to pretend you didn't hear the footsteps. But the kiss is deeper than you thought.'' <<if $nakedSlut>> [[You've gotten her nude, right?|Sister-Naked]]<</if>> <<nm $player ""I... I can't believe it..."">>\ • [[Continue|ResetMom]] <<set $goodbye to false, $badboy to false, $goodgirl to false, $naked to false, $nudeSlut to false, $smooch to false, $polo to true, $convo to false, $GoodBoy to"
+You and any three historical figures dine together Continue the story:,"
+
+A day at the beach A day at the beach Continue the story
+
+A day at the beach A day at the beach Continue the story
+
+Your friends are trying to make fun of you.
+
+
+Continue the story:"
+"You are a roman soldier on guard duty when you notice a massive horde on the horizon. Too far to make out, you sound the alarm thinking it 's the barbarians, but their movements are too ... odd. Continue the story:","
+
+
+There is little hope on Earth, and your fellow troops are being slaughtered, but you have no other options, and you run for it. Continue the story:
+
+
+It's a battle you will never forget, even if you never do. Continue the story:
+
+A long way outside of human perception, you are walking along when suddenly you see an enemy tank. Continue the story:
+
+
+The tank is far too fast for you to take it out with your regular rifle, but luckily you see on the ground someone with a flare gun. Continue the story:
+
+
+You set fire to everything in sight – your radio, and its crew. The flare gun is in your hands, and you pull the trigger, as the tank begins to slowly disintegrate. Continue the story:
+
+
+You have done your duty for your king's majesty, and now your king wishes for you to return to his castle. Continue the story:
+
+
+The castle is surrounded by a large field of fire. Your army is scattered and you are no match for a thousand well-trained soldiers. Continue the story:
+
+
+So your king's majesty asked you to surrender – no other terms were ever given. Continue the story:
+
+
+No thanks to the good sir, you simply said you can't continue with that idea. But now that you have been put on a leash, you don't exactly have the freedom to do as you please. Continue the story:
+
+
+No sir – you can't run, and you can never talk. The entire castle's perimeter is now surrounded by a thick mass of flames. Continue the story:
+
+
+The only choice you have is to stay and fight or go, and since you must go, you follow the instructions the prince wrote in his casually written letter of a few months ago to you for the first time. Continue the story:
+
+
+Your soldiers now have an enemy they can count on – and they have seen their king for the first time in days. What are you doing? Continue the story:
+
+
+The entire castle and its surrounding area is now ablaze – you see the flames engulfing the entire perimeter, as well as the castle itself, and everything near it. Continue the story:
+
+
+Your soldiers are now surrounded by fire. Your artillery isn't enough to slow down therun, but it's at least enough to force the rampaging enemy back. Continue the story:
+
+
+There's nothing of value left inside the castle – but there are many things that can, and should – as long as you're alive and can, fight a war."
+You 're part way through a course when you realise that it 's for aspiring supervillains. Continue the story:,"
+
+I am still learning - you're my greatest enemy. Let me help you.
+
+I'm all part of the show. So whatever happens, happens.
+
+I know every time you save people with me on the show, they'll be so grateful, I 'd be happy with myself.
+
+You're like the other superheroes - in your hands they're dangerous, powerful weapons.
+
+You 'll make them very lucky indeed.
+
+That's some pretty impressive self-control. And here we are. You 'll have a fun varied life, I have.
+
+Goodbye to that.
+
+You know why? 'Cause I want 'em to be happy.
+
+Do you guys have anything in common, or does each character come with its own quirks?
+
+I'm going to be honest with you - they all have some kind of personality. Whether it' s just a smile, a giggle or a giggle in their teeth.
+
+How do these characters interact with each other? A lot of these are quite personal and the team dynamic seems great.
+
+We're friends, but it's a lot more than that.
+
+I wouldn't mind being part of the gang. It's a huge amount of fun.
+
+How much of the creative process were we talking to you from? Did you get a lot of feedback from the writers, or did you have to do some of that yourself?
+
+Both. I got a lot of feedback on the first episode. Obviously with all the great talent that is on the show, there was some tremendous feedback.
+
+We do go into every episode with three or four different drafts. I'm looking forward to these next few episodes. I'm really excited of where the show's going!
+
+What did you make of the first episode? Did you miss any of it?
+
+I got a great amount of feedback on Episode 1 of the show, which is why there was a lot of changes.
+
+How did they take that feedback and add it into Episode 2?
+
+We really get to really play around with some of these characters and see them go beyond what we've seen before. I love it.
+
+Have you ever wanted to be part of an amazing TV show, but not so sure that you could do it?
+
+You know, I wouldn't call myself a 'hackers' guy. I'm not really into that stuff.
+
+I'm not a computer guy. That's no fun.
+
+I just like to relax and be with my friends. I do not have the insecurity to get myself into any kind of box. I hope that people can find something that they enjoy that will be entertaining for them, and don't be afraid to say that you don't know anything about it.
+
+Well, it's good to hear from you. It's been great to hear anything so we'll see, see, hear. Until next time."
+Magic is discovered and it 's channeled with music. Modern nations dissolve and new countries rise in their place divided by the preferred music. In the frozen north lie the Metal kingdoms. Far to the south are the countries of Soul etc. Continue the story:," https://youtu.be/0DlU3Yd4Zdg?t=1046
+
+RAW Paste Data
+
+A tale of two kingdoms in the frozen north, two lands locked in an eternal war. As the Frozen Dragon takes flight to take on his greatest challenge yet, the last vestiges of civilization slowly fade out. As one city closes down and the rest die in a thousand battles, only two will survive to witness the rebirth of a land not seen since time began. A new empire is in the making, one that is neither the Ice People nor the Wildlings, and the one who will truly decide the fate of the north will be none other then the legendary hero, Daenerys Targaryen. A series of novels, short stories, short animations, and a new interactive game based on the world and characters created by George R.R. Martin: http://the-forestrumed-guest-post-a-the-first-year-of-the-first-r-martins.com/ Episode 1 and 2 here: http://www.reddit.com/r/GameofThrones/comments/2hduos/daenerys_targaryen_the_first_episode_and_episode/ Episode 1, Ep 2: https://drive.google.com/file/d/0B8aRz8xWU6tR2h0hZTlxzZmUaSZMb0/view?usp=sharing Game of Thrones Interactive Game: http://the-forestrumed-guest-post-a-the-first-year-of-the-first-r-martins.com/ In this world where there is no distinction between men and women, where magic is discovered and it's channeled with music. Modern nations dissolve and new countries rise in their place divided by the preferred music. In the frozen north lie the Metal kingdoms. Far to the south are the countries of Soul etc. Continue the story: https://youtu.be/0DlU3Yd4Zdg?t=1046"
+"at wedding of the woman you love, and you 're the best man. Continue the story:"," Tell them about your friend, say how you wish they'd be, and tell them why it's all you're doing.
+
+For their friends, it's the ""I knew your boyfriend/girlfriend was your kind when I met you, so I wanted to find my ""real"" match"" routine in the early stages, that way if they end up getting ""just like me"" and you're in a relationship, they are sure to not be disappointed.
+
+
+They should say something along the lines of, ""I know it's really hard to choose the man who is the person I love and respect the most, but you're the best man I've ever met"" or ""I know you've tried to think of a good fit with someone but you just couldn't make it work, so I'm not asking anymore - it's all I've ever heard you talking about, and my trust really pays off when I can really feel as if it's all been made concrete with you by now"".
+
+
+For the guy it's all the cracks in his relationship, you've told him so, and it's been months, and that's enough to make him feel the same way about the relationship...but tell him it's all been worth it, because you're the only one you'll ever love.
+
+
+Remember, you should be asking more than they are. Even at your wedding, when it's all said and done you should stay more than friends and tell them what to say, but say nothing to the ""other"" people in the ceremony.
+
+
+That's how you should be playing it. When it's already done, you shouldn't say it to anyone at all. They can be really annoying after all.
+
+
+I know this is a long one, so I'm posting it in case I'm being stupid and saying it's easier -but you should never explain more to the guy.
+
+
+You are not the man, you are the marriage, and the man needs to know so he can be happy.
+
+
+I've asked myself this question over and over, since my ex cheated on me, and this one is a hard one to answer.First, you should take yourself out of it entirely. You don't need an ex to help you get an ""awesome"" marriage. Your new family shouldn't have done anything to hurt you Increase the number of things you do for each other and be there for each other as they grow. Ask them to be there for your recovery.Tell them you feel you haven't come out enough. (you aren't the man, but the relationship is the man)You do have to give. Even when you knew this isn't right, you need to have the honesty to give it back. You've had an open-ended conversation with yourself about these things with your ex-boyfriend. You have to look for the truth that was said. Maybe you weren't right about this -maybe they do need love. Maybe what you've been told is right, and maybe it is.Maybe when you start to heal and ask yourself what exactly has happened you'll notice, just like the ex had noticed, maybe they still need some love.I will not judge them by how they handle themselves. I will not judge them by what they've said.I will not judge them by their reaction. I will not judge them by any of their actions that they've taken.If you're a girl and you've been in an open ended conversation with yourself with a guy and he's been telling you about his past and how bad he feels, he hasn't done this to you, then it is your duty to tell him, and your duty to act on it, and your duty to trust him, and to do what he asks when you're going out.When a girl starts to feel like the guy isn't having feelings for her anymore, after she is in love with the guy and feeling completely betrayed, it's ok, because you know that something has gone wrong, and at that point you should really just tell the guy.Tell all the stories of everything you've done for him, and then tell his partner what he did to you. Tell him how he betrayed you, how he tricked you into wanting to come down to the top level, and what he did to make sure you stayed there, and then you should tell them what this all means.Don't say things like ""it never entered my mind this was any of my business, and I don't feel badly about it"" or ""it all ended when I found you, and so this is how you were meant to be"".This sounds so fucking lame and self-dep governor that you just say it when you're trying so hard not to say it.This should be your default thing to say when you're in love, you should just put it off until the end of the relationship and then it will be okay.If"
+"The hero was killed, the princess was sacrificed, and the evil king rules the land. For the average citizen, though, things have taken a turn for the better. Continue the story:"," a lone princess with a dying wish has been saved, and she will take her place in Heaven and reign there. In order to see this content you need to have both Javascript enabled and Flash installed. Visit BBC Webwise for full instructions Visit our FAQs | What is HTML5? HTML5 is the latest version of the Web technology platform that allows you to interact with multimedia on the move. If you're already using it, why not get in touch? HTML5 is powered by Blink, our browser plug-in that improves mobile web browsing experience by replacing the need for scrolling for certain elements, speeding up page loads and allowing you to see more sites as you move between them. Learn more Visit BBC Homepage for more information on HTML5 Download the BBC Webwise app for iPhone, iPad and Android Devices
+
+Download BBC Webwise for Android
+
+For full instructions view the source - BBC Word - and BBC website"
+"You wake up only to find out you have gone back in time 1 year. The date is Dec 21st, 2015. You alone know what 2016 has in store for the world and you alone have been chosen to change it for the better ... or worse. Continue the story:", 1.) Find out the history of the time traveler's family in your time period. 2.) Return with your own character and make a friend. 3.) Play with a time traveling character the way you do with other time travelers. 4.) Visit the time traveler's past.
+"In an undiscovered region of the galaxy, the Grey side of the Force awakens. Continue the story:"," https://www.patreon.com/Patreon/ryanlick
+
+Music by: http://www.planetofmusic.com/"
+"The year is 3017. The whole world is `` futuristic '' and everything is clinical ( smooth, clean etc. You are the head of a vigilante group that plants trees in public areas. Continue the story:"," ""A man walks in a park in Detroit and sees a dead snake. The man finds the snake alive. That is when things go wrong for the group. The man finds the group is full of snakes and they want to kill him for being a snake man. The group is at odds with the city and all its citizens. How FC-D-E is this world and why did the entire world become such a crazy place?
+I'm going to let my readers do the research, and I'll start here with an interesting fact: The name of our planet, Earth, is said to have its origin in the Egyptian hieroglyphs that I mentioned in the beginning. They tell us that in the Egyptian Hieroglyphs is spelled ""Nefertari."" (I am not sure what that means, I guess there is a group of people called ""The Ancients"" who came up with the names for things in the Egyptian language, so that way all hieroglyphs could be translated). The Ancient Egyptians had a tradition of magic. Magic, in this case, was a religion and could involve things like summoning gods by writing magical spells on tablets or by drawing magic from certain places - for example, the Moon. In those days, they thought that the Moon was very large, and one could write spells on it. So the Egyptians wanted to summon a deity by writing ""Pawwaw"" (Pawwaw is an Ancient Egyptian word for moon. What they wanted to do was a summoning spell for a large moon of the Moon... the Moon... it went ""woo woo woo"" and the entity, whatever it may be, wanted to come to earth. It did not come for the sun or anything else. It came for them). So the Egyptians wrote the spell, written it on a piece of paper, and went, ""This is what I want you to do."" Then they gave this piece of paper to a priest named Ptah. A month later the priest said in his priest's diaries, ""This is what I want written on the paper that is on the top of this papyrus. And I want it to be a message, an invitation, a challenge. So look here...."" The next thing I know, the guy who had written on the bottom of the papyrus goes ""What's this? I want to eat this cake. I want to eat this cake and when I swallow this cake, I'll be invincible."" Well, that's how magic and summoning spells worked! I don't know what it means, but it sure sounds like magic to me! Anyway, we know magic works to summon the Gods. But not only that, the Egyptians used magical creatures called  Efreeti. I want you to know that Efreeti comes from the word `Efo` meaning angel, 'eftal' (which means god) and 'tifa' meaning wing or feather. So, the Efreeti are very strong creatures who can easily kill humans even with the use of magic so all Egyptians were on the good side of things. At first, they summoned Efreeti for a few days to protect humanity on the dark side of the moon. Then at night when there was full moon, they summoned them again. This was not a good tactic for those who worshiped the Moon Lord, who wanted people to get rid of all the Efreeti by night. So the Egyptians created Efreeti creatures from the dark side of the moon. So when people in Egypt went into the dark side of the moon and saw Efreeti, they would come home very sad! They used to say, ""Oh, my Efreeti.... why have you gone so far away? When were the Efreeti going to come back now? Don't you know that Efreeti have some feelings! And we're going to be very sad if they are gone!"" The Egyptians were very good to those who worshipped the moon. Then there was a man named Horus who believed that he was only one of the many gods oflaughter, and that he alone could summon the Goddess, the Great Goddess Amun, to protect mankind. So this is a little back story just to make it all clear, but if you want to know more, you can visit www.mwomercs.com/mwomercs101/story.html (I'm going to leave you with this one: There was a man called Thoth who lived in Egypt, and he was one of the most famous and wise men in the world. The man died, leaving the world in his wake, without any one to finish what he started. He is believed to have written the Book of Revelations in his blood for the purpose of finishing the job of protecting"
+"At the age of 18, everyone picks an unlikely life event. They will be reborn at 18 every time they die until that event happens. After that, death is permanent. Continue the story:"," As a young girl, you are given a gift of eternal life at 18 by a boy in your hometown, you will be reborn every time you die to the world of 18-year-olds. However, after the gift of perpetual life is taken away, the world of ""18-year-old"" will change. ""I'm 18, you're 18"". After the initial ""I'm 18, you're 18"" the world of 18-year-olds will only have a boy around 18 or 19 years old.
+
+Played with
+
+This game has no ending, but you can keep playing as long as you like. For the sake of this game, though, please keep an eye on that age limit unless you plan to play it for more than two or three sessions."
+You are an omnipotent god. Out of boredom you decided to live an ordinary human life vowing not to use your power. 15 years has pass and you have a 9 to 5 working for a major tech company. Your boss has been tormenting you for years and you have reach your limit Continue the story:," My name is Jhavradh Chaudhury, we are from Punjab. I was a big fish in the small pond of Punjab. I used to make money for the rich people. We were very good professionals, very fast. The reason why my boss was harassing me to not use my power. So I decided to try my new hobby and got good salary. I was an amateur. However I always dreamt of going to another country to seek a good life and started work in India. During those years, I was enjoying my life in India where it is easy to stay there. Then I got some bad luck. One day I was standing on the street, when some boy threw a bucket of cold water on my head. Then he hit me against a tree. I was stunned, and then I woke up in a hospital. I have suffered more pain. My wife came to the hospital with me. I want to tell you about what happened to me. I was asked to get up from bed. It was a cold day, and I was not used to the cold. I was afraid that my wife was not really happy and would have hit me at any time. So I got up. But my foot slipped and my foot is completely crushed. So I started my journey. I went to Delhi and visited doctor in an emergency department. I was not really fit to get out of bed. I was in agony. My pain was so high. The doctor asked, if I could not work, why should I seek treatment for pain on my body. Then my pain subsided and I was able to walk on my own. I took pain medications from the doctor and took rest. After a while I was out and after visiting another doctor I was given a replacement foot. The doctors told me, you are now going to spend six months in a hospital. The first thing I asked them was to give me a new foot.
+
+At the time I had not reached even a millimeter below my level. I was not happy, because I was very disappointed; because I did not want to do something that was not even the point of my life. I had not even learned how to use the bathroom, how to bathe, how to eat, or to shower. I had been living in a constant misery. I was never happy. I thought how I could make a change. Then I realized that I also have the opportunity to do something good. I thought to give up my job, because I was completely depressed and wanted to take a break from my misery. I could stop my medication. I could go for medical examination. Feminist and rights activists are going to take action against my situation.
+
+One can also get rid of his job too or a family arrangement or do other things that will make life happier. I decided not to wait for any of the above. I knew that my only opportunity was to take up the fight against this oppression and fight for the rights that were denied me by my own society. The struggle begins from the inside. I started organizing a campaign to get medical examination as a condition for getting treatment for my foot. I started calling, writing the following lines to my family: ""For five years, my foot has been stuck in pain. But I have not got any medical evidence for my claim. If we are to keep you together, please get medical certificate from doctors who is willing to give treatment to you. Please come to your workplace or in any other location and talk about the pain that you have been experiencing in your body. Please do whatever you can.""
+
+My letter was received only in the middle of the night. But after talking to other women activists, I managed to manage to reach the doctor. When I got to the lab, the doctor assured me that there is a medical certificate, but he cannot help me. It is not safe for me, he said. I was very disappointed, because the same thing has happened to the other woman comrades. Also, the doctor said, that is not possible for me. The doctor suggested treating me with herbal medicine. I asked for some information and I was told, a lot of medicinal plant is available in Punjab town. I wrote again to my family, that my foot is still very bad, my life had been difficult, and that this is not the first time that I had been harassed by my boss. I explained that no one listened to me. I started trying to get support for my struggle. So far I have received more than 100 support letters. Some young activists from Delhi wrote me support letters. I started reaching out to them all. They helped me out with my medication.
+
+I am happy and proud that I have been able to"
+Gather up the posse Continue the story:," Now they are on their way to find the missing girl. Go back to the main path Find the girl Run to the left side of the street and jump down the gap on the nearby building to reach the girl Run to the right side of the street and jump down the gap to reach the girl Find the girl Run to the right and jump into the water to find her Jump over the top of the building to reach the girl Run to the left and hop over the hole and jump over the roof to reach the girl Go to the right side of the street and jump onto the roof Find the girl Run to the right and jump onto the roof Run to the left side of the street and jump onto the roof Find the girl Run to the left and jump into the water to find her Jump onto the water to go through to the next side, skip the rocks on the way Run over the rocks and jump into the water to reach her Jump back to the ground and then grab onto the edge of the cliff to be floated over to the girl Run under the cliff to reach the girl Run to the right side of the street and jump onto the roof to find the girl Run to the right and jump into the water to find her Jump over the edge again to reach the girl Find the girl Run to the right and jump onto the roof to find her Drop down to the ground, run toward the wall by the side of the building, jump and hop over the edge to reach the girl Run to the right and jump onto the edge of the building to reach the girl (Run behind the building, to the right) Jump onto the cliff to reach the girl (Run out of the way to avoid the rocks next to you) Run to the left and jump behind the building to snag the girl Jump over the cliff and grab onto the platform to go up, skip the rocks with the girl Run to the right side of the street and jump onto the ledge to grab onto the woman's body and then jump off the ledge down to reach the girl (She will be on the other side Senator's office) (Run into your house and get out) This is the part where you do the fight, and I recommend to be prepared and use your skill to kill the boss without the help of weapons.
+
+(Fight with just a weapon, or with a weapon with a longer range)
+
+There is an alternate way of doing this fight in Death by Degrees. A player can actually skip the main hallway, so he gets through to the end safely: Run to the beginning of the hallway, or run to the end, or run out of the hallway right after. Once he gets past this you automatically go to the door at the back and it will be open. Now, run through the door straight back to finish the boss without using weapons.
+
+
+To get here, you may have to run through the second hallway. If you need a weapon for this fight, you can obtain this weapon in a little shop at the start of the fight. In the second room, go through one of the doors on the left and then back on the right to get to the other door. If you want to run from the boss in a straight line, and you can't escape, you can use the trick mentioned in the previous point.
+
+
+Now:
+
+
+Go to the main hall, but go to the left side first. Jump over or through the opening of the second wall, and jump through the opening of the wall on the right, and through the opening of the wall on the left. Now, run to the right, up the stairs and go down the stairs again. This time, turn left, and jump back onto the ledge at the top of the stairs. Drop down, and jump over the edge to reach the girl. She is on the top floor. Run all the way back to the second door to open the exit hallway (This one has a bit more loot if not done in the last room). You can now run to the door at the top to exit the building
+
+
+Now:
+
+
+Go to the top floor to make sure for the boss fight you will not be able to run straight. Now, run through the door to the left, and turn left, and run through the doorway to the right. Now, go all the way back from door number 2, and turn right to go to the next door. Take the left door and run through the door before it. The next two doors are on the left. After you pass the hallway for the first one, turn right and go through the doorway for the second one. And so on, that is it. Good luck and have fun with the fight!
+
+The Final Boss
+
+After you beat the game, look for the first secret door you came into in the game. This will trigger the final boss.
+
+As it is mentioned before, the boss here has a different attack. Basically, he'll attack you like you can dodge (this"
+"You are standing at the alter about to marry the woman of your dreams when all of the sudden 3 tall men in dark suits barge through the door, your soon to be wife turns around, raises her arms and the men go flying across the room. Continue the story:"," Your wife decides to move to a big beautiful house with a pretty but f*****g expensive garden and her new husband decides to move in with you, she and her friends all move in and your house is a mess, the windows break and your garden is ruined, your wife says that you should let her buy a new lawnmower and you agree but you do not like the dirt it is so she hires someone else who does not like dirt, but you also don't want that, so she hires people to do the job for her, so you let them, the lawnmower is much better you hear me, but still, you have to pay for the grass which is very expensive, and she buys all the beautiful things you have not ordered for her, all the wine you can not resist, and the servants you do not want at the table because she is going to put you to bed, but you have your doubts.
+
+
+This is a very romantic and happy picture made for a very happy woman to show how to use a flower pot, an umbrella, some flowers and a flower bag, then she gets out of bed and goes to make herself a coffee, and when she arrives back at her room, she finds her husband is gone and decides to search the house which has nothing but the door, and she decides to put the door lock and the window locks together so that she can see what is happening outside, if the door should fall on the maid who comes to check on the maid, the maid would fall off the balcony into the street which is where she lives, and this would break her heart, she decides to put another lock to the door so that nobody will know who comes, it is also a sign of love to me.
+
+As you can see, this is one of my favourite pictures as it is pretty romantic and the colours are very interesting.
+
+
+As you can see, this is another image that I love to give a big thanks to for the kind permission, because I use it on my personal blogs every day at least twice, I will never give you any rights for it nor do I claim any rights for it, but if you want to include it in any other place, just link to this page again under the same terms.
+
+Thanks a lot!
+
+
+The image comes from the same collection that I used for this post
+
+
+Pics:"
+"You wake up one day to find the world in ruins, and everyone dead. You meet God outside, finding out that he has kept you alive for a reason. Continue the story:","
+
+As you complete the stories, go to the ""End of Times"" page and choose ""Next Story."" Then complete the stories in the list to get to the endings that you have seen so far.
+
+As you complete the story, go to the ""End of Times"" page and choose ""Continue Story"" at the beginning of the next chapter to play it again.
+
+Each time you complete theEGA you'll increase your score in the Story Mode. For each story you play while playing the game, you score for points.
+
+Story Mode Scoring (Story & Arcade)
+
+You have four stories to play through and you play them in chronological order. Each story takes place in the same world. So, when you play you get points according to the way things went in the game. If you have completed all 4 stories, you'll get to the ending of the game. So choose the story with the most points when talking with the computer character during each story to get that ending! Once you get to the ending, quit the game and get a new save file - one that has the ending you want!
+
+If you want to replay a story again it's possible. It's only advisable if you want to save your world or have no use for the rest of the games.
+
+When you defeat the story screen, you'll come to a menu to see where all of the ending locations are.
+
+To exit and choose ""Continue"".
+
+By returning to the End of Times Page, you can go back to the beginning, and start from that point.
+
+Rewards
+
+You'll have enough rewards to get a whole bunch of extra content.
+
+You'll be able to see the endings if you choose to play the story again. You'll also get a new ending as a reward.
+
+Rewards from the Story Mode Scoring (Arcade Mode)
+
+You'll get a full save file for the game. You can also make extra content if you want, but remember you'll need to choose a story again with the end in mind to do any extra content, so choose the story that has the least points you'll need.
+
+A new ending reward as a reward is also available if you complete all 4 endings. See the ""End of Times"" page in the menu to choose your new ending. Don't forget to quit the game before you try to do any extra content!
+
+Rewards from the Story Mode Scoring (Story Mode)
+
+All rewards from the Arcade mode are the same as from the Story Mode. In fact a lot of the rewards here are the same as those for the Story Mode!
+
+The most interesting reward is the one that lets you play the main story, with the goal of completing it, and see all the endings in the game! To see all the endings you have to clear them all out of chronological order.
+
+Rewards from the Story Mode Scoring (Arcade Mode)
+
+Reward 1 - Story Completion 1:
+
+An awesome and rare trophy! This is your personal bonus to show off for when you finish the game and it's the end!
+
+Reward 2 - Story Completion 2:
+
+A rare, collectable trophy and a reward of sorts! You'll get it after you beat the Story Mode and have the highest score while playing the Arcade mode. No hard times needed!
+
+Reward 3 - Story Completion 3:
+
+A rare, collectable trophy and also more of an achievement reward! The first time you do this feat, you'll get an extra reward which is the story bonus in the title! Only available in Story Mode. Also can only be reached while playing the Arcade Mode. There are 3 other endings.
+
+Reward 4 - Story Completion 4:
+
+Two other rare, collectable trophies, one of them a bonus! The first time you do this feat you'll get 2 more rewards, one of which is the story bonus in the title! Only available in Story Mode. Same in both modes.
+
+Rewards from the Story Mode Scoring (Arcade Mode)
+
+Reward 1 - Story Completion 1:
+
+An extra rare rewards as a reward! To receive it you'll need to clear out all the endings. And the Story Mode ending chant will also tell you how many endings you need to clear out before you can claim reward #2.
+
+Reward 2 - Story Completion 2:
+
+A rare, collectable trophy and a reward of sorts! The first time you do this feat, you'll get 2 more rewards, one of them is the story bonus in the title! Only available in Story Mode. Also can only be reached while playing the Arcade Mode. There are 3 other endings.
+
+Reward 3 - Story Completion 3"
+You wake up and discover that you are now a ghost. The more shocking news is finding out where you 've been assigned to haunt. Continue the story:, The More Ghost Stories (and the Less I Like the Ghost Stories) I've Been Reading
+"You possess the ability of persistent lucid dreaming. Accompanied by a strange man/woman, together you build a world you revisit every night. One day you see them at a coffee shop. You immediately recognize each other. Continue the story:","
+
+
+-The two of you go to the cafe to see your friends - You talk to your friends about the dream you are having in a friendly manner.
+
+
+-The two of you talk about your dream until your friends return and tell you it's over.
+
+
+-You try to remember all the strange events that happened to your body and mind.
+
+
+-You are not sure how long you have been dreaming - maybe as long as 24 hours.
+
+
+-The first time you are in a lucid dream, your body is warm and happy - you think its thanks to the warm feelings you got from your friends. However, a minute later you feel really weird and ill - you need to go to the bathroom. As soon as you get out you find you are unable to walk. You fall to the ground - but a second Realization sets you free. You have been dreaming and are back in the real world with a new body. You begin to wonder what has happened to your body. One moment, it is still warm and happy. The next, its cold and sick and you can hardly keep your head up. In the middle of your mind, you are confused. You find yourself in the hospital. Your body thinks you have lost consciousness. The nurses and doctor can't figure it out.
+
+
+Some nights, you wake up feeling strangely light. As you have become a fully functioning human, you notice this. You decide to go to the doctor with this idea. You make your way to his office and he greets you quite warmly. He smiles, but then says ""Ah, I forgot to mention your name - it's Jack"".
+
+Your name is Jack. Jack asks, ""How come some nights when I wake up in a cold sweat, I notice a different color then that of usual - ""Jack"" and not ""Jack"""". You explain, ""It was something I didn't mean to happen when we were in a lucid dream. It's something that happened after we woke up."" Jack tells you that it is most likely just a little bit of your brain's sleep cycle messing you up while dreaming and he'll get you back to normal as soon as possible. He recommends that you give this a try and that you just do it anyway.
+
+
+You agree with Jack. You give yourself another try, but not for 24 hours. You begin to feel that you are a little drowsy again. Your sleep routine changes - now you work the night shift from Thursday until Saturday. When you wake up, you begin to feel refreshed. You realize your body is adjusting to your new routine and it is time to do your job.
+
+
+When you get out of bed for work on Saturday morning, you notice your back is feeling slightly strange. You decide to go have a look and see if you are okay. It is not unusual to hear your coworkers talking on the phone so you go out to greet them. The woman says, ""Hey Jack, what are you doing?"" you say, ""I have a job."" The woman responds, ""Oh? It's a bit boring here, you should try working there."" You reply, ""Well, it's nice to have something different..."" She goes on, ""No, you already do. You already go to work every day."" You start to smile and say, ""Yeah I go to work every day."" The woman adds, ""Hey I can see it in your face. You are happy."" You say, ""Yeah, it was probably the dream. You've got some sort of feeling here."" You look down. You are not wearing the suit you were wearing at the time. The woman says, ""You do look really normal today."" As she looks down, she realizes that the suit is probably not the best fit for you.
+
+
+She suggests looking for a new one.
+
+
+You can't help but notice that you look older, but not younger. The woman calls you and tells you to meet up for tea. She has a lot of her work done and you sit down. As you approach the door of the building, the old woman asks, ""Jack, what time is your cup?"" You reply that it is 3:00 and there is no need to wait. The old woman asks, ""Jack, what time is your cup?"". You reply that it is 3:00 and there is no need to wait. The old woman says, ""So you want to come back with me to work today? Well I can tell you are a bit hungry, so I'm going to come with you for dinner."" As she starts to move away, she says, ""I'll just wait by the coffee machine and you guys can talk later..."" You reply ""I want to leave my suit in"
+`` Let grandpa tell you about the time he participated in the great cyber-war of 2018. '' Continue the story:," http://KnowingAmerica.org/content/gordons-brilliant-carpenter-brings-us-back-to-1945#ixzz0pCp6t6k0
+
+This is a good book, written by a man who worked in the Pentagon during the Cold War. The book is more entertaining to read than some of the other books on the subject (though I'll grant you that, for the most part, it's more interesting and is written to keep readers hooked). And he certainly knew a lot about cyber-warfare, because he saw firsthand a number of attacks that were carried out via the Internet, a new technology at the time. He knew the U.S. was being attacked. He read up on the topic. He even worked for the Pentagon, even a little bit, and wrote about it.
+
+I don't have much else to add beyond the fact that if you want to learn more about cyber-warfare, this was well-written work."
+"Two former spouses are divorced from one another, but it is still very obvious that they are deeply in love Continue the story:","
+
+""I think about it a lot,"" says Katherina Tovar, 21, a senior at the University of Connecticut who is single. ""Everyone is going through their ups and downs. For me, it's more about my kids. I don't want to be the girl who's on the rebound. I'll never be the girl that's going through the divorce process. I'vebidden a certain amount of anxiety.""
+
+""I never want to get married,"" adds Carlela Perez, 23, a senior studying English at Eastern Connecticut State University. ""I'm too shy to get out of bed in the morning, not because I'm nervous or depressed but because I worry about my future, what I'll do with my life."" The way people talk about the marriage they have, says Katherina, ""is that they'll be in a relationship for a long time, have children together. So I don't think about that, honestly. I don't think I can feel happy until I have kids, and then I will stop thinking about it. But I think about it in my mind and think about how important our kids are to me, and that we need each other.""
+
+Tovar and Perez, who were both diagnosed with depression, have been dating almost seven years. They were inseparable from the day they met, in 2011, in the class they both attended, and they have been dating for so long, they have even dated with the same birth certificate, which is why they have had a marriage license. When their first child was born in August 2012, a lot of their friends and families, including their parents, congratulated them and wondered if they were going to be together forever. Many people, though, were disappointed, since they had grown apart after Katherina dropped out of school. They never got back together.
+
+Now, people often call them ""the girls who break up."" They do it so often, that it was actually the topic of a book written by a self-help columnist named Linda Moller. ""She wrote a book about these two women who go on dating and break up,"" says Carlela. ""And here's a guy and a girl who do it. And it's fascinating to me, and to see how life is changed just as soon as they do it.""
+
+Carrlina says that breaking up with someone is the worst thing she has ever done. She just wants to wait and let go. ""I think it's all about trust,"" says Carlela. ""Sometimes people try to control everyone else in their lives…It's easy to tell one person what to do every day, every step in life, but someone should talk to the person who is just themselves. No. If you let somebody do that, it is what it is. At times, the other person can mess with your heart and soul, but you have to trust that you can handle it — you can handle anybody you want to work with.""
+
+""The biggest battle is acceptance if the other person is your partner,"" says Elisa Lopez, 19, who graduated from UConn this spring with a bachelor's in criminal justice. ""But most people who go on a date with you, they never make it to the other side. They feel like a stranger or are not welcomed.""
+
+While it's understandable, Lopez says, that those who are single or divorced experience a lot of isolation from their friends and family. ""They want to keep their relationships with their spouses or partners a secret, they want those person to be in their lives and think that they could be there at all times."" Lopez says that once they hit it off with someone — or even just one day, if it works for them — she feels like the best part of her first date is that they are more open. ""When people are nice to you, you feel like they truly care for you.""
+
+For some more information on breaking up, check out the book, Love and Other Dangerous Relationships"
+"A priest, a rabbi, and a minister walk into a bar. But this is no joke, this is a tragedy. Continue the story:","
+
+What I am telling you about this bar has been made real. For the first time ever, anyone who would dare to drink at a place here in America — a real bar — must ask himself the question: How much did that cost? How much did this become part of my family?
+
+The bar's names have been changed, as the bar is now known as The Pimms Bar. The bar has two sections, one with whiskey, and another with beer. These two sections are separate. The bar has two employees, and they are required to drink their own whiskey."
+You are Waldo. What 's your story? Why are you hiding? Continue the story:,"
+
+""And he would have been very happy. It's like, what good is love when you're stuck in a situation that isn't right or love when that situation is right?
+
+""For him to call me out of the blue and say, 'No parcels, I'm going out of town for two weeks. You should have no idea. I'm going to go work for my Uncle Jesse', and he would have laughed, and he would've done it in jest. I mean, this guy knew I was there. He wasn't going to put a hit out on me with some phony email Conor could send me.""
+
+On April 5, the United States men's national team will take on Guatemala at StubHub Center in Carson, California. For the United States, a game against a non-conference opponent is a big deal. For Waldo, the game is a reminder that, no matter how much his life unravels, his goal — the United States of America — is very nearly in sight.
+
+""For my dad and his friends who have been following this story, for me I'm like, 'How did it happen?' retreating to who's in control,"" he said.
+
+""For the United States men's national team, that's the question they're looking at: How is the life of a pro soccer player of such promise, and the life of every young person watching them, not that much better?"""
+God of the dead river. Continue the story:,"
+
+* * *
+
+Culture & Society
+
+The Dead River is a major cultural center and an important historical landmark. Visitors from all over the world come to view its waters, which wash over the river's steep banks, the last great white-sand beach at Tuxedo Beach. On the edge of the town is the Dead River Museum, where a wide array of relics are stacked on shelves, from old fishing lines to wooden boats. Also on display is a new $30 million complex designed by the architect Frank Gehry in cooperation with the town itself. The museum contains a variety of interactive exhibits highlighting the town's rich history.
+
+
+In 2008, New York Gov. Christine Todd Whitman declared October 23-14-2016 the ""Last Days of the Dead River,"" ""the most important day as a city of a hundred thousand people in American public history since the founding of the city,"" and a ""year to remember.""
+
+This year in celebration of the Dead River's death, Tuxedo Beach will open its doors to a private tour. For more information or to make reservations, call 877-621 complexes. (The cost is $35 per person for adults, $22 for children under 11, and $12 for the senior citizen.)
+
+
+Cultural & Community Resources"
+She opened the box; it was empty. Continue the story:,"
+
+For a moment she stood there, staring at the empty box. The air was heavy with silence and she reached out to cover her ears, but it was a weak effort. The silence continued for a good while, and she could hear the distant sounds of the city.
+
+…
+
+The next day the woman found a stranger who was willing to take her place, and she moved in. She found a place to sleep; she was not sure where it was, but she knew it was safe. A good job. A place in which to rest. She did not know where it was, either. Her memories from that night lingered and lingered, and the silence kept her there.
+
+…"
+"In the future, conventional birth is outlawed, and all humans are produced assembly-line style in factories throughout the world. You are a worker in one of these factories. Continue the story:","
+
+In the early 1900s, when most countries had little or no formal education, Chinese men began to take advantage of the new freedoms of western society and began to work harder and faster than other Westerners in order to achieve personal prosperity and status in China. Many Chinese became rich during the period, but no other Westerner benefited from it.
+
+So, in 1907, China's central leaders introduced a new labor reform policy which created an era of mass famine, led by the ruthless Chinese imperialists. These forces caused the deaths of over one million Chinese people and millions more to flee to escape the violence.
+
+As a result of these calamities people are convinced that the Chinese government was all too ready to let thousands of Nilim be sacrificed during the famine so that this time no harm could come to human beings. Many Chinese survivors in Korea and other countries choose to stay home and work for the next generation as farmers and laborers instead of trying to get back to China.
+
+
+""I am a member of the Sichuanese People's Revolutionary Party. I support those living in the world who are working against the injustice to people of the world and want to keep the human race alive without harming life or the environment. I believe in the strength of humankind."" -Iyad Ahmad, former member of Sichuanese Peoples Revolutionary Party
+
+Despite their hatred, these people are willing to work for some reason, but only for a small reason at a time. And one day, one day, as many as possible, in whatever circumstances the party will choose to grant them the opportunity to help the world."
+"You gain a powerful superpower, but it comes at a great cost. Continue the story:"," You've just earned the powers of the Avengers.
+
+EditSee also Edit
+
+Marvel Heroes wiki has more images of Deadpool."
+"Desperate for research funds, a group of scientists created a highly lucrative, if somewhat embarrassing business. They now have to explain this to a senate committee. Continue the story:"," ""Scientists who use a company in a lab-on-a-chip for experiments need to prove that their work is safe and legal before they can get more than $5 million in financial aid."" The report went on: ""As they scramble for money to study the technology, they have become embroiled in a legal battle with the company's CEO over whether their work qualifies as 'fair use' of the machine."" As the story put it, ""There are still no rules protecting the public or other scientists from being used in these experiments."" In fact, two years ago the government tried to push a controversial, but ultimately unsuccessful, change in the law by calling for a review of existing laws, such as the one governing the copyright on papers.
+
+A few days after that story came out, researchers launched a website called ""Dr. Fermilab."" As a quick way for them to communicate with researchers and explain what the project was about, they made it into a kind of wiki. They gave a description of what they were doing. Then they got to work. They created a separate account on a blogging site called ""ClusterFantasy."" Here are some excerpts: ""The mission of ClusterFantasy is to collect news on experimental science, discuss new research in the field, write fiction involving experimental systems, encourage collaboration between researchers, and support the development of new experimental systems. At the ->-end of the page a short synopsis of this project is posted. ""
+
+""On Wednesday, March 21, Dr. Joseph McGovern, a medical doctor from Chicago, Illinois, made a short video about the project (it has since been viewed more than 2 million times and is the 16th most popular video ever made about ClusterFantasy).""
+
+""The original mission statement of the project, which is a summary of all the major questions in the field of experimental particle physics, is here.""
+
+""The project is funded by Dr. Fermilab (formerly the Fermi National Accelerator Laboratory) in Chicago, Illinois.""
+
+""It is organized into four areas: Research, Discussion, Fiction, and Funding. A short summary of the overall mission statement: ""From the discovery of the Higgs boson to the present day, the universe contains hundreds of trillions of particles, many of which are extremely strange, like elementary, quark-gluon plasma in a quantum vacuum of the form of a particle called a Bose-Einstein condensate, or BICEP2, or Higgs boson. ""It took the combined efforts of physicists from around the world to make all this possible, creating a new era of physics, one where the ultimate goal was to uncover the secrets of the cosmos. All the way from a small group of physicists around the world to an entire space agency based in the heart of Chicago, Illinois. One could even add the work of a single particle physicist from Chicago in the late 1940s.""
+
+All ""a single particle physicist from Chicago in the late 1940s.""
+
+There was no information on the official website about who actually made the video or how they got involved.
+
+McGovern is also listed as a ""member of the board of advisers.""
+
+The website also has no information on the actual funding of the project, although it does say that it is for a ""research project for a research project.""
+
+The current website says: ""If you have questions, comments, or recommendations about the project or scientific practices and technology that you believe are important, please contact the author, Dr. John McGovern.""
+
+McGovern's LinkedIn profile, meanwhile, says:
+
+""John M. McGovern is an experimental physicist at Fermilab and a Research Scientist at Google X Lab, which designs and builds advanced research projects and technology. He worked on Project Higgs between 2008 and 2012, completing more than 12 months of experiments testing the Higgs boson, before returning to the laboratory as a member of the Board of Advisors. John has been a major proponent of the creation of new experimental systems, with the goal of improving our understanding of the universe. He will participate in an official webinar series called ""ClusterFantasy"" which highlights significant research happening at the Fermilab.""
+
+McGovern declined comment for this story. A Google spokesperson said the company doesn't comment on personnel matters. A representative for Google X didn't have much to say either.
+
+""I think it shows how poorly informed the public is about what Google is and is not doing,"" writes one user on ClusterFantasy. ""Why would they do something like that?""
+
+Fermilab and Google did not respond to requests for details.
+
+Update: A Google spokesman tells Mother Jones: The company doesn't comment on personnel matters.
+
+""Google X is a"
+"here you stand, alone again, about to take your own life. Nothing is holding you back now. You decide to look around your room one more time until something catches your eye, and the impact it has on you stops you in your tracks and makes you realize why you ca n't do this to yourself. Continue the story:",
+"A hole in time and space opens up, and you see your younger self looking back at you. You have exactly one minute to tell young-you whatever you can before the hole closes. Bonus points if you only give yourself one minute to type the response. Continue the story:","
+
+""I'm a bit...I wish I could have found the girl earlier."" ""Happier times."" ""My parents still don't understand."" ""It must be the Internet."" ""I had hoped it would have been better. I used to read a lot of books.""
+
+I would think that having spent several years in university would have made you better able to recall such a short time. Perhaps you just didn't notice it. Of course, the Internet also provides many ways of discovering facts which would have been lost to you, by way of no knowledge of modern English. Maybe you simply weren't interested enough in the past to remember any detail of that which was going on back then. But this is unlikely to account for the lack of information on my own younger self.
+
+Or maybe you used to read?
+
+Then if you have spent some time reading - but not a lot - then you could use some of the information from the above list to find other information about yourself that was much more valuable.
+
+Here at the BBC we're always keen to get your feedback and ideas. You can even write a letter to us.
+
+Email your ideas and comments to our Feedback and Ideas276 address. Alternatively post them on our Facebook page by clicking here.
+
+Please enable JavaScript to view the comments powered by Disqus."
+"Write a journal entry for a child that has been abused ( mentally, emotionally, physically, spiritually, sexually, etc ) their entire life .... Continue the story:"," It will be very difficult. No one wants you to go. ""
+
+(The Child's Story)
+
+Childs are prone to sleep problems and ADHD. ""No child should experience the kinds of neglect, abuse, isolation and poverty that can drive one to seek help with a child's behavior""
+
+(The Parent's Story)
+
+Children must express their feelings in a non-judgmental way. They must not try to control or coerce others. ""If a child is feeling emotional or aggressive their whole world becomes darkタープレント"" ""
+
+(The Parent's Story)
+
+Children can have a tendency to get upset. When children are upset they often become easily hurt. Children must learn to tolerate disappointment and give constructive corrections. ""
+
+(The Parent's Story)
+
+Children must be strong yet independent. They must learn to stand up for themselves.
+
+(The Parent's Story)
+
+Children need to know how to say no. ""Many children have trouble saying NO to adults. Many are taught to say NO. Children are socialized to do the same""
+
+(The Parent's Story)л
+
+Children need to have good self-esteem and self-confidence. ""Children are taught to look for rewards and recognition. Sometimes those rewards and recognition are unattainable, so they seek them in small and subtle ways""
+
+(The Parent's Story)
+
+Children should learn to have patience and perseverance. ""Successful self-reliance can take years and many children feel alone or scared, waiting for that small sense of power"" "". Children need to be ready to take in new experiences without judgment or expectation and learn to manage their lives without getting overwhelmed"" ""
+
+(The Parent's Story)
+
+Children need to be aware of their emotions and should be very conscious of the emotions that others may be experiencing. ""An awareness of one's own emotional state can help children develop a strategy for coping with stressful or difficult situations""
+
+(The Parent's Story)
+
+Children need to know that good things happen without expectations. ""When things go well, we see a sense of accomplishment""
+
+(The Parent's Story)
+
+Children need to learn how to recognize their needs and needs of others. Learn to be flexible and see the bigger picture. ""It is important for children and adults to be able to be flexible on their needs. Children need to know they can meet their needs, and will meet them, at any time""
+
+(The Parent's Story)
+
+Children need to be self-independent. Children can be very hard to manage when they are overwhelmed, stressed, tired, hungry, angry, scared or confused. Learn how to say No and be flexible. ""Children should be self-motivated, determined, and ready to go when they need help with anything""
+
+(The Parent's Story)
+
+Children need to be taught about emotional communication. Children need to learn how to express their feelings to others in a good context - using language that is appropriate and doesn't hurt anyone.
+
+(The Parent's Story)
+
+Children need to know how to be present. ""Children often need time to recharge and get a fix"" ""
+
+(The Parent's Story)
+
+Children need to be prepared to do their own thinking. ""...Children should enjoy learning an appreciation for their own thoughts as well as the thoughts of others"" ""
+
+(The Parent's Story)
+
+Children need to be able to make good decisions without being interrupted. How?
+
+(The Parent's Story)
+
+Children need to think of their parents as friends of theirs and not as enemies, or parents as enemies. ""Children need to be taught to separate the person who has been bullied from themselves. ""
+
+(The Parent's Story)
+
+Children can have a tendency to be selfish. They can be selfish when they are afraid of the consequences, like losing parents and friends, and should not be encouraged to become a selfish person troubles them at home
+
+
+(The Parent's Story)
+
+Parents and caregivers can give too much and take away too little. ""If it's too much or not enough a child will get away with nothing"" ""
+
+(The Parent's Story)
+
+Parents can be responsible for raising their children, but they may not raise very well. ""Parents need time for themselves and for their children - they cannot expect to be on top of things for 30 years"" "" ""
+
+(The Parent's Story)
+
+Parents can play a very crucial role in a child's development. They need to be a strong role model, supportive, good role model and also responsible. A single parent with a daughter or a step-daughter may not have enough of that.
+
+(The"
+"The hero was killed, the princess was sacrificed, and the evil king rules the land. For the average citizen, though, things have taken a turn for the better. Continue the story:","
+
+Read the story to unlock the corresponding trophies
+
+Story related and cannot be missed.
+
+""Escape from the Dark City"" (1)
+
+""Escape from the Dark City"" (1) is unlocked through the Story related trophy ""Bane of Thieves"" ( ). To earn this, pick up the Black Pearl from the floor, run over the bridge that connects to a small island, and exit the island. This is a short run, so plan accordingly. When you get to the other side of the island, head west for an extended cutscene.
+
+""The Devil's Nightmare"" (7)
+
+""The Devil's Nightmare"" (7) is unlocked through the Story related trophy ""The Devil's Nightmare"" ( ). To earn this, go up to the elevator on the east side of the city, and turn right. The elevator will open and someone will give you a brief speech about the dark side of the island, who is the antagonist of the story. To complete this quest, you must reach all eight statues, which will unlock the corresponding trophy.
+
+""The Tower"" (40)
+
+""The Tower"" (40) is unlocked through the Story related trophy ""The Tower"" ( ). To unlock this mission, you will need to travel to the western side of the island, which is where the tower is. As soon as you enter the room, you will notice that the place is quite dark and eerie. Walk as far east as you can, then turn left. The next split screen reactivates. Run across the bridge from the map that you can see when you first enter the room and head up the ladder at the end of the room in this manner. Before entering the stairs that lead up to the tower, collect your quest item in the main part of the room and exit the room. In this case, turn right first, then continue east a short distance and run across the small bridge from the map until you reach it. This leads to the tower.
+
+Defeat The Devil
+
+""Defeat The Devil"" (1)
+
+""Defeat The Devil"" (1) can be unlocked through the Story related trophy ""The Devil's Nightmare"" ( ). To earn this, kill the two bandits nearby, then head up the steps to the right, run over the bridge that splits from the map, and walk down a short flight of steps that is the end of the map. This will reveal a cave entrance on the back side of the island, which you will have to cross to complete the quest. As soon as you reach the cave entrance, go to the upper right and then left to the cave entrance. In this case, turn left and walk southward until you get to a large bridge that you have to cross, then continue southward again to reach the cave entrance. In this case, turn right just before the bridge disappears, and run across the bridge from the map, crossing it to reach the final puzzle room.
+
+Achieve 8/8
+
+All eight medals require at least 1,000,000 points.
+
+The medal ""Achieve 8/8"" is earned after you unlock the ""Bane of Thieves"" (story related and cannot be missed) trophy. Wolves were a common means of transportation in the days of the kingdom, and while not always perfect, they have always been one of the best ways of traveling. There are three ways to travel across the entire island: by boat (to the northwest of the island) or by train (to the east of the island), and each have their own set of rules. These are all easy to reach with a minimum of effort. The first two have very little in the way of restrictions. When you first arrive on the island, head southwest on the right side of the bridge when you first enter the room. The trophy is unlocked after you have travelled as far as you can. Then you will be confronted with the task of traveling from the north to the south around the island (as it's not all that far), with some additional restrictions to accomplish the mission. The third and final way is to run west to the north (and east to the south) around the island until reaching the cave entrance. After the first part of this quest where you must enter and unlock the caves, you should be able to complete it by simply taking a boat to the north. Here, you will get some bonus credits from the various towns and villages, as well as a variety of new missions, which can be earned through your gameplay. Be sure to purchase all of their rewards to get better rewards for this and other trophy related events.
+
+Go to a new place on the map every day 1 time
+
+This is required for ""The Tower"" (40). To earn this trophy, go to the"
+"You have just been elected the president of the U.S only to learn that every President before you was actually a super villain, and always stopped by one man. The Prime Minister of Canada. Continue the story:"," If the new President of the United States did not choose a Prime Minister then, who should choose him, the next leader of the U.S.A? It had to be some super hero and he chose Captain America. But what would his actions be in the face of such super villain as the Prime Minister of Canada? Is the United States in trouble if the world's greatest superpower never chose one prime minister or another? Continue the story: The President of the United States chose a superhero but it did not choose any of his ministers. Who then is this superhero and his role in the story? Continue reading: The World of the Superhero: Captain America
+
+
+Continue reading: Captain America-the World of the Superhero: ""America: Come out and play!""
+
+
+Continue reading: ""Captain America-the World of the Superhero""
+
+Share On Facebook Tweet Pin It Email"
+"It is a sunny day, you exit your apartment. Walking your way to your work. There is no one around. Suddenly a black van gets nearby you and its door opens. Two man -which wearing black suits, black gloves and black masks- grabs you and throws you into the van. Continue the story:"," After the first ride to the other side you look back and spot the man behind you. As soon as he sees you, he takes you into the back. He is smiling, and then he points to the car just sitting there. He points to it and you feel panic fill your heart as he opens the wheel with his fist, and turns the ignition and starts the car. The man in black is pushing the doors open as hard as he can - it is extremely fast - and when the doors are pushed he turns the car off and heads to your apartment. A couple of minutes later he comes back and knocks on your apartment door. You open it and he says ""Please have a beer"". You grab your drink, the man in black goes to the fridge and puts it in the front. But as soon as he sits the cup out of the front, the door slides shut. You realize what is happening and the man opens the fridge as well and throws the cup out the window. If you look down to see the cup in the cup holder, you find it was filled with ice. You stare as the man in black picks up the cup, takes one bite but drops it right in the front of your cup holder. You scream into the coffee, but the man in black stops eating and looks up to the window. You take the cup from the man and throw it in the front garden - in front of the river - with the intention of letting the cold water flow over the frozen fruit. Soon you find another cup and a glass. As you reach the water they are still frozen with no water. As time passes by and the winter season arrives, there is no way to get these drinks and so you start to drink less. When you do find some you throw them out the window - but only into the river.
+
+You are working on a bicycle in a park. The man in black stands by the edge of the bike, smoking a cigar and drinking a beer and says to you ""See, you have got such a small mouth you can't drink from the pipe"". You stand up and look at the man in black. He is grinning his famous smile of the man in black with a black suit that is dark enough for only his eyes to see. His hands are holding a small bowl with a cup. He looks up and you see his eyes, and you realize you also see his mouth. His lips are black and black.
+
+The first time you are in an alley with your girlfriend to try to catch a man. Your girlfriend grabs a bag and throws it into an alley. You get closer as she throws it deeper and deeper into the alleys in order to catch the man. Then you hear her crying and thinking this is her only chance for survival. Then your boyfriend sees the bag and throws it into the alley just as she does at the last moment. She runs away and you run away but have to chase after her - just like in the ""Risky Business"" film you had seen. So he runs after you too. Then you realize that he is wearing black clothes. He is trying his best to look like a drug dealer. But he is not. The only thing he wears is a bag with two bottles of champagne in it that you caught earlier.
+
+One day you get in an argument with your neighbour over some garden gnome that is about to start gnawing you. Suddenly the man kicks the gnome, and you follow. The next day you visit your neighbours again and they invite you to play the card game ""Dice"" with them. But there are no cards in the deck. When you first see it your brain is confused about whether a dice is an object or something that can be used as a tool in a game. But then comes the realization that a dice is actually a thing with 2 dice - and that you just picked it up at the game. Another game you play with your friends.
+
+You and your friends have a lot of arguments. You take a long break with your friends and make a lot of new friends but you always come back to the past. You never go on a holiday with anyone until you have agreed to spend some time in the past. Whenever you do take the holiday, you try to go back to the previous year. If you are in a town with a lot of history, you can still do it. But not everyone in the town has the time to reminisce. You don't understand how the townsfolk of a certain world, or at least of one of its settlements, keep the same memories even when time changes around them. Then you come to a certain event which you remember. You run to a nearby house and the occupants are surprised to"
+Science and Magic are merely opposite sides to which the pendulum of time swings. It has leaned for the past few centuries towards the Laws of Science but even now it begins to return ever faster back towards the Laws of Magic. Continue the story:," > Read the whole post
+
+> Sign in or subscribe to the Furry Post newsletter
+
+You can also read more about the events happening inside Magic: The Gathering.
+
+This was written with the opinions of the author. Some of them may be a tiny bit wrong, and some were just put there because they sounded funny.
+
+Read this: Derevi, my good friend, has been kidnapped.
+
+Derevi is an extremely talented and versatile artist, she's also an excellent photographer. That's why the two of them decided to do a commission together. But she doesn't think he's very sexy...
+
+Her captors are the most despicable humans on the face of the planet, the worst and craziest cultists ever to walk the earth, with a taste for human flesh.
+
+Her only chance of freeing her captors is by performing some rather erotic magic tricks.
+
+She was sent away to some remote island that she's sure is far away from her and has no one except her three companions to provide security and help her regain the trust of the villagers.
+
+But before leaving, one of the captors decides to put Derevi in the most uncomfortable position imaginable.
+
+There are some weird things going on here.
+
+The first isestial light is emanating directly from his eyes. This is very odd. It's also really hard to imagine a wizard receiving such an unusual sight coming into contact with an alien species.
+
+You can also see Derevi's hand in the middle of his hair... it looks like it's on fire.
+
+When talking about Derevi's captors, they're called the Lords of the Underworld - or Zalathar in Derevi's language. However they are actually from the Underworld - the realm of evil. In other words they are like a group of Hellspawn - but without a soul.
+
+Zalathar are called the Lords of the Underworld because of their ability to do what they are accused of doing under the guise of helping the village.
+
+It is said that they will give up that ability when some good Karma is shown to them - so they can do their evil deeds without being caught and punished.
+
+However, they usually don't give it up because they are already dead by now.
+
+Another weird thing is that Derevi is blind.
+
+She just doesn't have any eyes to read the sign language, so she can only make it with her body - but then she can't communicate even verbally...
+
+The fact that she can make things using a human body is a very strange thing.
+
+This means that the sign of the Lord of the Underworld is very strange and cryptic... they must be a very clever person who understands the nature of the sign language and can speak to the whole village easily.
+
+The other thing that really bugs Derevi is the fact that no one, but the two of them, is able to explain to her what's going on.
+
+This could be a huge problem.
+
+They've captured somebody in a very unique position - Derevi is in a position where there are no other humans around.
+
+But they are very well spoken people, and very good at reading English. So Derevi simply asks for them to explain it to her.
+
+So they explain the situation to her, then proceed to give her a potion to make herself blind.
+
+Oh, and they explain to her that it will end her life dies soon and that they will take her with them to live elsewhere.
+
+She's already started to understand... but is too frightened to tell anyone that she's being kidnapped, because that would get worse.
+
+However, they make her drink a lot of mana potions and some herbs, to make her immune to sunlight and to make her eyes heavier and bigger and therefore easier to get inside a car.
+
+That will be enough to make it so that she can finally escape from this place.
+
+Derevi decides to take this chance to escape by using all the mana she can get her hands on. The only thing she can't do is talk, because she will just be deafened.
+
+However, after taking all the medicine and all the mana potions, the mana in her body will now start to get into her head.
+
+Which makes some strange things happen in the first place...
+
+In the middle of the night, Derevi falls asleep in a tent with three other children.
+
+One of them is very strong against magic, so he was able to wake her from her deep sleep, when Derevi was unconscious from that night on.
+
+However this child is not strong enough to"
+You 're walking down the street chewing a piece of gum when you accidentally swallow it. This starts a snowball effect that eventually leads to the extinction of the human race over the span of a day. Continue the story:,
+Magic is discovered and it 's channeled with music. Modern nations dissolve and new countries rise in their place divided by the preferred music. In the frozen north lie the Metal kingdoms. Far to the south are the countries of Soul etc. Continue the story:," http://www.mediafire.com/folder/c3u1yd8nk6o6i/Giant%20Soul%20v1.10%20%3a.7z http://dl.dropbox.moe/wzv3y2xr2zl4k5o/Soulv1.10%20%3a.7z (1.12 MB)
+
+1.11 MB (1.12 MB) Giant Soul v1.03 (2.01 MB)
+
+3 MB (3 MB)
+
+1.12 MB (1.12 MB)
+
+1.11 MB (1.11 MB)
+
+1.10 MB (1.10 MB)
+
+
+1.11 MB (1.11 MB) A game about magic of giant heroes who get to destroy monsters and become stronger, with an interesting story and very cool soundtracks (the music from a certain website is also used in the game)
+
+
+All songs written by the composer of the game ""Abe Lincoln"" and the composer of the first game ""Piggy's Revenge"". All songs are original in style and sound. The main song of the game is ""Tears"" on the song ""The Last One""
+
+http://www.mediafire.com/folder/9qb3g1f9gj8xmgy/Tears%20-%20Abe%20Lincoln.mp3
+
+
+About the music of Giant Soul: http://tinyurl.com/7hn4svb
+
+The game ""Abe Lincoln"" in the background, because it looks so cool and is the same for real giant heroes. There are many giants, including giant skeletons but it is not necessary to know, it looks very nice ;)
+
+
+About the game: http://tinyurl.com/uiv2b8h You are looking for Giant Soul - The Legend of the Lost Hero to be updated, but we have a game of an older legend called ""Giant Soul"". It is a game of heroes who can destroy monsters but it is not required to know the story of ""Abe Lincoln"". The game is a bit longer than the ""Giant Soul"" game and there are different characters in the game. ""Piggy"" is not necessary to know. There are many of monsters in the game but it is not necessary to know or the game is over anyway so it is not mandatory to know all the monsters and the story of ""Abe Lincoln"". ""All monsters is not needed to know and will not be shown. The game will go on only when the player thinks ""I do not need to know everything"". I already made the game because there are many of monsters in the game and the game would need to go on if all the monsters were to be in the title. I will update it when I am able to make it better and more complicated, or I want to try and make an easy-game-game since the game will be shorter and it will be easier to learn than ""Giant Soul"" game. Here are some of the monsters in the game: You know what they are, but you don't need to know them just to see the main characters.
+
+
+About the music of Giant Soul: http://tinyurl.com/8i4rj6o There are many monsters in the game, but there are no rules that they are only monsters, or only monsters.
+
+
+The story in the game is very long and it is about monsters and heroes who get their powers from the people and from their own soul which they receive by singing.
+
+
+All the music in the game was made by me: the story was composed by the composer of the game ""Tears"" in the background and the music for the game which is a song about a big hero was recorded by the master of sound and the recording was done by the composer of ""Giant Soul"" in the game.
+
+The music was made by the master of sound in the game and the song for the game which is a song about a big hero was recorded by the master of sound and the recording was done by the composer of ""Giant Soul"" in the game.
+
+
+The game with its different playable characters and monsters, is only available for players who know the legend of ""Abe Lincoln"". The game will be updated when I am able to make the game more difficult, because it will be easy and fun and we will be able to learn more about the new heroes of ""The Legend of the Lost Hero"".
+
+
+About the game:
+
+
+About the story of Giant Soul:
+
+
+All monsters in the game"
+"A close friend gets injured into a car crash and falls into a coma. The next Monday at school, a new person approaches you. This person acts like your close friend in every conceivable way, right down to the mannerisms and obscure memories that only you shared with him/her. What 's going on? Continue the story:","
+
+How many people would say this to you?
+
+Your friend is only in contact with you a handful of times over the course of the rest of the night. What's next?
+
+Your friend goes to his/ her own house and stays up in the bedroom. The next morning, the next person approaches you, and at the time you didn't ask this person to stay down. You notice that your new friend has exactly the same clothes as you did (so it could just be your roommate), and you tell them that it's been 3:16 AM and you need to pick her up at half past four. The next day you have this strange man in your house who you always assume is your mother come over to eat or smoke. As you watch the man slowly walk toward the kitchen, you think to yourself, ""He's a complete freak, what a freak."" What is next?
+
+Your friend is not completely in character, but you have no other clue who or what you did wrong than your best friend. This next part may be a big part of your entire experience.
+
+You: I'm going over there to visit my mom this summer.
+
+Your Friend: What??
+
+You: I can't...I can't get her?
+
+Your Friend: Why??
+
+You: Why can't you get her??
+
+Your Friend: Because she's a freak!
+
+YOU: I can't get her because she's a freak!?
+
+Your Friend: Huh??
+
+Your Friend: Uh huh?
+
+You: You can only get through that door because I'm a freak!
+
+Your Friend: (sighing) What?
+
+You: Well, I've told you before, you must go away or you're going to have a bad time!
+
+Your Friend: Alright?
+
+You: So you know...I've told you before...a freak is going to be here!
+
+Your Friend: I don't know, I'm just afraid of being alone and losing my mind!
+
+You: Don't be. You're still the same person. Why don't you go and visit her?
+
+Your Friend: Because a freak must have a home, huh?
+
+YOU: Well...even a freak like yourself can't be alone."
