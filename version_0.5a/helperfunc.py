@@ -167,7 +167,6 @@ def calculate_average_word_length(texts):
 
 
 def calculate_average_sentence_length(texts):
-    # CHEKCED
     """
     This function calculates the average sentence length of a list of texts using the SpaCy library.
 
@@ -305,7 +304,6 @@ def calculate_cosine_similarities_for_dataset(model, tokenizer):
     This function calculates cosine similarities for all (prompt, text) pairs in a dataset.
 
     Args:
-    dataset_name (str): The name of the dataset.
     model: The language model used to generate word embeddings.
     tokenizer: The tokenizer used to tokenize the text.
 

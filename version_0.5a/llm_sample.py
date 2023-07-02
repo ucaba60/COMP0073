@@ -11,8 +11,6 @@ from transformers import GPT2LMHeadModel, GPT2Tokenizer
 BATCH_SIZE = 10  # Define the batch size
 openai.api_key = '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'
 
-from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModelForSeq2SeqLM
-
 
 def generate_gpt2_responses(prompt_csv_path, response_folder_path, model_name):
     """
@@ -223,14 +221,13 @@ def extract_and_combine(response_csv_path):
 
 # ------------------------------------------------------------------------------------------#
 
-def regenerate_responses(response_csv_path, model_name="gpt2-large"):
+def regenerate_responses(response_csv_path):
     """
     Check the csv file containing generated responses for any NaN values.
     If any are found, regenerate the responses using the provided model.
 
     Args:
         response_csv_path (str): Path to the csv file containing the generated responses.
-        model_name (str, optional): The name of the model to use. Defaults to "gpt2".
 
     Returns:
         None, updates the csv file with the regenerated responses.

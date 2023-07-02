@@ -3,7 +3,7 @@ import re
 import pandas as pd
 import os
 import random
-import tiktoken
+
 
 # Constants
 DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail', 'gpt']
@@ -225,7 +225,7 @@ def preprocess_data(dataset):
     data = list(dict.fromkeys(data))
     data = [(strip_newlines(q).strip(), a) for q, a in data]
 
-    # Getting long-enough data, not done for PubMed due to most of respones being fairly short.
+    # Getting long-enough data, not done for PubMed due to most of responses being fairly short.
     if dataset == 'writingprompts' or dataset == 'cnn_dailymail':
         long_data = [(x, y) for x, y in data if len(x.split()) > 250]
         if len(long_data) > 0:
