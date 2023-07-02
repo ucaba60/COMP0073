@@ -252,6 +252,8 @@ def regenerate_responses(response_csv_path):
             # Generate a response
             output = model.generate(
                 input_ids,
+                attention_mask=torch.ones_like(input_ids),  # Set all positions to 1 (i.e., no padding)
+                pad_token_id=tokenizer.eos_token_id,  # Use the EOS token as the PAD token
                 do_sample=True,
                 max_length=1024,  # Use GPT-2's maximum sequence length
             )
@@ -265,10 +267,10 @@ def regenerate_responses(response_csv_path):
             # Replace the NaN response with the new one
             df.at[i, 'Response'] = response
 
-            print(f"Regenerated response for prompt {i + 1} of {len(df)}")
+            # Save the DataFrame back to the CSV file
+            df.to_csv(response_csv_path, index=False)
 
-    # Save the DataFrame back to the CSV file
-    df.to_csv(response_csv_path, index=False)
+            print(f"Regenerated response for prompt {i + 1} of {len(df)}. Updated responses saved to {response_csv_path}.")
 
     print(f"All NaN responses regenerated. Updated responses saved to {response_csv_path}.")
 
