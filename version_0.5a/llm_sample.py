@@ -11,32 +11,35 @@ from transformers import GPT2LMHeadModel, GPT2Tokenizer
 BATCH_SIZE = 10  # Define the batch size
 openai.api_key = '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'
 
-from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModelForSeq2SeqLM
 
-
-def generate_gpt2_responses(prompt_csv_path, response_folder_path, temperature=1):
+def generate_gpt2_responses(prompt_csv_path, response_folder_path, model_name):
     """
-    Generate responses for a list of prompts saved in a csv file using the GPT-2 model.
+    Generate responses for a list of prompts saved in a csv file using a GPT-2 model.
 
     Args:
-        temperature (float): The temerature to use for the generation.
         prompt_csv_path (str): Path to the csv file containing the prompts.
         response_folder_path (str): Path to the folder where the responses will be saved.
+        model_name (str): Name of the GPT-2 model to use (for example, "gpt2", "gpt2-medium", "gpt2-large", "gpt2-xl").
 
     Returns:
         None, generates a csv file with the responses.
     """
+    # Define acceptable models
+    acceptable_models = ["gpt2", "gpt2-medium", "gpt2-large", "gpt2-xl"]
+
+    if model_name not in acceptable_models:
+        raise ValueError(f"Invalid model name. Acceptable models are: {', '.join(acceptable_models)}")
 
     # Load the GPT-2 model and tokenizer
-    model = GPT2LMHeadModel.from_pretrained("gpt2-large")
-    tokenizer = GPT2Tokenizer.from_pretrained("gpt2-large")
+    model = GPT2LMHeadModel.from_pretrained(model_name)
+    tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 
     # Load the prompts
     df = pd.read_csv(prompt_csv_path)
     prompts = df['Prompt'].tolist()
 
     # Construct the response file path
-    response_csv_path = os.path.join(response_folder_path, f"gpt2_tdefault_responses.csv")
+    response_csv_path = os.path.join(response_folder_path, f"{model_name}_responses.csv")
 
     # Check if the response file already exists
     if os.path.exists(response_csv_path):
@@ -59,7 +62,6 @@ def generate_gpt2_responses(prompt_csv_path, response_folder_path, temperature=1
             pad_token_id=tokenizer.eos_token_id,  # Use the EOS token as the PAD token
             do_sample=True,
             max_length=1024,  # Use GPT-2's maximum sequence length
-            temperature=temperature,  # Use the specified temperature
         )
 
         # Calculate the number of tokens in the prompt
@@ -131,7 +133,8 @@ def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5
                     {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=temperature,
+                temperature=temperature,  # as per OpenAI Documentation default temperature value is 1,
+                # which is the case here as well, this line is intended for future developments.
             )
 
             # Append the response to the list
@@ -218,23 +221,22 @@ def extract_and_combine(response_csv_path):
 
 # ------------------------------------------------------------------------------------------#
 
-def regenerate_responses(response_csv_path, model_name="gpt2-large", temperature=1):
+def regenerate_responses(response_csv_path):
     """
     Check the csv file containing generated responses for any NaN values.
     If any are found, regenerate the responses using the provided model.
 
     Args:
         response_csv_path (str): Path to the csv file containing the generated responses.
-        model_name (str, optional): The name of the model to use. Defaults to "gpt2".
-        temperature (float, optional): Determines the randomness of the AI's output. Defaults to 1.
 
     Returns:
         None, updates the csv file with the regenerated responses.
     """
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # Extract the model name from the filename
+    model_name = os.path.basename(response_csv_path).split('_')[0]
 
     # Load the model and tokenizer
-    model = GPT2LMHeadModel.from_pretrained(model_name).to(device)
+    model = GPT2LMHeadModel.from_pretrained(model_name)
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 
     # Load the responses
@@ -244,14 +246,13 @@ def regenerate_responses(response_csv_path, model_name="gpt2-large", temperature
     for i, row in df.iterrows():
         if pd.isnull(row['Response']):
             # Encode the prompt
-            input_ids = tokenizer.encode(row['Prompt'], return_tensors="pt").to(device)
+            input_ids = tokenizer.encode(row['Prompt'], return_tensors="pt")
 
             # Generate a response
             output = model.generate(
                 input_ids,
                 do_sample=True,
                 max_length=1024,  # Use GPT-2's maximum sequence length
-                temperature=temperature
             )
 
             # Calculate the number of tokens in the prompt
