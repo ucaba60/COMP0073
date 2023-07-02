@@ -4,7 +4,6 @@ import pandas as pd
 import os
 import random
 
-
 # Constants
 DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail', 'gpt']
 DATA_PATH = './data/writingPrompts'
@@ -238,14 +237,14 @@ def preprocess_data(dataset):
     return data
 
 
-def preprocess_and_save(gpt_dataset=None, user_string=None, output_folder='extracted_data'):
+def preprocess_and_save(gpt_dataset=None, gpt_dataset_path=None, output_folder='extracted_data'):
     """
     Preprocesses the datasets, combines them, and saves the result to a .csv file.
     Optional argument gpt_dataset allows preprocessing the GPT dataset and combining it with existing datasets.
 
     Args:
         gpt_dataset (str, optional): Name of the GPT dataset csv file (without the .csv extension).
-        user_string (str, optional): User-defined string to be included in the output file name.
+        gpt_dataset_path (str, optional): Path to the GPT dataset.
         output_folder: folder where the extracted data will be saved
 
     Returns:
@@ -256,7 +255,8 @@ def preprocess_and_save(gpt_dataset=None, user_string=None, output_folder='extra
 
     if gpt_dataset:
         # Load and preprocess the GPT dataset
-        gpt_data = load_data('gpt', gpt_dataset)
+        gpt_data_path = os.path.join(gpt_dataset_path, gpt_dataset)
+        gpt_data = load_data('gpt', gpt_data_path)
         gpt_data = list(dict.fromkeys(gpt_data))
         gpt_data = [(strip_newlines(q).strip(), a) for q, a in gpt_data]
 
@@ -267,10 +267,9 @@ def preprocess_and_save(gpt_dataset=None, user_string=None, output_folder='extra
         # Combine the data
         combined_data += gpt_data
 
-        if user_string:
-            output_file = f'full_data_{user_string}.csv'
-        else:
-            output_file = 'gpt_and_human_data.csv'
+        model_name = gpt_dataset.split('_')[0]  # Extract model name from gpt_dataset
+
+        output_file = f'{model_name}_and_human_data.csv'
 
     else:
         # Preprocess all the datasets
@@ -299,6 +298,5 @@ def preprocess_and_save(gpt_dataset=None, user_string=None, output_folder='extra
 
 # preprocess_and_save(output_folder = 'extracted_data')
 
-
-# preprocess_and_save( gpt_dataset='extracted_data/gpt2_t1_responses_preprocessed.csv', output_folder =
-# 'extracted_data')
+preprocess_and_save(gpt_dataset='gpt2-large_responses_preprocessed.csv', gpt_dataset_path='extracted_data',
+                    output_folder='extracted_data')

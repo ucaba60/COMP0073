@@ -218,6 +218,8 @@ def extract_and_combine(response_csv_path):
 # ------------------------------------------------------------------------------------------#
 
 # extract_and_combine('extracted_data/gpt2_t1_responses.csv')
+# extract_and_combine("extracted_data/gpt2-large_responses.csv")
+
 
 # ------------------------------------------------------------------------------------------#
 
@@ -270,14 +272,17 @@ def regenerate_responses(response_csv_path):
             # Save the DataFrame back to the CSV file
             df.to_csv(response_csv_path, index=False)
 
-            print(f"Regenerated response for prompt {i + 1} of {len(df)}. Updated responses saved to {response_csv_path}.")
+            print(
+                f"Regenerated response for prompt {i + 1} of {len(df)}. Updated responses saved to {response_csv_path}.")
 
     print(f"All NaN responses regenerated. Updated responses saved to {response_csv_path}.")
 
 
-regenerate_responses('extracted_data/gpt2-large_responses.csv')
+# regenerate_responses('extracted_data/gpt2-large_responses.csv')
+
+
 #
-# df = pd.read_csv("extracted_data/gpt2_t1_responses.csv")
+# df = pd.read_csv("extracted_data/gpt2-large_responses.csv")
 # nan_rows = df[df.isna().any(axis=1)]
 # print(nan_rows)
 
