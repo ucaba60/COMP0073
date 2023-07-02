@@ -87,7 +87,7 @@ def generate_gpt2_responses(prompt_csv_path, response_folder_path, model_name):
     print(f"All prompts processed. Responses saved to {response_csv_path}.")
 
 
-generate_gpt2_responses("extracted_data/prompts.csv", "extracted_data")
+# generate_gpt2_responses("extracted_data/prompts.csv", "extracted_data")
 
 
 def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5-turbo", temperature=1):
@@ -112,7 +112,7 @@ def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5
     start = 0
 
     # Construct the response file path
-    response_csv_path = os.path.join(response_folder_path, f"t{temperature}_responses.csv")
+    response_csv_path = os.path.join(response_folder_path, f"{model}_responses.csv")
 
     # Check if the response file already exists
     if os.path.exists(response_csv_path):
@@ -238,6 +238,7 @@ def regenerate_responses(response_csv_path):
     # Load the model and tokenizer
     model = GPT2LMHeadModel.from_pretrained(model_name)
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+    print(f"Loaded model {model_name}")
 
     # Load the responses
     df = pd.read_csv(response_csv_path)
@@ -272,7 +273,7 @@ def regenerate_responses(response_csv_path):
     print(f"All NaN responses regenerated. Updated responses saved to {response_csv_path}.")
 
 
-# regenerate_responses('extracted_data/gpt2_t1_responses.csv')
+regenerate_responses('extracted_data/gpt2-large_responses.csv')
 #
 # df = pd.read_csv("extracted_data/gpt2_t1_responses.csv")
 # nan_rows = df[df.isna().any(axis=1)]

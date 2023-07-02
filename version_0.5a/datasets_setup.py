@@ -225,7 +225,7 @@ def preprocess_data(dataset):
     data = list(dict.fromkeys(data))
     data = [(strip_newlines(q).strip(), a) for q, a in data]
 
-    # Getting long-enough data, not done for PubMed due to most of responses being fairly short.
+    # Getting long-enough data, not done for PubMed due to most of the responses being fairly short.
     if dataset == 'writingprompts' or dataset == 'cnn_dailymail':
         long_data = [(x, y) for x, y in data if len(x.split()) > 250]
         if len(long_data) > 0:
@@ -261,7 +261,7 @@ def preprocess_and_save(gpt_dataset=None, user_string=None, output_folder='extra
         gpt_data = [(strip_newlines(q).strip(), a) for q, a in gpt_data]
 
         # Load the already preprocessed data from the other datasets
-        combined_df = pd.read_csv(os.path.join(output_folder, 'combined_source_data.csv'))
+        combined_df = pd.read_csv(os.path.join(output_folder, 'combined_human_data.csv'))
         combined_data = list(zip(combined_df['Text'], combined_df['Label']))
 
         # Combine the data
@@ -270,7 +270,7 @@ def preprocess_and_save(gpt_dataset=None, user_string=None, output_folder='extra
         if user_string:
             output_file = f'full_data_{user_string}.csv'
         else:
-            output_file = 'full_data.csv'
+            output_file = 'gpt_and_human_data.csv'
 
     else:
         # Preprocess all the datasets
@@ -280,7 +280,7 @@ def preprocess_and_save(gpt_dataset=None, user_string=None, output_folder='extra
 
         combined_data = pubmed_data + writingprompts_data + cnn_daily_mail_data
 
-        output_file = 'combined_source_data.csv'
+        output_file = 'combined_human_data.csv'
 
     output_file_path = os.path.join(output_folder, output_file)
 
@@ -300,4 +300,5 @@ def preprocess_and_save(gpt_dataset=None, user_string=None, output_folder='extra
 # preprocess_and_save(output_folder = 'extracted_data')
 
 
-# preprocess_and_save( gpt_dataset='extracted_data/gpt2_t1_responses_preprocessed.csv', output_folder = 'extracted_data')
+# preprocess_and_save( gpt_dataset='extracted_data/gpt2_t1_responses_preprocessed.csv', output_folder =
+# 'extracted_data')
