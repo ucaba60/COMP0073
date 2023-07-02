@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 import spacy
-from helperfunc import load_model, load_and_count, remove_prefix, extract_prompts_and_texts, \
+from helperfunc import load_model, remove_prefix, extract_prompts_and_texts, \
     count_pos_tags_and_special_elements, calculate_readability_scores, calculate_perplexity, \
     calculate_average_word_length, calculate_average_sentence_length, calculate_cosine_similarity, \
     calculate_cosine_similarities_for_sentences_in_text
@@ -153,6 +153,6 @@ def prepare_data_for_regression(data_file, save_file='data_matrix.csv', chunk_si
 
     return saved_data
 
-
-# prepare_data_for_regression('extracted_data/full_data_gpt2.csv', save_file='data_matrix_gpt2.csv')
-prepare_data_for_regression("extracted_data/gpt2-large_and_human_data.csv")
+#
+# # prepare_data_for_regression('extracted_data/full_data_gpt2.csv', save_file='data_matrix_gpt2.csv')
+# prepare_data_for_regression("extracted_data/gpt2-large_and_human_data.csv")

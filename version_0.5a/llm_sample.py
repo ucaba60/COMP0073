@@ -1,9 +1,7 @@
 import pandas as pd
 import openai
-import time
 import csv
 import os
-
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
@@ -157,7 +155,7 @@ def generate_gpt3_responses(prompt_csv_path, response_folder_path, model="gpt-3.
 
 # ------------------------------------------------------------------------------------------#
 
-# generate_gpt_responses('extracted_data/prompts.csv', 'extracted_data', temperature=1)
+# generate_gpt3_responses('extracted_data/prompts.csv', 'extracted_data', temperature=1)
 
 # ------------------------------------------------------------------------------------------#
 

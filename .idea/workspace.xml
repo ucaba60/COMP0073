@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="working with gpt2-LARGE">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="data_matrix_gpt2-large.csv">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5a/data_matrix_gpt2-large.csv" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/data_matrix_gpt2-large.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_0.5a/datasets_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/datasets_setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_0.5a/llm_sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/llm_sample.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -441,7 +442,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,7 +457,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="TESTING COMPARABILITY" />
     <MESSAGE value="Commented out max_tokens doesn't make sense&#10;T1_PREPROCESSED" />
     <MESSAGE value="working on regerssion in juypyter" />
     <MESSAGE value="Regression WORKS" />
@@ -481,7 +481,8 @@
     <MESSAGE value="GPT2" />
     <MESSAGE value="GPT2 normal data matrix" />
     <MESSAGE value="working with gpt2-LARGE" />
-    <option name="LAST_COMMIT_MESSAGE" value="working with gpt2-LARGE" />
+    <MESSAGE value="data_matrix_gpt2-large.csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="data_matrix_gpt2-large.csv" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

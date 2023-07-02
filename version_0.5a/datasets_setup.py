@@ -297,6 +297,6 @@ def preprocess_and_save(gpt_dataset=None, gpt_dataset_path=None, output_folder='
 
 
 # preprocess_and_save(output_folder = 'extracted_data')
-
-preprocess_and_save(gpt_dataset='gpt2-large_responses_preprocessed.csv', gpt_dataset_path='extracted_data',
-                    output_folder='extracted_data')
+#
+# preprocess_and_save(gpt_dataset='gpt2-large_responses_preprocessed.csv', gpt_dataset_path='extracted_data',
+#                     output_folder='extracted_data')
