@@ -24,6 +24,14 @@ def prepare_data_for_regression(data_file, save_file='data_matrix.csv', chunk_si
     data_matrix (DataFrame): A DataFrame where each row represents a text, each column represents a feature,
                             and the last column is the label.
     """
+
+    # Extract the model name from the data_file
+    file_name = data_file.split('/')[-1]  # split the input file string at the slash and take the last part (filename)
+    model_name = file_name.split('_')[0]  # split the filename at the underscore and take the first part (model name)
+    save_file = f'data_matrix_{model_name}.csv'  # create save_file name based on the model_name
+
+    # Load the model and tokenizer
+
     # Load the model and tokenizer
     model, tokenizer = load_model()
 
@@ -145,7 +153,5 @@ def prepare_data_for_regression(data_file, save_file='data_matrix.csv', chunk_si
 
     return saved_data
 
-
 # prepare_data_for_regression('extracted_data/full_data_gpt2.csv', save_file='data_matrix_gpt2.csv')
-
-
+prepare_data_for_regression("extracted_data/gpt2-large_and_human_data.csv")
