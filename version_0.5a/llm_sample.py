@@ -135,7 +135,8 @@ def generate_gpt_responses(prompt_csv_path, response_folder_path, model="gpt-3.5
                     {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=temperature,
+                temperature=temperature,  # as per OpenAI Documentation default temperature value is 1,
+                # which is the case here as well, this line is intended for future developments.
             )
 
             # Append the response to the list
