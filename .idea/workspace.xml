@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Cleanup + jupyter notebook" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Fixed GPT-3.5 Prompt">
+      <change beforePath="$PROJECT_DIR$/version_1.0/extracted_data/gpt2-large_responses.csv" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.0/extracted_data/gpt2-large_responses.csv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="working_branch_1.2" />
+        <entry key="$PROJECT_DIR$" value="working_branch_1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,23 +42,27 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/version_0.5a&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/AtanasM/PycharmProjects/COMP0073/version_1.0",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\AtanasM\PycharmProjects\COMP0073\version_1.0" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\version_0.5a" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\version_0.5\Labelled_Data" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\version_0.5" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\JupyterNotebooks\Labelled_Data" />
-      <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\Version_0.3_seperated\Labelled_Data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\JupyterNotebooks" />
@@ -438,7 +444,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -453,7 +459,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working on regerssion in juypyter" />
     <MESSAGE value="Regression WORKS" />
     <MESSAGE value="version 0.5 dataset_loader.py" />
     <MESSAGE value="summary_stats_v0.2.py WORKING FOR REGRESSION" />
@@ -478,7 +483,8 @@
     <MESSAGE value="working with gpt2-LARGE" />
     <MESSAGE value="data_matrix_gpt2-large.csv" />
     <MESSAGE value="Cleanup + jupyter notebook" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup + jupyter notebook" />
+    <MESSAGE value="Fixed GPT-3.5 Prompt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed GPT-3.5 Prompt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -512,7 +518,24 @@
           <line>15</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/version_0.5a/llm_sample.py</url>
+          <line>90</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/version_1.0/llm_sample.py</url>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/version_1.0/llm_sample.py</url>
+          <line>296</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/COMP0073$llm_sample.coverage" NAME="llm_sample Coverage Results" MODIFIED="1688454474068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/version_1.0" />
   </component>
 </project>
