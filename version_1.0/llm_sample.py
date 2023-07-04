@@ -1,13 +1,16 @@
 import pandas as pd
-import openai
+# import openai
 import csv
 import os
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
+import time
 
 # Constants
 BATCH_SIZE = 10  # Define the batch size
-openai.api_key = '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'
+
+
+# openai.api_key = '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'
 
 
 def generate_gpt2_responses(prompt_csv_path, response_folder_path, model_name):
@@ -85,7 +88,7 @@ def generate_gpt2_responses(prompt_csv_path, response_folder_path, model_name):
     print(f"All prompts processed. Responses saved to {response_csv_path}.")
 
 
-# generate_gpt2_responses("extracted_data/prompts.csv", "extracted_data")
+generate_gpt2_responses("extracted_data/prompts.csv", "extracted_data", model_name='gpt2-large')
 
 
 def generate_gpt3_responses(prompt_csv_path, response_folder_path, model="gpt-3.5-turbo", temperature=1):
@@ -118,39 +121,45 @@ def generate_gpt3_responses(prompt_csv_path, response_folder_path, model="gpt-3.
         with open(response_csv_path, "r", newline="", encoding='utf-8') as file:
             start = sum(1 for row in csv.reader(file)) - 1  # Subtract 1 for the header
 
-    # Process the remaining prompts in batches
-    for i in range(start, len(prompts), BATCH_SIZE):
-        batch = prompts[i:i + BATCH_SIZE]
-        responses = []
+    while start < len(prompts):
+        try:
+            # Process the remaining prompts in batches
+            for i in range(start, len(prompts), BATCH_SIZE):
+                batch = prompts[i:i + BATCH_SIZE]
+                responses = []
 
-        for prompt in batch:
-            # Generate the response
-            response = openai.ChatCompletion.create(
-                model=model,
-                messages=[
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=temperature,  # as per OpenAI Documentation default temperature value is 1,
-                # which is the case here as well, this line is intended for future developments.
-            )
+                for prompt in batch:
+                    # Generate the response
+                    response = openai.ChatCompletion.create(
+                        model=model,
+                        messages=[
+                            {"role": "system", "content": "You are a helpful assistant."},
+                            {"role": "user", "content": prompt}
+                        ],
+                        temperature=temperature
+                    )
 
-            # Append the response to the list
-            responses.append('<<RESP>> ' + response['choices'][0]['message']['content'].strip())
+                    # Append the response to the list
+                    responses.append('<<RESP>> ' + response['choices'][0]['message']['content'].strip())
 
-        # Save the responses to a new DataFrame
-        response_df = pd.DataFrame({
-            'Prompt': batch,
-            'Response': responses
-        })
+                # Save the responses to a new DataFrame
+                response_df = pd.DataFrame({
+                    'Prompt': batch,
+                    'Response': responses
+                })
 
-        # Write the DataFrame to the CSV file, appending if it already exists
-        if os.path.exists(response_csv_path):
-            response_df.to_csv(response_csv_path, mode='a', header=False, index=False)
-        else:
-            response_df.to_csv(response_csv_path, mode='w', index=False)
+                # Write the DataFrame to the CSV file, appending if it already exists
+                if os.path.exists(response_csv_path):
+                    response_df.to_csv(response_csv_path, mode='a', header=False, index=False)
+                else:
+                    response_df.to_csv(response_csv_path, mode='w', index=False)
 
-        print(f"Batch {i // BATCH_SIZE + 1} completed")
+                print(f"Batch {i // BATCH_SIZE + 1} completed")
+                start = i + BATCH_SIZE
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+            print("Sleeping for 10 seconds before retrying...")
+            time.sleep(10)  # wait for 5 minutes before retrying
 
 
 # ------------------------------------------------------------------------------------------#
@@ -319,6 +328,5 @@ def extract_prompts_and_save(file_folder_path):
     df_prompts.to_csv(os.path.join(file_folder_path, 'prompts.csv'), index=False)
     print(f"Prompts extracted and saved to '{os.path.join(file_folder_path, 'prompts.csv')}' with {len(df_prompts)}"
           f" entries.")
-
 
 # extract_prompts_and_save("extracted_data")
