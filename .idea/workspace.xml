@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Cleanup + jupyter notebook">
-      <change afterPath="$PROJECT_DIR$/version_1.0/llm_sample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/COMP0073.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/COMP0073.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_06_2023_11_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_06_2023_11_14__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_0.5a/llm_sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_0.5a/llm_sample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.0/.ipynb_checkpoints/Supplementary_Code-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.0/.ipynb_checkpoints/Supplementary_Code-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.0/Supplementary_Code.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.0/Supplementary_Code.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.0/extracted_data/gpt-3.5-turbo_responses.csv" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.0/extracted_data/gpt-3.5-turbo_responses.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.0/extracted_data/prompts.csv" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.0/extracted_data/prompts.csv" afterDir="false" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Fixed GPT-3.5 Prompt">
+      <change beforePath="$PROJECT_DIR$/version_1.0/extracted_data/gpt2-large_responses.csv" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.0/extracted_data/gpt2-large_responses.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="working_branch_1.2" />
+        <entry key="$PROJECT_DIR$" value="working_branch_1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -453,7 +444,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -468,7 +459,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working on regerssion in juypyter" />
     <MESSAGE value="Regression WORKS" />
     <MESSAGE value="version 0.5 dataset_loader.py" />
     <MESSAGE value="summary_stats_v0.2.py WORKING FOR REGRESSION" />
@@ -493,7 +483,8 @@
     <MESSAGE value="working with gpt2-LARGE" />
     <MESSAGE value="data_matrix_gpt2-large.csv" />
     <MESSAGE value="Cleanup + jupyter notebook" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup + jupyter notebook" />
+    <MESSAGE value="Fixed GPT-3.5 Prompt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed GPT-3.5 Prompt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
