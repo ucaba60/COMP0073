@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Fixed GPT-3.5 Prompt">
-      <change beforePath="$PROJECT_DIR$/version_1.0/extracted_data/gpt2-large_responses.csv" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.0/extracted_data/gpt2-large_responses.csv" afterDir="false" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="GPT-3.5 with better prompt">
+      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/test.wp_source" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/test.wp_target" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/train.wp_source" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/train.wp_target" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/valid.wp_source" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/valid.wp_target" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,27 +49,27 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/AtanasM/PycharmProjects/COMP0073/version_1.0",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/atana/OneDrive - University College London/Desktop/_Personal_Folder/_university_UCL_Leeds/UCL/Summer Project/Code/COMP0073/version_1.1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\version_1.1" />
       <recent name="C:\Users\AtanasM\PycharmProjects\COMP0073\version_1.0" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\version_0.5a" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\version_0.5\Labelled_Data" />
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\version_0.5" />
-      <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\JupyterNotebooks\Labelled_Data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\atana\OneDrive - University College London\Desktop\_Personal_Folder\_university_UCL_Leeds\UCL\Summer Project\Code\COMP0073\Logistic_Regression\JupyterNotebooks" />
@@ -444,7 +451,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -459,8 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Regression WORKS" />
-    <MESSAGE value="version 0.5 dataset_loader.py" />
     <MESSAGE value="summary_stats_v0.2.py WORKING FOR REGRESSION" />
     <MESSAGE value="JUPYTER WITH WORKING REGRESSION" />
     <MESSAGE value="Loader works" />
@@ -484,7 +489,9 @@
     <MESSAGE value="data_matrix_gpt2-large.csv" />
     <MESSAGE value="Cleanup + jupyter notebook" />
     <MESSAGE value="Fixed GPT-3.5 Prompt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed GPT-3.5 Prompt" />
+    <MESSAGE value="Jupyter notebook" />
+    <MESSAGE value="GPT-3.5 with better prompt" />
+    <option name="LAST_COMMIT_MESSAGE" value="GPT-3.5 with better prompt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
