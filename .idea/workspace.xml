@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="GPT-3.5 with better prompt">
-      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/README" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/test.wp_source" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/test.wp_target" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/train.wp_source" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/train.wp_target" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/valid.wp_source" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/version_1.1/data/writingPrompts/valid.wp_target" afterDir="false" />
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="TF-IDFS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.1/data_matrix_gpt-3.5-turbo.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -451,7 +445,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +460,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="summary_stats_v0.2.py WORKING FOR REGRESSION" />
     <MESSAGE value="JUPYTER WITH WORKING REGRESSION" />
     <MESSAGE value="Loader works" />
     <MESSAGE value="Regression_ready+ files" />
@@ -491,7 +484,8 @@
     <MESSAGE value="Fixed GPT-3.5 Prompt" />
     <MESSAGE value="Jupyter notebook" />
     <MESSAGE value="GPT-3.5 with better prompt" />
-    <option name="LAST_COMMIT_MESSAGE" value="GPT-3.5 with better prompt" />
+    <MESSAGE value="TF-IDFS" />
+    <option name="LAST_COMMIT_MESSAGE" value="TF-IDFS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
