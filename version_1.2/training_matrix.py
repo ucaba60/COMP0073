@@ -12,7 +12,7 @@ nlp = spacy.load('en_core_web_sm')
 FUNCTION_WORDS = {'a', 'in', 'of', 'the'}
 
 
-def prepare_data_for_regression(data_file, save_file='data_matrix.csv', chunk_size=5):
+def prepare_data_for_regression(data_file, chunk_size=5):
     """
     This function prepares the data for regression analysis by extracting features and labels from the data.
 
@@ -226,7 +226,7 @@ def prepare_single_text_for_regression(input_text, prompt):
     if sentence_cosine_similarities:
         avg_sentence_cosine_similarity = sum(sentence_cosine_similarities) / len(sentence_cosine_similarities)
     else:
-        print("WARNING: No sentence cosine similarities calculated for text:", text)
+        print("WARNING: No sentence cosine similarities calculated for text:", input_text)
 
     # Transform the text into TF-IDF scores
     tfidf_scores = vectorizer.fit_transform([input_text]).toarray()

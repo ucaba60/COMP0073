@@ -8,6 +8,7 @@ from sklearn.metrics import confusion_matrix, roc_curve, auc, classification_rep
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
 import joblib
+from sklearn.svm import SVC
 
 
 def load_and_process_data(filepath):
@@ -23,32 +24,32 @@ def split_and_scale_data(X, y):
     scaler.fit(X_train)
     X_train = scaler.transform(X_train)
     X_test = scaler.transform(X_test)
+
+    joblib.dump(scaler, 'scaler.joblib')
+
     return X_train, X_test, y_train, y_test, scaler
 
 
-def train_model(X_train, y_train):
-    clf = LogisticRegression()
-    param_grid = [
-        {
-            'solver': ['newton-cg', 'lbfgs', 'sag'],
-            'penalty': ['l2', 'none'],
-            'C': np.logspace(-4, 4, 20),
-            'max_iter': [10000, 20000, 50000]  # increased max_iter values even more
-        },
-        {
-            'solver': ['liblinear', 'saga'],
-            'penalty': ['l1', 'l2'],
-            'C': np.logspace(-4, 4, 20),
-            'max_iter': [10000, 20000, 50000]  # increased max_iter values even more
-        },
-        {
-            'solver': ['saga'],
-            'penalty': ['elasticnet'],
-            'C': np.logspace(-4, 4, 20),
-            'l1_ratio': np.linspace(0, 1, 10),  # Only applicable for 'elasticnet'
-            'max_iter': [10000, 20000, 50000]  # increased max_iter values even more
-        },
-    ]
+def train_model(X_train, y_train, model_choice):
+    if model_choice == 'logreg':
+        clf = LogisticRegression()
+        param_grid = [
+            {'solver': ['newton-cg', 'lbfgs', 'sag'], 'penalty': ['l2', 'none'], 'C': np.logspace(-4, 4, 20),
+             'max_iter': [5000, 10000, 20000]},
+            {'solver': ['liblinear', 'saga'], 'penalty': ['l1', 'l2'], 'C': np.logspace(-4, 4, 20),
+             'max_iter': [5000, 10000, 20000]},
+            {'solver': ['saga'], 'penalty': ['elasticnet'], 'C': np.logspace(-4, 4, 20),
+             'l1_ratio': np.linspace(0, 1, 10), 'max_iter': [5000, 10000, 20000]}
+        ]
+    elif model_choice == 'svm':
+        clf = SVC()
+        param_grid = [
+            {'kernel': ['linear', 'rbf', 'poly', 'sigmoid'], 'C': np.logspace(-4, 4, 20),
+             'gamma': ['scale', 'auto'] + list(np.logspace(-3, 3, 7))}
+        ]
+    else:
+        raise ValueError(f"Invalid model_choice '{model_choice}'. Choose either 'logreg' or 'svm'.")
+
     n_iter_search = 50
     random_search = RandomizedSearchCV(clf, param_distributions=param_grid, n_iter=n_iter_search, cv=5, verbose=0,
                                        n_jobs=-1)
@@ -80,11 +81,12 @@ def evaluate_model(y_test, y_pred):
 
 X, y = load_and_process_data("data_matrix_gpt-3.5-turbo.csv")
 X_train, X_test, y_train, y_test, scaler = split_and_scale_data(X, y)
+model_choice = "svm"
 try:
-    model_best = load_model('model_best.joblib')
+    model_best = load_model(f'model_best_{model_choice}.joblib')
 except:
-    model_best = train_model(X_train, y_train)
-    save_model(model_best, 'model_best.joblib')
+    model_best = train_model(X_train, y_train, model_choice)
+    save_model(model_best, f'model_best_{model_choice}.joblib')
 y_pred = make_predictions(model_best, X_test)
 evaluate_model(y_test, y_pred)
 
@@ -143,5 +145,5 @@ def plot_roc_auc_curve(y_test, y_scores):
 
 #
 # plot_confusion_matrix(y_test, y_pred)
-# plot_coefficients(model_best, X)
-# plot_roc_auc_curve(y_test, y_pred)
+# plot_coefficients(model_best_logreg, X)
+plot_roc_auc_curve(y_test, y_pred)
