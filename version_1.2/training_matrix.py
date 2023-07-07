@@ -6,6 +6,8 @@ from feature_extraction import load_model, count_pos_tags_and_special_elements, 
     calculate_cosine_similarities_for_sentences_in_text, calculate_cosine_similarity_for_prompt_and_text
 from sklearn.feature_extraction.text import TfidfVectorizer
 import spacy
+import random
+from sklearn.metrics import mean_squared_error
 
 # Constants
 nlp = spacy.load('en_core_web_sm')
@@ -178,6 +180,9 @@ def prepare_data_for_regression(data_file, chunk_size=5):
     return saved_data
 
 
+# prepare_data_for_regression("extracted_data/gpt-3.5-turbo_and_human_data.csv")
+
+
 def prepare_single_text_for_regression(input_text, prompt):
     """
     This function prepares a single text for regression analysis by extracting features.
@@ -222,7 +227,7 @@ def prepare_single_text_for_regression(input_text, prompt):
     # Calculate cosine similarities for each sentence in the text
     sentence_cosine_similarities = calculate_cosine_similarities_for_sentences_in_text(input_text, model, tokenizer)
 
-    avg_sentence_cosine_similarity = None
+    avg_sentence_cosine_similarity = 0
     if sentence_cosine_similarities:
         avg_sentence_cosine_similarity = sum(sentence_cosine_similarities) / len(sentence_cosine_similarities)
     else:
@@ -279,3 +284,59 @@ def prepare_single_text_for_regression(input_text, prompt):
         features.update(word_scores)
 
     return features
+
+
+def test_prepare_single_text_for_regression():
+    # Set the max columns option to None to display all columns
+    pd.set_option('display.max_columns', None)
+
+    # Load the DataFrame from the data_matrix file
+    data_matrix = pd.read_csv('data_matrix_gpt-3.5-turbo.csv')
+
+    # Load the DataFrame from the gpt_3.5-turbo_and_human_data file
+    gpt_data = pd.read_csv('extracted_data/gpt-3.5-turbo_and_human_data.csv')
+
+    # Randomly select a row index
+    row_index = random.randint(0, len(data_matrix) - 1)
+
+    # Get the corresponding row from the data_matrix
+    data_matrix_row = data_matrix.iloc[[row_index]]  # double square brackets to keep it a DataFrame
+
+    # Reset the index for data_matrix_row
+    data_matrix_row = data_matrix_row.reset_index(drop=True)
+
+    # Get the corresponding row from the gpt_data
+    gpt_data_row = gpt_data.iloc[row_index]
+
+    # Extract the prompt and text from the gpt_data_row
+    prompts_and_texts = extract_prompts_and_texts([gpt_data_row])
+    prompt, text = prompts_and_texts[0]
+
+    # Prepare the single text for regression
+    features_from_single_text = prepare_single_text_for_regression(text, prompt)
+
+    # Convert the features_from_single_text into a DataFrame row
+    features_from_single_text_row = pd.Series(features_from_single_text).to_frame().T
+
+    # Reset the index for features_from_single_text_row
+    features_from_single_text_row = features_from_single_text_row.reset_index(drop=True)
+
+    # Print both rows
+    print("Data Matrix Row:\n", data_matrix_row)
+    print("Features From Single Text Row:\n", features_from_single_text_row)
+
+    # Check if the rows are the same
+    if data_matrix_row.equals(features_from_single_text_row):
+        print("Rows are the same")
+    else:
+        print("Rows are different")
+        differences = data_matrix_row.compare(features_from_single_text_row)
+        print("Differences:\n", differences)
+
+    # Reset the display option
+    pd.reset_option('display.max_columns')
+
+
+test_prepare_single_text_for_regression()
+
+

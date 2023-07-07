@@ -1,22 +1,21 @@
 # Imports
-import spacy
+import string
 from collections import Counter
 from statistics import mean
-import textstat
-from sklearn.preprocessing import normalize
-from transformers import RobertaTokenizer, RobertaForMaskedLM
-import torch
-from scipy.spatial.distance import cosine
+
+import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
+import seaborn as sns
+import spacy
+import textstat
+import torch
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
-import string
-import nltk
-import matplotlib.pyplot as plt
-from nltk.corpus import wordnet
-import seaborn as sns
+from scipy.spatial.distance import cosine
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import normalize
+from transformers import RobertaTokenizer, RobertaForMaskedLM
 
 # nltk.download('punkt')
 # nltk.download('wordnet')
@@ -98,7 +97,7 @@ def load_and_count(dataset_name, data):
 
     # CHECKED
     # Extract texts
-    texts, labels = remove_prefix(dataset_name, data)
+    texts, labels = remove_prefix(dataset_name)
 
     # Calculate POS tag frequencies for the texts
     pos_frequencies, punctuation_frequencies, function_word_frequencies = zip(
@@ -244,9 +243,9 @@ def calculate_cosine_similarity(text1, text2, model, tokenizer):
     cosine_similarity (float): The cosine similarity between the word embeddings of the two texts.
     """
 
-    # Tokenize the texts
-    input_ids1 = tokenizer.encode(text1, return_tensors="pt")
-    input_ids2 = tokenizer.encode(text2, return_tensors="pt")
+    # Tokenize the texts and truncate to the first 512 tokens
+    input_ids1 = tokenizer.encode(text1, return_tensors="pt", truncation=True, max_length=512)
+    input_ids2 = tokenizer.encode(text2, return_tensors="pt", truncation=True, max_length=512)
 
     # Generate word embeddings for the texts
     embeddings1 = model.roberta(input_ids1)[0].mean(dim=1).squeeze().detach()

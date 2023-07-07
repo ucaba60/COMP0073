@@ -58,8 +58,6 @@ def train_model(X_train, y_train, model_choice):
     return model_best
 
 
-# Fit on training set only.
-
 def make_predictions(model, X_test):
     y_pred = model.predict(X_test)
     return y_pred
@@ -142,6 +140,7 @@ def plot_roc_auc_curve(y_test, y_scores):
     plt.title('Receiver Operating Characteristic Curve')
     plt.legend(loc="lower right")
     plt.show()
+
 
 #
 # plot_confusion_matrix(y_test, y_pred)
