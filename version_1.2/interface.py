@@ -32,7 +32,7 @@ iface = gr.Interface(
     inputs=[
         gr.inputs.Textbox(lines=2, label="Prompt"),
         gr.inputs.Textbox(lines=2, label="Response"),
-        gr.inputs.Dropdown(choices=['LogReg', 'SVM', 'RF', 'Ensemble'], label="Model Choice")
+        gr.inputs.Dropdown(choices=['Logistic Regression', 'SVM', 'Random Forest', 'Ensemble'], label="Model Choice")
     ],
     outputs="text"
 )
