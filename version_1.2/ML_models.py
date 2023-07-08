@@ -31,6 +31,10 @@ def load_data(data_path):
     X = data.iloc[:, :-1]
     y = data.iloc[:, -1]
 
+    # Save feature names
+    feature_names = X.columns.tolist()
+    joblib.dump(feature_names, 'model_data/feature_names.pkl')
+
     return X, y
 
 
@@ -93,7 +97,7 @@ def load_model_and_scaler(model_file, scaler_file):
 
 
 def train_svm(X_train_scaled, y_train):
-    svm = SVC(random_state=42)
+    svm = SVC(random_state=42,probability=True)
     # Define the parameter grid for SVM
     param_grid = {'C': [0.1, 1, 10, 100, 1000],
                   'gamma': [1, 0.1, 0.01, 0.001, 0.0001],
@@ -145,7 +149,7 @@ def train_ensemble(X_train_scaled, y_train):
     models = [('svm', svm), ('rf', rf), ('log_reg', log_reg)]
 
     # Create the ensemble model
-    ensemble = VotingClassifier(estimators=models, voting='hard')
+    ensemble = VotingClassifier(estimators=models, voting='soft')
 
     # Fit the ensemble model on the scaled training data
     ensemble.fit(X_train_scaled, y_train)

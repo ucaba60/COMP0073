@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="Nearly there">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/version_1.2/ALL MODELS.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/ALL MODELS.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/ML_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/ML_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/model_data/trained_model_ensemble.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/model_data/trained_model_ensemble.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/model_data/trained_model_rf.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/model_data/trained_model_rf.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/model_data/trained_model_svm.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/model_data/trained_model_svm.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/output_images/Ensamble_Learning_Curve.png" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/output_images/Ensamble_Learning_Curve.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -444,7 +451,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
