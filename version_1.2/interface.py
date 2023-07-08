@@ -1,78 +1,39 @@
-import pandas as pd
-from training_matrix import prepare_single_text_for_regression
-import joblib
 import gradio as gr
+import pandas as pd
+from ML_models import load_model_and_scaler
+from training_matrix import prepare_single_text_for_regression
 
 
-def get_model_predictions(model, features, scaler):
-    # Apply the same scaling as you did for your training data
-    scaled_features = scaler.transform(features)
+def preprocess_and_choose_model(prompt, response, model_choice):
+    # Ensure inputs are strings
+    assert isinstance(prompt, str), "Prompt must be a string."
+    assert isinstance(response, str), "Response must be a string."
 
-    # Make the prediction
-    prediction = model.predict(scaled_features)
-    prediction_proba = model.predict_proba(scaled_features)
+    # Preprocess inputs
+    features = prepare_single_text_for_regression(response, prompt)
+    print("Features:", features)  # print features for debugging
 
-    return prediction, prediction_proba
+    # Turn features into a DataFrame (assuming 'features' is a dict)
+    X = pd.DataFrame([features], columns=features.keys())
 
+    model_file = f"trained_model_{model_choice.lower()}.pkl"
+    scaler_file = "trained_scaler.pkl"
 
-def format_prediction(prediction, prediction_proba):
-    # Convert the output to a readable format
-    if prediction[0] == 0:
-        prediction_text = "Human generated"
-    else:
-        prediction_text = "AI generated"
+    model, scaler = load_model_and_scaler(model_file, scaler_file)
+    X_scaled = scaler.transform(X)
 
-    # Get the probabilities
-    human_prob = prediction_proba[0][0]
-    ai_prob = prediction_proba[0][1]
+    y_pred = model.predict(X_scaled)
 
-    # Combine all outputs into a string
-    output = f"Prediction: {prediction_text}, Human generated Probability: {human_prob}, AI generated Probability: {ai_prob}"
-
-    return output
-
-
-def predict_text(model_name, input_text, prompt=None):
-    input_text = str(input_text)
-    prompt = str(prompt)
-
-    # Extract features from the input text
-    extracted_features = prepare_single_text_for_regression(input_text, prompt)
-    print(extracted_features)
-    # Convert the features dictionary to a DataFrame
-    features_df = pd.DataFrame([extracted_features])
-
-    # Get the model and scaler based on the model_name
-    model, scaler = get_model_and_scaler(model_name)
-
-    # Get the predictions
-    prediction, prediction_proba = get_model_predictions(model, features_df, scaler)
-
-    # Format the predictions into a readable string
-    output = format_prediction(prediction, prediction_proba)
-
-    return output
-
-
-def get_model_and_scaler(model_name):
-    if model_name == 'Logistic Regression':
-        model = joblib.load('model_best_logreg.joblib')
-    elif model_name == 'SVM':
-        model = joblib.load('model_best_svm.joblib')
-    else:
-        raise ValueError(f"Invalid model_name '{model_name}'. Choose either 'Logistic Regression' or 'SVM'.")
-
-    scaler = joblib.load('scaler.joblib')  # Load the same scaler for both models
-
-    return model, scaler
+    return y_pred[0]
 
 
 iface = gr.Interface(
-    fn=predict_text,
+    fn=preprocess_and_choose_model,
     inputs=[
-        gr.inputs.Dropdown(choices=["Logistic Regression", "SVM"], label="Model"),
-        gr.inputs.Textbox(lines=20, placeholder="Enter text here..."),
-        gr.inputs.Textbox(lines=2, placeholder="Your prompt")],
-    outputs=gr.outputs.Textbox(label="Prediction & Probabilities"),
+        gr.inputs.Textbox(lines=2, label="Prompt"),
+        gr.inputs.Textbox(lines=2, label="Response"),
+        gr.inputs.Dropdown(choices=['LogReg', 'SVM', 'RF', 'Ensemble'], label="Model Choice")
+    ],
+    outputs="text"
 )
 iface.launch()

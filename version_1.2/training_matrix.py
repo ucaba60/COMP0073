@@ -337,6 +337,6 @@ def test_prepare_single_text_for_regression():
     pd.reset_option('display.max_columns')
 
 
-test_prepare_single_text_for_regression()
+# test_prepare_single_text_for_regression()
 
 
