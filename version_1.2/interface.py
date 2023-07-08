@@ -11,6 +11,10 @@ def preprocess_and_choose_model(prompt, response, model_choice):
     assert isinstance(prompt, str), "Prompt must be a string."
     assert isinstance(response, str), "Response must be a string."
 
+    # Remove newlines, strip leading/trailing white spaces and ensure there's only one white space between words
+    prompt = ' '.join(prompt.replace("\n", " ").strip().split())
+    response = ' '.join(response.replace("\n", " ").strip().split())
+
     # Preprocess inputs
     features = prepare_single_text_for_regression(response, prompt)
     print("Features:", features)  # print features for debugging
