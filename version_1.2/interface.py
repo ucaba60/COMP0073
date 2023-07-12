@@ -52,14 +52,17 @@ def preprocess_and_choose_model(prompt, response, model_choice, training_corpus)
     message += f"\n\nLog probability of being human-generated: {log_proba[0]:.2f}"
     message += f"\nLog probability of being AI-generated: {log_proba[1]:.2f}"
 
+    # Add the line about the training corpus used
+    message += f"\nTraining Corpus Used: {training_corpus}"
+
     return message
 
 
 iface = gr.Interface(
     fn=preprocess_and_choose_model,
     inputs=[
-        gr.inputs.Textbox(lines=2, label="Prompt"),
-        gr.inputs.Textbox(lines=2, label="Response"),
+        gr.inputs.Textbox(lines=2, label="Prompt/Headline/Title etc."),
+        gr.inputs.Textbox(lines=2, label="Response/Long-Text/Article etc."),
         gr.inputs.Dropdown(choices=['Logistic Regression', 'SVM', 'Random Forest', 'Ensemble'], label="Model Choice"),
         gr.inputs.Dropdown(choices=['gpt-3.5-turbo', 'gpt-j1x'], label="Training Corpus")  # add more choices if you have more training corpuses
     ],
