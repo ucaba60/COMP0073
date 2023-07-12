@@ -78,7 +78,7 @@ def train_logreg(X_train_scaled, y_train):
 
     grid.fit(X_train_scaled, y_train)
     # Save the trained model
-    model_file = 'trained_model_logreg.pkl'
+    model_file = 'model_data/trained_model_logreg.pkl'
     if os.path.exists(model_file):
         overwrite = input("Model file already exists. Do you want to overwrite it? (yes/no) ")
         if overwrite.lower() != "yes":

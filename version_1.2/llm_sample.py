@@ -3,6 +3,8 @@ import pandas as pd
 import openai
 import csv
 import os
+import torch
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from datasets import preprocess_and_save
 import time
 
@@ -159,3 +161,133 @@ def extract_and_combine(response_csv_path):
 
 # preprocess_and_save(gpt_dataset='gpt-3.5-turbo_responses_preprocessed.csv', gpt_dataset_path='extracted_data',
 # output_folder='extracted_data')
+
+
+def generate_gpt2_responses(prompt_csv_path, response_folder_path, model_name):
+    """
+    Generate responses for a list of prompts saved in a csv file using a GPT-2 model.
+
+    Args:
+        prompt_csv_path (str): Path to the csv file containing the prompts.
+        response_folder_path (str): Path to the folder where the responses will be saved.
+        model_name (str): Name of the GPT-2 model to use (for example, "gpt2", "gpt2-medium", "gpt2-large", "gpt2-xl").
+
+    Returns:
+        None, generates a csv file with the responses.
+    """
+    # Define acceptable models
+    acceptable_models = ["gpt2", "gpt2-medium", "gpt2-large", "gpt2-xl"]
+
+    if model_name not in acceptable_models:
+        raise ValueError(f"Invalid model name. Acceptable models are: {', '.join(acceptable_models)}")
+
+    # Load the GPT-2 model and tokenizer
+    model = GPT2LMHeadModel.from_pretrained(model_name)
+    tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+
+    # Load the prompts
+    df = pd.read_csv(prompt_csv_path)
+    prompts = df['Prompt'].tolist()
+
+    # Construct the response file path
+    response_csv_path = os.path.join(response_folder_path, f"{model_name}_responses.csv")
+
+    # Check if the response file already exists
+    if os.path.exists(response_csv_path):
+        # Load the existing responses
+        existing_responses_df = pd.read_csv(response_csv_path)
+
+        # Determine the starting point based on the number of existing responses
+        start = len(existing_responses_df)
+    else:
+        start = 0
+
+    for i in range(start, len(prompts)):
+        # Encode the prompt
+        input_ids = tokenizer.encode(prompts[i], return_tensors="pt")
+
+        # Generate a response
+        output = model.generate(
+            input_ids,
+            attention_mask=torch.ones_like(input_ids),  # Set all positions to 1 (i.e., no padding)
+            pad_token_id=tokenizer.eos_token_id,  # Use the EOS token as the PAD token
+            do_sample=True,
+            max_length=1024,  # Use GPT-2's maximum sequence length
+        )
+
+        # Calculate the number of tokens in the prompt
+        prompt_length = input_ids.shape[-1]
+
+        # Decode only the response, excluding the prompt
+        response = tokenizer.decode(output[0, prompt_length:], skip_special_tokens=True)
+
+        # Save the prompt and response to a DataFrame
+        response_df = pd.DataFrame({
+            'Prompt': [prompts[i]],
+            'Response': [response]
+        })
+
+        # Append the DataFrame to the CSV file
+        if os.path.exists(response_csv_path):
+            response_df.to_csv(response_csv_path, mode='a', header=False, index=False)
+        else:
+            response_df.to_csv(response_csv_path, mode='w', index=False)
+
+        print(f"Prompt {i + 1} of {len(prompts)} processed")
+
+    print(f"All prompts processed. Responses saved to {response_csv_path}.")
+
+
+def regenerate_responses(response_csv_path):
+    """
+    Check the csv file containing generated responses for any NaN values.
+    If any are found, regenerate the responses using the provided model.
+
+    Args:
+        response_csv_path (str): Path to the csv file containing the generated responses.
+
+    Returns:
+        None, updates the csv file with the regenerated responses.
+    """
+    # Extract the model name from the filename
+    model_name = os.path.basename(response_csv_path).split('_')[0]
+
+    # Load the model and tokenizer
+    model = GPT2LMHeadModel.from_pretrained(model_name)
+    tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+    print(f"Loaded model {model_name}")
+
+    # Load the responses
+    df = pd.read_csv(response_csv_path)
+
+    # Iterate over the DataFrame
+    for i, row in df.iterrows():
+        if pd.isnull(row['Response']):
+            # Encode the prompt
+            input_ids = tokenizer.encode(row['Prompt'], return_tensors="pt")
+
+            # Generate a response
+            output = model.generate(
+                input_ids,
+                attention_mask=torch.ones_like(input_ids),  # Set all positions to 1 (i.e., no padding)
+                pad_token_id=tokenizer.eos_token_id,  # Use the EOS token as the PAD token
+                do_sample=True,
+                max_length=1024,  # Use GPT-2's maximum sequence length
+            )
+
+            # Calculate the number of tokens in the prompt
+            prompt_length = input_ids.shape[-1]
+
+            # Decode only the response, excluding the prompt
+            response = tokenizer.decode(output[0, prompt_length:], skip_special_tokens=True)
+
+            # Replace the NaN response with the new one
+            df.at[i, 'Response'] = response
+
+            # Save the DataFrame back to the CSV file
+            df.to_csv(response_csv_path, index=False)
+
+            print(
+                f"Regenerated response for prompt {i + 1} of {len(df)}. Updated responses saved to {response_csv_path}.")
+
+    print(f"All NaN responses regenerated. Updated responses saved to {response_csv_path}.")
