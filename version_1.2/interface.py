@@ -6,7 +6,7 @@ import joblib
 import numpy as np
 
 
-def preprocess_and_choose_model(prompt, response, model_choice):
+def preprocess_and_choose_model(prompt, response, model_choice, training_corpus):
     # Ensure inputs are strings
     assert isinstance(prompt, str), "Prompt must be a string."
     assert isinstance(response, str), "Response must be a string."
@@ -20,7 +20,7 @@ def preprocess_and_choose_model(prompt, response, model_choice):
     print("Features:", features)  # print features for debugging
 
     # Load the saved feature names
-    feature_names = joblib.load('model_data_gpt3.5/feature_names.pkl')
+    feature_names = joblib.load(f'model_data/{training_corpus}/feature_names.pkl')
 
     # Turn features into a DataFrame (assuming 'features' is a dict)
     # Use the loaded feature names as the columns
@@ -32,8 +32,8 @@ def preprocess_and_choose_model(prompt, response, model_choice):
         'Ensemble': 'ensemble'
     }
 
-    model_file = f"model_data_gpt3.5/trained_model_{model_name_mapping[model_choice]}.pkl"
-    scaler_file = "model_data_gpt3.5/trained_scaler.pkl"
+    model_file = f"model_data/{training_corpus}/trained_model_{model_name_mapping[model_choice]}.pkl"
+    scaler_file = f"model_data/{training_corpus}/trained_scaler.pkl"
 
     model, scaler = load_model_and_scaler(model_file, scaler_file)
     X_scaled = scaler.transform(X)
@@ -60,7 +60,8 @@ iface = gr.Interface(
     inputs=[
         gr.inputs.Textbox(lines=2, label="Prompt"),
         gr.inputs.Textbox(lines=2, label="Response"),
-        gr.inputs.Dropdown(choices=['Logistic Regression', 'SVM', 'Random Forest', 'Ensemble'], label="Model Choice")
+        gr.inputs.Dropdown(choices=['Logistic Regression', 'SVM', 'Random Forest', 'Ensemble'], label="Model Choice"),
+        gr.inputs.Dropdown(choices=['gpt-3.5-turbo', 'gpt-j1x'], label="Training Corpus")  # add more choices if you have more training corpuses
     ],
     outputs="text"
 )
