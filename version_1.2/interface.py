@@ -25,7 +25,6 @@ def preprocess_and_choose_model(prompt, response, model_choice):
     # Turn features into a DataFrame (assuming 'features' is a dict)
     # Use the loaded feature names as the columns
     X = pd.DataFrame([features], columns=feature_names)
-    print(X)
     model_name_mapping = {
         'Logistic Regression': 'logreg',
         'SVM': 'svm',
