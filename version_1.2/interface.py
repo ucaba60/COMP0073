@@ -20,7 +20,7 @@ def preprocess_and_choose_model(prompt, response, model_choice):
     print("Features:", features)  # print features for debugging
 
     # Load the saved feature names
-    feature_names = joblib.load('model_data/feature_names.pkl')
+    feature_names = joblib.load('model_data_gpt3.5/feature_names.pkl')
 
     # Turn features into a DataFrame (assuming 'features' is a dict)
     # Use the loaded feature names as the columns
@@ -32,8 +32,8 @@ def preprocess_and_choose_model(prompt, response, model_choice):
         'Ensemble': 'ensemble'
     }
 
-    model_file = f"model_data/trained_model_{model_name_mapping[model_choice]}.pkl"
-    scaler_file = "model_data/trained_scaler.pkl"
+    model_file = f"model_data_gpt3.5/trained_model_{model_name_mapping[model_choice]}.pkl"
+    scaler_file = "model_data_gpt3.5/trained_scaler.pkl"
 
     model, scaler = load_model_and_scaler(model_file, scaler_file)
     X_scaled = scaler.transform(X)

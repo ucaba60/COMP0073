@@ -8,11 +8,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import VotingClassifier
 import os
-from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, classification_report
-from sklearn.model_selection import learning_curve
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Create a directory for saving models and scaler
 if not os.path.exists('model_data'):
@@ -33,7 +28,7 @@ def load_data(data_path):
 
     # Save feature names
     feature_names = X.columns.tolist()
-    joblib.dump(feature_names, 'model_data/feature_names.pkl')
+    joblib.dump(feature_names, 'model_data_gpt3.5/feature_names.pkl')
 
     return X, y
 
@@ -47,7 +42,7 @@ def scale_and_split_data(X, y, test_size=0.2, random_state=42):
     X_test_scaled = scaler.transform(X_test)
 
     # Save the trained scaler
-    joblib.dump(scaler, 'model_data/trained_scaler.pkl')
+    joblib.dump(scaler, 'model_data_gpt3.5/trained_scaler.pkl')
 
     return X_train_scaled, X_test_scaled, y_train, y_test
 
@@ -78,12 +73,12 @@ def train_logreg(X_train_scaled, y_train):
 
     grid.fit(X_train_scaled, y_train)
     # Save the trained model
-    model_file = 'model_data/trained_model_logreg.pkl'
+    model_file = 'model_data_gpt3.5/trained_model_logreg.pkl'
     if os.path.exists(model_file):
         overwrite = input("Model file already exists. Do you want to overwrite it? (yes/no) ")
         if overwrite.lower() != "yes":
             return
-    joblib.dump(grid.best_estimator_, 'model_data/trained_model_logreg.pkl')
+    joblib.dump(grid.best_estimator_, 'model_data_gpt3.5/trained_model_logreg.pkl')
 
     return grid.best_estimator_
 
@@ -107,13 +102,13 @@ def train_svm(X_train_scaled, y_train):
 
     grid.fit(X_train_scaled, y_train)
 
-    model_file = 'model_data/trained_model_svm.pkl'
+    model_file = 'model_data_gpt3.5/trained_model_svm.pkl'
     if os.path.exists(model_file):
         overwrite = input("Model file already exists. Do you want to overwrite it? (yes/no) ")
         if overwrite.lower() != "yes":
             return
 
-    joblib.dump(grid.best_estimator_, 'model_data/trained_model_svm.pkl')
+    joblib.dump(grid.best_estimator_, 'model_data_gpt3.5/trained_model_svm.pkl')
     return grid.best_estimator_
 
 
@@ -129,21 +124,21 @@ def train_rf(X_train_scaled, y_train):
     }
     grid = GridSearchCV(rf, param_grid, cv=5, verbose=True, n_jobs=-1)
     grid.fit(X_train_scaled, y_train)
-    model_file = 'model_data/trained_model_rf.pkl'
+    model_file = 'model_data_gpt3.5/trained_model_rf.pkl'
     if os.path.exists(model_file):
         overwrite = input("Model file already exists. Do you want to overwrite it? (yes/no) ")
         if overwrite.lower() != "yes":
             return
 
-    joblib.dump(grid.best_estimator_, 'model_data/trained_model_rf.pkl')
+    joblib.dump(grid.best_estimator_, 'model_data_gpt3.5/trained_model_rf.pkl')
     return grid.best_estimator_
 
 
 def train_ensemble(X_train_scaled, y_train):
     # Load the trained models and scalers
-    svm = joblib.load('model_data/trained_model_svm.pkl')
-    rf = joblib.load('model_data/trained_model_rf.pkl')
-    log_reg = joblib.load('model_data/trained_model_logreg.pkl')
+    svm = joblib.load('model_data_gpt3.5/trained_model_svm.pkl')
+    rf = joblib.load('model_data_gpt3.5/trained_model_rf.pkl')
+    log_reg = joblib.load('model_data_gpt3.5/trained_model_logreg.pkl')
 
     # Create a list of tuples, each tuple containing the string identifier and the model
     models = [('svm', svm), ('rf', rf), ('log_reg', log_reg)]
@@ -153,12 +148,12 @@ def train_ensemble(X_train_scaled, y_train):
 
     # Fit the ensemble model on the scaled training data
     ensemble.fit(X_train_scaled, y_train)
-    model_file = 'model_data/trained_model_ensemble.pkl'
+    model_file = 'model_data_gpt3.5/trained_model_ensemble.pkl'
     if os.path.exists(model_file):
         overwrite = input("Model file already exists. Do you want to overwrite it? (yes/no) ")
         if overwrite.lower() != "yes":
             return
-    joblib.dump(ensemble, 'model_data/trained_model_ensemble.pkl')
+    joblib.dump(ensemble, 'model_data_gpt3.5/trained_model_ensemble.pkl')
     return ensemble
 
 
