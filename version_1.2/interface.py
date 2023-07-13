@@ -33,6 +33,7 @@ def preprocess_and_choose_model(prompt, response, model_choice, training_corpus)
     }
 
     model_file = f"model_data/{training_corpus}/trained_model_{model_name_mapping[model_choice]}.pkl"
+    print(f"Loaded data from {training_corpus}")
     scaler_file = f"model_data/{training_corpus}/trained_scaler.pkl"
 
     model, scaler = load_model_and_scaler(model_file, scaler_file)
@@ -64,7 +65,8 @@ iface = gr.Interface(
         gr.inputs.Textbox(lines=2, label="Prompt/Headline/Title etc."),
         gr.inputs.Textbox(lines=2, label="Response/Long-Text/Article etc."),
         gr.inputs.Dropdown(choices=['Logistic Regression', 'SVM', 'Random Forest', 'Ensemble'], label="Model Choice"),
-        gr.inputs.Dropdown(choices=['gpt-3.5-turbo', 'gpt-j1x'], label="Training Corpus")  # add more choices if you have more training corpuses
+        gr.inputs.Dropdown(choices=['gpt-3.5-turbo', 'gpt-j1x','gpt2-large'], label="Training Corpus")  # add more
+        # choices if you have more training corpora
     ],
     outputs="text"
 )

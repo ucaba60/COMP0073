@@ -157,10 +157,8 @@ def extract_and_combine(response_csv_path):
     df.to_csv(output_csv_path, index=False)
 
 
-# extract_and_combine("extracted_data/gpt-j1x_responses.csv")
-
-
-# preprocess_and_save(gpt_dataset='gpt-j1x_responses_preprocessed', gpt_dataset_path='extracted_data',
+# extract_and_combine("extracted_data/gpt2-large_responses.csv")
+# preprocess_and_save(gpt_dataset='gpt2-large_responses_preprocessed', gpt_dataset_path='extracted_data',
 # output_folder='extracted_data')
 
 

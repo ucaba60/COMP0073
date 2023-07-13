@@ -181,7 +181,8 @@ def prepare_data_for_regression(data_file, chunk_size=5):
 
 
 # prepare_data_for_regression("extracted_data/gpt-3.5-turbo_and_human_data.csv")
-prepare_data_for_regression("extracted_data/gpt-j1x_and_human_data.csv")
+# prepare_data_for_regression("extracted_data/gpt-j1x_and_human_data.csv")
+prepare_data_for_regression("extracted_data/gpt2-large_and_human_data.csv")
 
 
 def prepare_single_text_for_regression(input_text, prompt):
@@ -337,7 +338,4 @@ def test_prepare_single_text_for_regression():
     # Reset the display option
     pd.reset_option('display.max_columns')
 
-
 # test_prepare_single_text_for_regression()
-
-
