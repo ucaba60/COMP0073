@@ -62,7 +62,7 @@ def preprocess_and_choose_model(prompt, response, model_choice, training_corpus)
 iface = gr.Interface(
     fn=preprocess_and_choose_model,
     inputs=[
-        gr.inputs.Textbox(lines=2, label="Prompt/Headline/Title etc."),
+        gr.inputs.Textbox(lines=2, label="Headline/Title of Article/Book etc."),
         gr.inputs.Textbox(lines=2, label="Response/Long-Text/Article etc."),
         gr.inputs.Dropdown(choices=['Logistic Regression', 'SVM', 'Random Forest', 'Ensemble'], label="Model Choice"),
         gr.inputs.Dropdown(choices=['gpt-3.5-turbo', 'gpt-j1x','gpt2-large'], label="Training Corpus")  # add more
