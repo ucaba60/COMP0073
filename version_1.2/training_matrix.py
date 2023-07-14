@@ -46,8 +46,17 @@ def prepare_data_for_regression(data_file, chunk_size=5):
 
     # Calculate the top 10 words with the highest difference in TF-IDF scores and the vectorizer
     #     diff_words = compute_difference_tfidf_words(data_file, n_top_words=10)
-    top_words = vocabulary = ['said', 'like', 'im', 'get', 'told', 'dont', 'say', 'know', 'think', 'look', 'conclusion',
-                              'summarise', 'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
+    if model_name == 'gpt2-large':
+        top_words = ["suggest", "door", "knew", "face", "black", "hand", "looked", "eye", "said", 'summarise',
+                     'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
+    elif model_name == 'gpt-3.5-turbo':
+        top_words = vocabulary = ['said', 'like', 'im', 'get', 'told', 'dont', 'say', 'know', 'think', 'look',
+                                  'conclusion',
+                                  'summarise', 'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
+    elif model_name == 'gpt-j1x':
+        top_words = ['wednesday', 'wasnt', 'hand', 'door', 'country', 'suggest', 'cnn', 'back', 'eye', 'said',
+                     'summarise', 'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
+
     # Combine top_words and synonyms into one list
     all_words = list(set(top_words))
 
@@ -182,7 +191,7 @@ def prepare_data_for_regression(data_file, chunk_size=5):
 
 # prepare_data_for_regression("extracted_data/gpt-3.5-turbo_and_human_data.csv")
 # prepare_data_for_regression("extracted_data/gpt-j1x_and_human_data.csv")
-prepare_data_for_regression("extracted_data/gpt2-large_and_human_data.csv")
+# prepare_data_for_regression("extracted_data/gpt2-large_and_human_data.csv")
 
 
 def prepare_single_text_for_regression(input_text, prompt):

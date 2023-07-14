@@ -462,15 +462,16 @@ def plot_diff_tfidf_words(data_file, n_top_words=10):
     palette = sns.color_palette("coolwarm",
                                 n_top_words)  # using coolwarm palette, you can use any palette of your liking
     sns.barplot(x=diff_words['tfidf_difference'][::-1], y=diff_words['word'][::-1],
-                palette=palette)  # reverse order to have largest bar at top
+                palette=palette)  # reverse order to have the largest bar at top
     plt.xlabel('TF-IDF Difference')
     plt.ylabel('Words')
     plt.title(
-        'Top {} Words with Largest Average Difference in TF-IDF Scores between Human and AI-Generated Text'.format(
+        '[GPT-3.5-turbo] Top {} Words with Largest Average Difference in TF-IDF Scores between Human and AI-Generated '
+        'Text'.format(
             n_top_words))
     plt.show()
 
-# plot_diff_tfidf_words("extracted_data/gpt-3.5-turbo_and_human_data.csv")
+
 
 
 def calculate_cosine_similarity_for_prompt_and_text(prompt, text, model, tokenizer):

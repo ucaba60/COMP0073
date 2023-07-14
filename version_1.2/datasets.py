@@ -1,4 +1,4 @@
-#Imports
+# Imports
 import datasets
 import re
 import pandas as pd
@@ -6,8 +6,8 @@ import os
 
 # Constants
 DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail', 'gpt']
-DATA_PATH = './data/writingPrompts' #This is required to load the writingPrompts dataset, as it is not part of the 'datasets' library,
-NUM_EXAMPLES = 300 #Number of initial samples from each dataset, note below, the actual number of samples is ~825 due to filtering
+DATA_PATH = './data/writingPrompts'  # This is required to load the writingPrompts dataset, as it is not part of the 'datasets' library,
+NUM_EXAMPLES = 300  # Number of initial samples from each dataset, note below, the actual number of samples is ~825 due to filtering
 TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]', '[ CC ]', '[ RF ]',
         '[ wp ]', '[ Wp ]', '[ RF ]', '[ WP/MP ]']
 
@@ -52,7 +52,6 @@ def remove_whitespace_before_punctuations(text):
         str: Text with whitespace removed before punctuation marks.
     """
     return re.sub(r'\s([?.!,:;](?:\s|$))', r'\1', text)
-
 
 
 def load_pubmed(num_examples=NUM_EXAMPLES):
@@ -204,9 +203,6 @@ def load_data(dataset_name, gpt_filename=None):
         raise ValueError(f"Dataset name {dataset_name} not recognized.")
 
 
-
-
-
 def preprocess_data(dataset):
     """
         Preprocesses a dataset.
@@ -339,7 +335,4 @@ def extract_prompts_and_save(file_folder_path):
     print(f"Prompts extracted and saved to '{os.path.join(file_folder_path, 'prompts.csv')}' with {len(df_prompts)}"
           f" entries.")
 
-
-
-#extract_prompts_and_save("extracted_data")
-
+# extract_prompts_and_save("extracted_data")
