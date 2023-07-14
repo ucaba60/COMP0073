@@ -37,7 +37,7 @@ def plot_text_perplexity_distribution(file_path):
                 linewidth=0.5)
 
     # Add title and labels
-    plt.title('Distribution of Text Perplexity for Labels 0 and 1')
+    plt.title('[GPT2-large] Distribution of Text Perplexity for Human and LM-generated Text')
     plt.xlabel('Text Perplexity')
     plt.ylabel('Density')
 
@@ -47,6 +47,9 @@ def plot_text_perplexity_distribution(file_path):
     # Show the legend and the plot
     plt.legend()
     plt.show()
+
+
+# plot_text_perplexity_distribution("data_matrix_gpt2-large.csv")
 
 
 def plot_column_frequencies(file_path):
@@ -73,7 +76,7 @@ def plot_column_frequencies(file_path):
     df_sum_percentage = df_sum_percentage.drop(columns='combined')
 
     # Create a grouped bar chart
-    ax = df_sum_percentage.rename(columns={0: 'Human', 1: 'GPT-3.5-turbo'}).plot(kind='bar', stacked=False)
+    ax = df_sum_percentage.rename(columns={0: 'Human', 1: 'GPT-J'}).plot(kind='bar', stacked=False)
 
     # Add percentage annotations on top of each bar
     for p in ax.patches:
@@ -81,7 +84,7 @@ def plot_column_frequencies(file_path):
                     xytext=(0, 10), textcoords='offset points', fontsize=8)
 
     # Add title and labels
-    plt.title('Proportion of Various Columns for Labels 0 and 1')
+    plt.title('[GPT-J] Parts-of-Speech Frequency Comparison between Human and LM-generated Texts')
     plt.xlabel('Columns')
     plt.ylabel('Proportion (%)')
 
@@ -89,6 +92,8 @@ def plot_column_frequencies(file_path):
     plt.legend(title='Label', loc='upper right')
     plt.show()
 
+
+# plot_column_frequencies("data_matrix_gpt-j1x.csv")
 
 def plot_prompt_text_cosine_similarity_distribution(file_path):
     # Load data
@@ -105,10 +110,11 @@ def plot_prompt_text_cosine_similarity_distribution(file_path):
     sns.kdeplot(data=df_0, x='prompt_text_cosine_similarity', fill=True, color='lightblue', label='Human')
 
     # Create the KDE plot for label 1
-    sns.kdeplot(data=df_1, x='prompt_text_cosine_similarity', fill=True, color='salmon', label='GPT-3.5-turbo')
+    sns.kdeplot(data=df_1, x='prompt_text_cosine_similarity', fill=True, color='salmon', label='GPT2-large')
 
     # Add title and labels
-    plt.title('Distribution of Prompt Text Cosine Similarity for Human and GPT-3.5-turbo')
+    plt.title(
+        '[GPT2-large] Distribution of Cosine Similarity between Prompt & Response for Human and LM-generated Texts')
     plt.xlabel('Prompt Text Cosine Similarity')
     plt.ylabel('Density')
 
@@ -119,6 +125,9 @@ def plot_prompt_text_cosine_similarity_distribution(file_path):
     # Show the legend and the plot
     plt.legend()
     plt.show()
+
+
+# plot_prompt_text_cosine_similarity_distribution("data_matrix_gpt2-large.csv")
 
 
 def plot_avg_readability_metrics(file_path):
@@ -168,13 +177,16 @@ def plot_avg_word_length_distribution(file_path):
     plt.axvline(avg_word_length_1, color='red', linestyle='--', linewidth=0.5)
 
     # Add title and labels
-    plt.title('Distribution of Average Word Length for Human and GPT-3.5-turbo')
+    plt.title('[GPT-3.5-turbo] Distribution of Average Word Length for Human and LM-generated Texts')
     plt.xlabel('Average Word Length')
     plt.ylabel('Density')
 
     # Show the legend and the plot
     plt.legend()
     plt.show()
+
+
+# plot_avg_word_length_distribution("data_matrix_gpt-3.5-turbo.csv")
 
 
 def plot_avg_sentence_length_distribution(file_path):
@@ -212,11 +224,6 @@ def plot_avg_sentence_length_distribution(file_path):
     plt.show()
 
 
-# Call the functions
-plot_avg_word_length_distribution('data_matrix_gpt-3.5-turbo.csv')
-plot_avg_sentence_length_distribution('data_matrix_gpt-3.5-turbo.csv')
-
-
 def plot_avg_sentence_cosine_similarity_distribution(file_path):
     # Load data
     df = pd.read_csv(file_path)
@@ -232,10 +239,10 @@ def plot_avg_sentence_cosine_similarity_distribution(file_path):
     sns.kdeplot(data=df_0, x='avg_sentence_cosine_similarity', fill=True, color='lightblue', label='Human')
 
     # Create the KDE plot for label 1
-    sns.kdeplot(data=df_1, x='avg_sentence_cosine_similarity', fill=True, color='salmon', label='GPT-3.5-turbo')
+    sns.kdeplot(data=df_1, x='avg_sentence_cosine_similarity', fill=True, color='salmon', label='GPT2-large')
 
     # Add title and labels
-    plt.title('Distribution of Average Sentence Cosine Similarity for Human and GPT-3.5-turbo')
+    plt.title('[GPT2-large] Distribution of Average Cosine Similarity between Sentences for Human and LM-generated Text')
     plt.xlabel('Average Sentence Cosine Similarity')
     plt.ylabel('Density')
 
@@ -249,6 +256,9 @@ def plot_avg_sentence_cosine_similarity_distribution(file_path):
     # Show the legend and the plot
     plt.legend()
     plt.show()
+
+
+# plot_avg_sentence_cosine_similarity_distribution("data_matrix_gpt2-large.csv")
 
 
 def plot_roc_curve(y_test, y_pred, model_name):
