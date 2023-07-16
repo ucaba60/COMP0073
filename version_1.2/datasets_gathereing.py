@@ -6,8 +6,10 @@ import os
 
 # Constants
 DATASETS = ['pubmed_qa', 'writingprompts', 'cnn_dailymail', 'gpt']
-DATA_PATH = './data/writingPrompts'  # This is required to load the writingPrompts dataset, as it is not part of the 'datasets' library,
-NUM_EXAMPLES = 300  # Number of initial samples from each dataset, note below, the actual number of samples is ~825 due to filtering
+DATA_PATH = './data/writingPrompts'  # This is required to load the writingPrompts dataset, as it is not part of the
+# 'datasets' library,
+NUM_EXAMPLES = 300  # Number of initial samples from each dataset, note below, the actual number of samples is ~825
+# due to filtering
 TAGS = ['[ WP ]', '[ OT ]', '[ IP ]', '[ HP ]', '[ TT ]', '[ Punch ]', '[ FF ]', '[ CW ]', '[ EU ]', '[ CC ]', '[ RF ]',
         '[ wp ]', '[ Wp ]', '[ RF ]', '[ WP/MP ]']
 
