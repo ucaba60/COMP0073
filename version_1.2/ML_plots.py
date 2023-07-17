@@ -4,6 +4,8 @@ import pandas as pd
 import seaborn as sns
 from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, classification_report
 from sklearn.model_selection import learning_curve
+import pickle
+from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
 def plot_text_perplexity_distribution(file_path):
@@ -242,7 +244,8 @@ def plot_avg_sentence_cosine_similarity_distribution(file_path):
     sns.kdeplot(data=df_1, x='avg_sentence_cosine_similarity', fill=True, color='salmon', label='GPT2-large')
 
     # Add title and labels
-    plt.title('[GPT2-large] Distribution of Average Cosine Similarity between Sentences for Human and LM-generated Text')
+    plt.title(
+        '[GPT2-large] Distribution of Average Cosine Similarity between Sentences for Human and LM-generated Text')
     plt.xlabel('Average Sentence Cosine Similarity')
     plt.ylabel('Density')
 
@@ -355,8 +358,6 @@ def plot_confusion_matrix(y_test, y_pred, model_name):
     fig.savefig(f'output_images/{model_name}_Confusion_Matrix.png', dpi=300, bbox_inches='tight')
     plt.show()
 
-    plot_and_save_fig(fig, model_name, "Confusion_Matrix")
-
 
 def print_classification_report(y_test, y_pred):
     print('Classification Report: \n', classification_report(y_test, y_pred))
@@ -391,18 +392,19 @@ def plot_correlation_matrix(X, model_name):
     mask = np.triu(np.ones_like(corr, dtype=bool))
 
     # Set up the matplotlib figure
-    f, ax = plt.subplots(figsize=(11, 9))
+    f, ax = plt.subplots(figsize=(20, 20))  # Increase the size of the figure
 
     # Generate a custom diverging colormap
     cmap = sns.diverging_palette(230, 20, as_cmap=True)
-    fig = plt.figure()
+
     # Draw the heatmap with the mask and correct aspect ratio
     sns.heatmap(corr, mask=mask, cmap=cmap, vmax=.3, center=0,
                 square=True, linewidths=.5, cbar_kws={"shrink": .5})
-    fig.savefig(f'output_images/{model_name}_Correlation_Matrix.png', dpi=300, bbox_inches='tight')
-    plt.show()
 
-    plot_and_save_fig(fig, "Correlation_Matrix")
+    plt.subplots_adjust(bottom=0.28)  # Further adjust the bottom margin
+
+    f.savefig(f'output_images/{model_name}_Correlation_Matrix.png', dpi=500, bbox_inches='tight')  # Increase the DPI
+    plt.show()
 
 
 def plot_permutation_importance(model, X_test, y_test, model_name):
@@ -425,7 +427,33 @@ def plot_permutation_importance(model, X_test, y_test, model_name):
     plt.show()
 
 
-def plot_and_save_fig(fig, model_name, chart_name):
-    filename = f"output_images/{model_name}_{chart_name}.png"
-    fig.savefig(filename, dpi=300, bbox_inches='tight')
-    print(f"Plot saved as {filename}")
+# Load the dataset
+df = pd.read_csv("data_matrix_gpt-3.5-turbo.csv")
+
+# Load the list of features from the pickle file
+with open('model_data/gpt-3.5-turbo/feature_names.pkl', 'rb') as f:
+    features = pickle.load(f)
+
+# Remove 'flesch_kincaid_grade_level' from features
+if 'flesch_kincaid_grade_level' in features:
+    features.remove('flesch_kincaid_grade_level')
+
+
+# Use the function to plot the correlation matrix
+# plot_correlation_matrix(df[features], 'your_model_name')
+
+
+def calculate_vif(X):
+    vif = pd.DataFrame()
+    vif["Features"] = X.columns
+    vif["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
+    return vif
+
+
+# Exclude label column if it is not a feature
+features_df = df.drop(columns=['label'])
+
+vif_scores = calculate_vif(features_df)
+# print(vif_scores)
+
+# vif_scores = calculate_vif(df)
