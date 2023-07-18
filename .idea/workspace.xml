@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="plots">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="some minor work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/.ipynb_checkpoints/All GPT-Training-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/.ipynb_checkpoints/All GPT-Training-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/All GPT-Training.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/All GPT-Training.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/version_1.2/ML_plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/ML_plots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/data_matrix_gpt-3.5-turbo.csv" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/data_matrix_gpt-3.5-turbo.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/data_matrix_gpt-j1x.csv" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/data_matrix_gpt-j1x.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/data_matrix_gpt2-large.csv" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/data_matrix_gpt2-large.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/feature_extraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/feature_extraction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/training_matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/training_matrix.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -447,7 +450,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="178" />
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -462,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added CCONJ" />
     <MESSAGE value="GPT2 normal data matrix" />
     <MESSAGE value="working with gpt2-LARGE" />
     <MESSAGE value="data_matrix_gpt2-large.csv" />
@@ -487,7 +489,8 @@
     <MESSAGE value="Inerface minor tweak" />
     <MESSAGE value="Correct TF-IDF scores" />
     <MESSAGE value="plots" />
-    <option name="LAST_COMMIT_MESSAGE" value="plots" />
+    <MESSAGE value="some minor work" />
+    <option name="LAST_COMMIT_MESSAGE" value="some minor work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -3,11 +3,15 @@ import pandas as pd
 from feature_extraction import remove_prefix, extract_prompts_and_texts
 from feature_extraction import load_model, count_pos_tags_and_special_elements, calculate_readability_scores, \
     calculate_average_word_length, calculate_average_sentence_length, calculate_perplexity, calculate_cosine_similarity, \
-    calculate_cosine_similarities_for_sentences_in_text, calculate_cosine_similarity_for_prompt_and_text
+    calculate_cosine_similarities_for_sentences_in_text, calculate_cosine_similarity_for_prompt_and_text, \
+    compute_sentiment_roberta, compute_sentiment_bert, compute_sentiment_nltk, compute_sentiment_textblob
 from sklearn.feature_extraction.text import TfidfVectorizer
 import spacy
 import random
 from sklearn.metrics import mean_squared_error
+from transformers import pipeline, AutoTokenizer, AutoModelWithLMHead
+from nltk.sentiment import SentimentIntensityAnalyzer
+from textblob import TextBlob
 
 # Constants
 nlp = spacy.load('en_core_web_sm')
@@ -32,6 +36,14 @@ def prepare_data_for_regression(data_file, chunk_size=5):
     file_name = data_file.split('/')[-1]  # split the input file string at the slash and take the last part (filename)
     model_name = file_name.split('_')[0]  # split the filename at the underscore and take the first part (model name)
     save_file = f'data_matrix_{model_name}.csv'  # create save_file name based on the model_name
+
+    # Instantiate pipelines and models before the main for loop
+    sentiment_analysis_roberta_p = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment",
+                                            truncation=True, max_length=512)
+    sentiment_analysis_bert_p = pipeline("sentiment-analysis", model="textattack/bert-base-uncased-imdb",
+                                         truncation=True,
+                                         max_length=512)
+    sia = SentimentIntensityAnalyzer()
 
     # Load the model and tokenizer
     model, tokenizer = load_model()
@@ -83,6 +95,11 @@ def prepare_data_for_regression(data_file, chunk_size=5):
 
                 # Count POS tags in the text
                 pos_counts, punctuation_counts, function_word_counts = count_pos_tags_and_special_elements(text)
+
+                text_sentiment_roberta = compute_sentiment_roberta(text, sentiment_analysis_roberta_p)
+                text_sentiment_nltk = compute_sentiment_nltk(text, sia)
+                text_sentiment_textblob = compute_sentiment_textblob(text)
+                text_senisment_bert = compute_sentiment_bert(text, sentiment_analysis_bert_p)
 
                 # Calculate the Flesch Reading Ease and Flesch-Kincaid Grade Level
                 flesch_reading_ease, flesch_kincaid_grade_level = calculate_readability_scores(text)
@@ -147,6 +164,11 @@ def prepare_data_for_regression(data_file, chunk_size=5):
                     'avg_sentence_perplexity': avg_sentence_perplexity,
                     'prompt_text_cosine_similarity': prompt_text_cosine_similarity,
                     'avg_sentence_cosine_similarity': avg_sentence_cosine_similarity,
+                    'text_sentiment_roberta': text_sentiment_roberta,
+                    'text_sentiment_nltk': text_sentiment_nltk,
+                    'text_sentiment_textblob': text_sentiment_textblob,
+                    'text_sentiment_bert': text_senisment_bert
+
                 })
 
                 # If the TF-IDF scores array is not empty, zip the scores with the words to create a dictionary
@@ -209,6 +231,10 @@ def prepare_single_text_for_regression(input_text, prompt):
     # Load the model and tokenizer
     model, tokenizer = load_model()
 
+    # Instantiate pipelines and models before the main for loop
+    sentiment_analysis_roberta_p = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment",
+                                            truncation=True, max_length=512)
+
     # Combine top_words and synonyms into one list
     all_words = ['said', 'like', 'im', 'get', 'told', 'dont', 'say', 'know', 'think', 'look', 'conclusion', 'summarise',
                  'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
@@ -227,6 +253,9 @@ def prepare_single_text_for_regression(input_text, prompt):
 
     # Calculate the average word length
     avg_word_length = calculate_average_word_length([input_text])
+
+    # Calculate the Sentiment of the text using RoBERTa
+    text_sentiment_roberta = compute_sentiment_roberta(input_text, sentiment_analysis_roberta_p)
 
     # Calculate the average sentence length
     avg_sentence_length = calculate_average_sentence_length([input_text])
@@ -283,6 +312,7 @@ def prepare_single_text_for_regression(input_text, prompt):
         'avg_sentence_perplexity': avg_sentence_perplexity,
         'prompt_text_cosine_similarity': prompt_text_cosine_similarity,
         'avg_sentence_cosine_similarity': avg_sentence_cosine_similarity,
+        'text_sentiment_roberta': text_sentiment_roberta
     })
 
     # If the TF-IDF scores array is not empty, zip the scores with the words to create a dictionary
@@ -297,54 +327,124 @@ def prepare_single_text_for_regression(input_text, prompt):
     return features
 
 
-def test_prepare_single_text_for_regression():
-    # Set the max columns option to None to display all columns
-    pd.set_option('display.max_columns', None)
+def prepare_sentiment(data_file, chunk_size=5):
+    """
+    This function prepares the data for regression analysis by extracting features and labels from the data.
 
-    # Load the DataFrame from the data_matrix file
-    data_matrix = pd.read_csv('data_matrix_gpt-3.5-turbo.csv')
+    Args:
+    data_file (str): The path to the full_data.csv file.
+    save_file (str): The path to the file where the processed data will be saved.
+    chunk_size (int): The number of rows to process at a time.
 
-    # Load the DataFrame from the gpt_3.5-turbo_and_human_data file
-    gpt_data = pd.read_csv('extracted_data/gpt-3.5-turbo_and_human_data.csv')
+    Returns:
+    data_matrix (DataFrame): A DataFrame where each row represents a text, each column represents a feature,
+                            and the last column is the label.
+    """
 
-    # Randomly select a row index
-    row_index = random.randint(0, len(data_matrix) - 1)
+    # Extract the model name from the data_file
+    file_name = data_file.split('/')[-1]  # split the input file string at the slash and take the last part (filename)
+    model_name = file_name.split('_')[0]  # split the filename at the underscore and take the first part (model name)
+    save_file = f'data_matrix_{model_name}.csv'  # create save_file name based on the model_name
 
-    # Get the corresponding row from the data_matrix
-    data_matrix_row = data_matrix.iloc[[row_index]]  # double square brackets to keep it a DataFrame
+    # Instantiate pipelines and models before the main for loop
+    sentiment_analysis_roberta_p = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment",
+                                            truncation=True, max_length=512)
+    sentiment_analysis_bert_p = pipeline("sentiment-analysis", model="textattack/bert-base-uncased-imdb",
+                                         truncation=True,
+                                         max_length=512)
+    sia = SentimentIntensityAnalyzer()
 
-    # Reset the index for data_matrix_row
-    data_matrix_row = data_matrix_row.reset_index(drop=True)
+    # Load the model and tokenizer
+    model, tokenizer = load_model()
 
-    # Get the corresponding row from the gpt_data
-    gpt_data_row = gpt_data.iloc[row_index]
-
-    # Extract the prompt and text from the gpt_data_row
-    prompts_and_texts = extract_prompts_and_texts([gpt_data_row])
-    prompt, text = prompts_and_texts[0]
-
-    # Prepare the single text for regression
-    features_from_single_text = prepare_single_text_for_regression(text, prompt)
-
-    # Convert the features_from_single_text into a DataFrame row
-    features_from_single_text_row = pd.Series(features_from_single_text).to_frame().T
-
-    # Reset the index for features_from_single_text_row
-    features_from_single_text_row = features_from_single_text_row.reset_index(drop=True)
-
-    # Print both rows
-    print("Data Matrix Row:\n", data_matrix_row)
-    print("Features From Single Text Row:\n", features_from_single_text_row)
-
-    # Check if the rows are the same
-    if data_matrix_row.equals(features_from_single_text_row):
-        print("Rows are the same")
+    # Load saved data if it exists
+    if os.path.exists(save_file):
+        saved_data = pd.read_csv(save_file)
+        processed_rows = len(saved_data)
     else:
-        print("Rows are different")
-        differences = data_matrix_row.compare(features_from_single_text_row)
-        print("Differences:\n", differences)
+        saved_data = pd.DataFrame()
+        processed_rows = 0
 
-    # Reset the display option
-    pd.reset_option('display.max_columns')
+    # Calculate the top 10 words with the highest difference in TF-IDF scores and the vectorizer
+    #     diff_words = compute_difference_tfidf_words(data_file, n_top_words=10)
+    if model_name == 'gpt2-large':
+        top_words = ["suggest", "door", "knew", "face", "black", "hand", "looked", "eye", "said", 'summarise',
+                     'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
+    elif model_name == 'gpt-3.5-turbo':
+        top_words = vocabulary = ['said', 'like', 'im', 'get', 'told', 'dont', 'say', 'know', 'think', 'look',
+                                  'conclusion',
+                                  'summarise', 'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
+    elif model_name == 'gpt-j1x':
+        top_words = ['wednesday', 'wasnt', 'hand', 'door', 'country', 'suggest', 'cnn', 'back', 'eye', 'said',
+                     'summarise', 'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
 
-# test_prepare_single_text_for_regression()
+    # Combine top_words and synonyms into one list
+    all_words = list(set(top_words))
+
+    # Create a TF-IDF vectorizer with the top 10 words as vocabulary
+    vectorizer = TfidfVectorizer(vocabulary=all_words)
+
+    total_rows_processed = 0  # total rows processed in this session
+
+    for chunk in pd.read_csv(data_file, chunksize=chunk_size):
+        feature_list = []
+
+        # Skip chunks that have already been processed
+        if total_rows_processed < processed_rows:
+            total_rows_processed += len(chunk)
+            continue
+
+        data = list(chunk.itertuples(index=False, name=None))
+        texts, labels = remove_prefix(data)
+        prompts_and_texts = extract_prompts_and_texts(data)
+
+        for i, ((prompt, text), label) in enumerate(zip(prompts_and_texts, labels)):
+            try:
+                features = {}  # Initialize the features dictionary here
+
+                text_sentiment_roberta = compute_sentiment_roberta(text, sentiment_analysis_roberta_p)
+                text_sentiment_nltk = compute_sentiment_nltk(text, sia)
+                text_sentiment_textblob = compute_sentiment_textblob(text)
+                text_sentiment_bert = compute_sentiment_bert(text, sentiment_analysis_bert_p)
+
+                # Prepare a dictionary to append to the feature list
+                features.update({
+
+                    'text_sentiment_roberta': text_sentiment_roberta,
+                    'text_sentiment_nltk': text_sentiment_nltk,
+                    'text_sentiment_textblob': text_sentiment_textblob,
+                    'text_sentiment_bert': text_sentiment_bert
+
+                })
+
+                feature_list.append(features)  # Append features to the feature list
+
+                # If the TF-IDF scores array is not empty, zip the scores with the words to create a dictionary
+                # and update the features dictionary with this new dictionary
+
+                # Print progress
+                print(f"Processed row {total_rows_processed + 1}")
+                total_rows_processed += 1
+
+            except Exception as e:
+                print(f"Error processing row {total_rows_processed + 1}: {e}")
+                continue
+
+        try:
+            # Convert the list of dictionaries into a DataFrame
+            new_data = pd.DataFrame(feature_list).fillna(0)
+
+            # Append new data to saved data and save
+            saved_data = pd.concat([saved_data, new_data])
+            saved_data.to_csv(save_file, index=False)
+
+            # Clear the feature list for the next batch
+            feature_list.clear()
+
+        except Exception as e:
+            print(f"Error processing chunk: {e}")
+            continue
+
+    return saved_data
+
+# prepare_sentiment("extracted_data/gpt2-large_and_human_data.csv")

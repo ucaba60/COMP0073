@@ -2,25 +2,28 @@
 import string
 from collections import Counter
 from statistics import mean
-
+from transformers import pipeline
 import matplotlib.pyplot as plt
+import nltk
 import pandas as pd
 import seaborn as sns
 import spacy
 import textstat
 import torch
 from nltk.corpus import stopwords
+from nltk.sentiment import SentimentIntensityAnalyzer
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from scipy.spatial.distance import cosine
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import normalize
 from transformers import RobertaTokenizer, RobertaForMaskedLM
+from textblob import TextBlob
 
 # nltk.download('punkt')
 # nltk.download('wordnet')
 # nltk.download('stopwords')
-
+# nltk.download('vader_lexicon')
 
 # Constants
 nlp = spacy.load('en_core_web_sm')
@@ -472,8 +475,6 @@ def plot_diff_tfidf_words(data_file, n_top_words=10):
     plt.show()
 
 
-
-
 def calculate_cosine_similarity_for_prompt_and_text(prompt, text, model, tokenizer):
     """
     This function calculates cosine similarity for a given (prompt, text) pair.
@@ -491,3 +492,64 @@ def calculate_cosine_similarity_for_prompt_and_text(prompt, text, model, tokeniz
     cosine_similarity = calculate_cosine_similarity(prompt, text, model, tokenizer)
 
     return cosine_similarity
+
+
+def compute_sentiment_roberta(text, sentiment_analysis):
+    result = sentiment_analysis(text)[0]
+    label = result['label']
+    if label == 'LABEL_0':
+        return -1
+    elif label == 'LABEL_1':
+        return 0
+    elif label == 'LABEL_2':
+        return 1
+    else:
+        print("Unexpected label:", label)
+        return None
+
+
+def compute_sentiment_nltk(text, sia):
+    """
+    Compute sentiment of the given text using NLTK's Vader SentimentIntensityAnalyzer.
+    Returns:
+    sentiment (float): The sentiment score of the text (-1, 0, 1: -1 being negative, 0 being neutral, 1 being positive).
+    """
+    polarity = sia.polarity_scores(text)
+    compound = polarity['compound']
+    if compound > 0.05:
+        return 1
+    elif compound < -0.05:
+        return -1
+    else:
+        return 0
+
+
+def compute_sentiment_textblob(text):
+    """
+    Compute sentiment of the given text using TextBlob.
+    Returns:
+    sentiment (float): The sentiment score of the text (-1, 0, 1: -1 being negative, 0 being neutral, 1 being positive).
+    """
+    testimonial = TextBlob(text)
+    polarity = testimonial.sentiment.polarity
+    if polarity > 0.05:
+        return 1
+    elif polarity < -0.05:
+        return -1
+    else:
+        return 0
+
+
+def compute_sentiment_bert(text, sentiment_analysis):
+
+    result = sentiment_analysis(text)[0]
+    label = result['label']
+    if label == 'LABEL_0':
+        return -1
+    elif label == 'LABEL_1':
+        return 0
+    elif label == 'LABEL_2':
+        return 1
+    else:
+        print("Unexpected label:", label)
+        return None

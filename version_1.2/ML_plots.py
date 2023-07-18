@@ -450,10 +450,72 @@ def calculate_vif(X):
     return vif
 
 
-# Exclude label column if it is not a feature
-features_df = df.drop(columns=['label'])
-
-vif_scores = calculate_vif(features_df)
+# # Exclude label column if it is not a feature
+# features_df = df.drop(columns=['label'])
+#
+# vif_scores = calculate_vif(features_df)
 # print(vif_scores)
 
 # vif_scores = calculate_vif(df)
+
+
+def plot_sentiment_frequencies(data_file, sentiment_method):
+    # Load the saved data from the CSV file
+    data = pd.read_csv(data_file)
+
+    # Select the columns of interest for the specified sentiment extraction method
+    column = f'text_sentiment_{sentiment_method}'
+
+    # Map sentiment scores to corresponding labels
+    sentiment_labels = {-1: 'Negative', 0: 'Neutral', 1: 'Positive'}
+
+    # Filter data for Label 0 and Label 1 separately
+    data_label0 = data[data['label'] == 0]
+    data_label1 = data[data['label'] == 1]
+
+    # Calculate the frequencies for each sentiment score and label
+    frequencies_label0 = data_label0[column].map(sentiment_labels).value_counts().reindex(sentiment_labels.values(),
+                                                                                          fill_value=0)
+    frequencies_label1 = data_label1[column].map(sentiment_labels).value_counts().reindex(sentiment_labels.values(),
+                                                                                          fill_value=0)
+
+    # Set the order of sentiment scores for the x-axis
+    sentiment_order = ['Negative', 'Neutral', 'Positive']
+
+    # Plot the grouped bar chart using Matplotlib
+    plt.figure(figsize=(12, 6))
+
+    # Adjust width and offset for overlapping bars
+    width = 0.35
+    offset = width / 2
+
+    plt.bar(np.arange(len(sentiment_order)) - offset, frequencies_label0, width, label='Human-Text', alpha=0.8,
+            color='purple')
+    plt.bar(np.arange(len(sentiment_order)) + offset, frequencies_label1, width, label='GPT-Text', alpha=0.8,
+            color='blue')
+
+    # Add labels with the number of observations on top of each column
+    for i, freq_label0, freq_label1 in zip(range(len(sentiment_order)), frequencies_label0, frequencies_label1):
+        plt.text(i - offset, freq_label0 + 5, str(freq_label0), ha='center', color='black')
+        plt.text(i + offset, freq_label1 + 5, str(freq_label1), ha='center', color='black')
+
+    plt.xlabel('Sentiment Scores')
+    plt.ylabel('Frequency')
+    plt.title(f'Frequency of Sentiment Scores ({sentiment_method.capitalize()}) by Label')
+    plt.xticks(np.arange(len(sentiment_order)), sentiment_order)
+    plt.legend()
+    plt.gca().set_facecolor('white')  # Set white background
+    plt.grid(False)  # Remove grid lines
+
+    plt.show()
+
+#
+# plot_sentiment_frequencies('data_matrix_gpt2-large.csv', 'roberta')
+# plot_sentiment_frequencies('data_matrix_gpt2-large.csv', 'bert')
+# plot_sentiment_frequencies('data_matrix_gpt2-large.csv', 'textblob')
+# plot_sentiment_frequencies('data_matrix_gpt2-large.csv', 'nltk')
+#
+# plot_sentiment_frequencies('data_matrix_gpt-j1x.csv', 'roberta')
+# plot_sentiment_frequencies('data_matrix_gpt-j1x.csv', 'bert')
+# plot_sentiment_frequencies('data_matrix_gpt-j1x.csv', 'textblob')
+# plot_sentiment_frequencies('data_matrix_gpt-j1x.csv', 'nltk')
