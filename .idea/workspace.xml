@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="SENTIMENTS INTEGRATED - USING ROBERTA">
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="fixes and some plots">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/.ipynb_checkpoints/All GPT-Training-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/.ipynb_checkpoints/All GPT-Training-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/.ipynb_checkpoints/All GPT Plots-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/.ipynb_checkpoints/All GPT Plots-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/All GPT Plots.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/All GPT Plots.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/version_1.2/All GPT-Training.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/All GPT-Training.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/ML_plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/ML_plots.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/extracted_data/test_sentiment.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/interface.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/model_data/gpt2-large/feature_names.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/model_data/gpt2-large/feature_names.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/model_data/gpt2-large/trained_model_logreg.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/model_data/gpt2-large/trained_model_logreg.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/model_data/gpt2-large/trained_scaler.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/model_data/gpt2-large/trained_scaler.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/training_matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/training_matrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/logreg_test/data_matrix_gpt2-large_fixed.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/model_data/gpt2-large/trained_model_ensemble.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/model_data/gpt2-large/trained_model_rf.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/version_1.2/model_data/gpt2-large/trained_model_svm.pkl" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -454,7 +451,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <option name="localTasksCounter" value="181" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -469,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working with gpt2-LARGE" />
     <MESSAGE value="data_matrix_gpt2-large.csv" />
     <MESSAGE value="Cleanup + jupyter notebook" />
     <MESSAGE value="Fixed GPT-3.5 Prompt" />
@@ -494,7 +490,8 @@
     <MESSAGE value="plots" />
     <MESSAGE value="some minor work" />
     <MESSAGE value="SENTIMENTS INTEGRATED - USING ROBERTA" />
-    <option name="LAST_COMMIT_MESSAGE" value="SENTIMENTS INTEGRATED - USING ROBERTA" />
+    <MESSAGE value="fixes and some plots" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes and some plots" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
