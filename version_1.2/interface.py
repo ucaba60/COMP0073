@@ -16,7 +16,7 @@ def preprocess_and_choose_model(prompt, response, model_choice, training_corpus)
     response = ' '.join(response.replace("\n", " ").strip().split())
 
     # Preprocess inputs
-    features = prepare_single_text_for_regression(response, prompt)
+    features = prepare_single_text_for_regression(response, prompt, training_corpus)
     print("Features:", features)  # print features for debugging
 
     # Load the saved feature names

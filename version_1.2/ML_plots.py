@@ -6,6 +6,7 @@ from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, classifi
 from sklearn.model_selection import learning_curve
 import pickle
 from statsmodels.stats.outliers_influence import variance_inflation_factor
+from sklearn.inspection import permutation_importance
 
 
 def plot_text_perplexity_distribution(file_path):
@@ -385,7 +386,7 @@ def plot_feature_importance(model, X, model_name):
     plt.show()
 
 
-def plot_correlation_matrix(X, model_name):
+def plot_correlation_matrix(X, title):
     corr = X.corr()
 
     # Generate a mask for the upper triangle
@@ -401,14 +402,14 @@ def plot_correlation_matrix(X, model_name):
     sns.heatmap(corr, mask=mask, cmap=cmap, vmax=.3, center=0,
                 square=True, linewidths=.5, cbar_kws={"shrink": .5})
 
+    ax.set_title(title)  # Set the title for the diagram
+
     plt.subplots_adjust(bottom=0.28)  # Further adjust the bottom margin
 
-    f.savefig(f'output_images/{model_name}_Correlation_Matrix.png', dpi=500, bbox_inches='tight')  # Increase the DPI
     plt.show()
 
 
-def plot_permutation_importance(model, X_test, y_test, model_name):
-    from sklearn.inspection import permutation_importance
+def plot_permutation_importance(model, X_test, y_test):
 
     # Convert input features to a NumPy array
     X_test_array = X_test.to_numpy()
@@ -423,20 +424,19 @@ def plot_permutation_importance(model, X_test, y_test, model_name):
     ax.boxplot(result.importances[sorted_idx].T, vert=False, labels=X_test.columns[sorted_idx])
     ax.set_title("Permutation Importances (test set)")
     fig.tight_layout()
-    fig.savefig(f'output_images/{model_name}_Permutation_Importance.png', dpi=300, bbox_inches='tight')
     plt.show()
 
 
 # Load the dataset
-df = pd.read_csv("data_matrix_gpt-3.5-turbo.csv")
-
-# Load the list of features from the pickle file
-with open('model_data/gpt-3.5-turbo/feature_names.pkl', 'rb') as f:
-    features = pickle.load(f)
-
-# Remove 'flesch_kincaid_grade_level' from features
-if 'flesch_kincaid_grade_level' in features:
-    features.remove('flesch_kincaid_grade_level')
+# df = pd.read_csv("data_matrix_gpt-3.5-turbo.csv")
+#
+# # Load the list of features from the pickle file
+# with open('model_data/gpt-3.5-turbo/feature_names.pkl', 'rb') as f:
+#     features = pickle.load(f)
+#
+# # Remove 'flesch_kincaid_grade_level' from features
+# if 'flesch_kincaid_grade_level' in features:
+#     features.remove('flesch_kincaid_grade_level')
 
 
 # Use the function to plot the correlation matrix

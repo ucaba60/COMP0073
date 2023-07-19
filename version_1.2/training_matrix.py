@@ -216,7 +216,7 @@ def prepare_data_for_regression(data_file, chunk_size=5):
 # prepare_data_for_regression("extracted_data/gpt2-large_and_human_data.csv")
 
 
-def prepare_single_text_for_regression(input_text, prompt):
+def prepare_single_text_for_regression(input_text, prompt, training_corpus):
     """
     This function prepares a single text for regression analysis by extracting features.
 
@@ -235,12 +235,19 @@ def prepare_single_text_for_regression(input_text, prompt):
     sentiment_analysis_roberta_p = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment",
                                             truncation=True, max_length=512)
 
-    # Combine top_words and synonyms into one list
-    all_words = ['said', 'like', 'im', 'get', 'told', 'dont', 'say', 'know', 'think', 'look', 'conclusion', 'summarise',
-                 'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
+    if training_corpus == 'gpt2-large':
+        top_words = ["suggest", "door", "knew", "face", "black", "hand", "looked", "eye", "said", 'summarise',
+                     'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
+    elif training_corpus == 'gpt-3.5-turbo':
+        top_words = vocabulary = ['said', 'like', 'im', 'get', 'told', 'dont', 'say', 'know', 'think', 'look',
+                                  'conclusion',
+                                  'summarise', 'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
+    elif training_corpus == 'gpt-j1x':
+        top_words = ['wednesday', 'wasnt', 'hand', 'door', 'country', 'suggest', 'cnn', 'back', 'eye', 'said',
+                     'summarise', 'summarize', 'finale', 'overall', 'sum', 'end', 'summary', 'conclude']
 
     # Create a TF-IDF vectorizer with the top 10 words as vocabulary
-    vectorizer = TfidfVectorizer(vocabulary=all_words)
+    vectorizer = TfidfVectorizer(vocabulary=top_words)
 
     # Initialize the features dictionary here
     features = {}
@@ -318,10 +325,10 @@ def prepare_single_text_for_regression(input_text, prompt):
     # If the TF-IDF scores array is not empty, zip the scores with the words to create a dictionary
     # and update the features dictionary with this new dictionary
     if tfidf_scores.size > 0:
-        word_scores = {f"tf_idfs_{word}": score for word, score in zip(all_words, tfidf_scores[0])}
+        word_scores = {f"tf_idfs_{word}": score for word, score in zip(top_words, tfidf_scores[0])}
         features.update(word_scores)
     else:  # If the TF-IDF scores array is empty, assign 0 to each word's score
-        word_scores = {f"tf_idfs_{word}": 0 for word in all_words}
+        word_scores = {f"tf_idfs_{word}": 0 for word in top_words}
         features.update(word_scores)
 
     return features
