@@ -1,17 +1,13 @@
+import re
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from sklearn.inspection import permutation_importance
 from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, classification_report
 from sklearn.model_selection import learning_curve
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-from sklearn.inspection import permutation_importance
-import matplotlib.lines as mlines
-import re
-
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
+from feature_extraction import compute_difference_tfidf_words
 
 
 def plot_text_perplexity_distribution(file_path, save_as_pdf=False):
@@ -507,6 +503,45 @@ def plot_permutation_importance(model, X_test, y_test, feature_names):
     plt.show()
 
 
+def plot_diff_tfidf_words(data_file, n_top_words=10):
+    """
+    This function reads the input data, computes the top n words with the largest average difference in
+    TF-IDF scores between human-labelled text and AI-generated text, and plots the results.
+
+    Args:
+    data_file (str): The path to the .csv file which contains the texts and labels.
+    n_top_words (int): The number of top words to return. Default is 10.
+
+    Returns:
+    None
+    """
+
+    # get the top words with the largest difference in tf-idf
+    diff_words = compute_difference_tfidf_words(data_file, n_top_words)
+
+    # plot the results using seaborn
+    plt.figure(figsize=(10, 6))
+    palette = sns.color_palette("coolwarm",
+                                n_top_words)  # using coolwarm palette, you can use any palette of your liking
+    sns.barplot(x=diff_words['tfidf_difference'][::-1], y=diff_words['word'][::-1],
+                palette=palette)  # reverse order to have the largest bar at top
+    plt.xlabel('TF-IDF Difference')
+    plt.ylabel('Words')
+    plt.title(
+        '[GPT-J] Top {} Words with Largest Average Difference in TF-IDF Scores between Human and AI-Generated Text'.format(
+            n_top_words))
+
+    # Save the plot as a .pdf
+    plt.savefig("tfidf_difference_plot.pdf", format='pdf', bbox_inches='tight')
+
+    plt.show()
+
+
+# plot_diff_tfidf_words('extracted_data/gpt-3.5-turbo_and_human_data.csv', n_top_words=10)
+# plot_diff_tfidf_words('extracted_data/gpt2-large_and_human_data.csv', n_top_words=10)
+# plot_diff_tfidf_words('extracted_data/gpt-j1x_and_human_data.csv', n_top_words=10)
+
+
 def calculate_vif(X):
     vif = pd.DataFrame()
     vif["Features"] = X.columns
@@ -576,7 +611,6 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
 
     # Show the plot
     plt.show()
-
 
 #
 # plot_sentiment_frequencies('text_sentiments/gpt2-large-sentiment.csv', 'roberta')
