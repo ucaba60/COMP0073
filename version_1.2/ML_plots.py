@@ -479,23 +479,31 @@ def plot_correlation_matrix(X, title):
 
     plt.subplots_adjust(bottom=0.28)  # Further adjust the bottom margin
 
+    # Save the plot as a PDF file
+    plt.savefig("correlation_matrix.pdf", bbox_inches='tight')
+
+    # Show the plot
     plt.show()
 
 
-def plot_permutation_importance(model, X_test, y_test):
-    # Convert input features to a NumPy array
-    X_test_array = X_test.to_numpy()
-
+def plot_permutation_importance(model, X_test, y_test, feature_names):
     # Calculate permutation importances
-    result = permutation_importance(model, X_test_array, y_test, n_repeats=10, random_state=42, n_jobs=2)
-    sorted_idx = result.importances_mean.argsort()
+    result = permutation_importance(model, X_test, y_test, n_repeats=10, random_state=42, n_jobs=2)
+    sorted_idx = result.importances_mean.argsort().tolist()  # Convert to list
 
-    # Plot the permutation importances using a boxplot
-    fig = plt.figure()
+    # Plot the permutation importances using a bar chart
     fig, ax = plt.subplots(figsize=(10, 6))  # Increase the figsize as needed
-    ax.boxplot(result.importances[sorted_idx].T, vert=False, labels=X_test.columns[sorted_idx])
-    ax.set_title("Permutation Importances (test set)")
+    ax.barh([feature_names[i] for i in sorted_idx], result.importances_mean[sorted_idx])
+
+    # Add labels to the axes
+    ax.set_xlabel('Importance')
+    ax.set_ylabel('Features')
+
+    ax.set_title("[GPT-2-large] Permutation Importances (test set)")
     fig.tight_layout()
+
+    # Save the plot as a .pdf
+    plt.savefig("permutation_importance_plot.pdf", format='pdf', bbox_inches='tight')
     plt.show()
 
 
