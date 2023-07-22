@@ -444,37 +444,6 @@ def compute_difference_tfidf_words(data_file, n_top_words=10):
     return diff_words
 
 
-def plot_diff_tfidf_words(data_file, n_top_words=10):
-    """
-    This function reads the input data, computes the top n words with the largest average difference in
-    TF-IDF scores between human-labelled text and AI-generated text, and plots the results.
-
-    Args:
-    data_file (str): The path to the .csv file which contains the texts and labels.
-    n_top_words (int): The number of top words to return. Default is 10.
-
-    Returns:
-    None
-    """
-
-    # get the top words with the largest difference in tf-idf
-    diff_words = compute_difference_tfidf_words(data_file, n_top_words)
-
-    # plot the results using seaborn
-    plt.figure(figsize=(10, 6))
-    palette = sns.color_palette("coolwarm",
-                                n_top_words)  # using coolwarm palette, you can use any palette of your liking
-    sns.barplot(x=diff_words['tfidf_difference'][::-1], y=diff_words['word'][::-1],
-                palette=palette)  # reverse order to have the largest bar at top
-    plt.xlabel('TF-IDF Difference')
-    plt.ylabel('Words')
-    plt.title(
-        '[GPT-3.5-turbo] Top {} Words with Largest Average Difference in TF-IDF Scores between Human and AI-Generated '
-        'Text'.format(
-            n_top_words))
-    plt.show()
-
-
 def calculate_cosine_similarity_for_prompt_and_text(prompt, text, model, tokenizer):
     """
     This function calculates cosine similarity for a given (prompt, text) pair.
@@ -541,7 +510,6 @@ def compute_sentiment_textblob(text):
 
 
 def compute_sentiment_bert(text, sentiment_analysis):
-
     result = sentiment_analysis(text)[0]
     label = result['label']
     if label == 'LABEL_0':
