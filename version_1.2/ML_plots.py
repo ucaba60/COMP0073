@@ -317,7 +317,7 @@ def plot_avg_sentence_cosine_similarity_distribution(file_path):
     plt.axvline(df_1['avg_sentence_cosine_similarity'].mean(), color='red', linestyle='dashed', linewidth=1.5)
 
     # Set x-axis limit
-    plt.xlim(0.9, 1.06)
+    plt.xlim(0.8, 1.1)
 
     # Add legend with a title
     plt.legend(title="Source")
