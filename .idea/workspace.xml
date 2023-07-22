@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="PLOTS HD">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/ML_plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/ML_plots.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/output_images/average_readability_metrics.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/output_images/average_readability_metrics.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/output_images/average_sentence_length.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/output_images/average_sentence_length.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/output_images/cosine_sim_sent-gpt-J.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/output_images/cosine_sim_sent-gpt2-large.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/output_images/cosine_sim_sent_gpt35.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/output_images/pos-gpt2-large.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/output_images/pos-gpt3.5.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1.2/output_images/pos-gptj.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/version_1.2/output_images/pos-gptj.pdf" afterDir="false" />
-    </list>
+    <list default="true" id="7a87ba38-bef1-4c0b-895a-3a2f51d824ec" name="Changes" comment="PLOTS HD" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -467,7 +456,7 @@
       <option name="project" value="LOCAL" />
       <updated>1687769053772</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

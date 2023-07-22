@@ -344,8 +344,6 @@ def plot_avg_word_length(file_paths):
 # plot_avg_word_length(file_paths)
 
 
-
-
 def plot_avg_sentence_cosine_similarity_distribution(file_path):
     # Load data
     df = pd.read_csv(file_path)
