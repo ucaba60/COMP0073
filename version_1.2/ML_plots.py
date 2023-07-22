@@ -86,9 +86,9 @@ def plot_column_frequencies(file_path):
     df_sum_percentage = df_sum_percentage.drop(columns='combined')
 
     # Create a grouped bar chart with specified bar width
-    ax = df_sum_percentage.rename(columns={0: 'Human', 1: 'GPT2-large'}).plot(kind='bar', stacked=False,
-                                                                              figsize=(12, 10),
-                                                                              width=0.7)  # Adjust width here
+    ax = df_sum_percentage.rename(columns={0: 'Human', 1: 'GPT-J'}).plot(kind='bar', stacked=False,
+                                                                         figsize=(12, 10),
+                                                                         width=0.7)  # Adjust width here
 
     # Add percentage annotations on top of each bar
     for p in ax.patches:
@@ -96,8 +96,8 @@ def plot_column_frequencies(file_path):
                     xytext=(0, 5), textcoords='offset points', fontsize=10)  # Increase fontsize from 8 to 10
 
     # Add title and labels with larger font size
-    plt.title('[GPT2-large] Parts-of-Speech Frequency Comparison between Human and LM-generated Texts', fontsize=16)
-    plt.xlabel('Columns', fontsize=14)
+    plt.title('[GPT-J] Parts-of-Speech Frequency Comparison between Human and LM-generated Texts', fontsize=16)
+    plt.xlabel('Parts-of-Speech', fontsize=14)
     plt.ylabel('Frequency (%)', fontsize=14)
 
     # Set larger tick labels
@@ -108,7 +108,7 @@ def plot_column_frequencies(file_path):
     plt.legend(title='Label', loc='upper right', fontsize=12)  # Set fontsize in legend
 
     # Adjust layout
-    plt.tight_layout(rect=[0, 0.1, 1, 0.95])  # Increase the bottom margin
+    plt.tight_layout(rect=[0, 0.01, 1, 0.95])  # Increase the bottom margin
 
     # Save the plot to a PDF file before displaying it
     plt.savefig('plot_output.pdf', format='pdf')
@@ -208,9 +208,9 @@ def plot_avg_readability_metrics(file_paths):
     bar_plot = sns.barplot(x='flesch_reading_ease', y='Source', data=avg_metrics, palette='viridis')
 
     # Add title and labels
-    plt.title('Average Readability Metrics for Human and Different GPT Models')
+    plt.title('Average Reading Ease for Human and Different GPT Models')
     plt.xlabel('Average Flesch Reading Ease')
-    plt.ylabel('Source')
+    plt.ylabel('Language Model')
 
     # Add the average values at the end of the bars
     for bar in bar_plot.containers[0]:
@@ -227,7 +227,6 @@ def plot_avg_readability_metrics(file_paths):
     plt.show()
 
 
-#
 # # Call the function to display the plot
 # file_paths = ["data_matrix_gpt-3.5-turbo.csv", "data_matrix_gpt-j1x.csv", "data_matrix_gpt2-large.csv"]
 # plot_avg_readability_metrics(file_paths)
@@ -270,7 +269,7 @@ def plot_avg_sentence_length(file_paths):
     # Add title and labels
     plt.title('Average Sentence Length for Human and Different GPT Models')
     plt.xlabel('Average Sentence Length')
-    plt.ylabel('Source')
+    plt.ylabel('Language Model')
 
     # Add the average values at the end of the bars
     for bar in bar_plot.containers[0]:
@@ -289,6 +288,64 @@ def plot_avg_sentence_length(file_paths):
 # plot_avg_sentence_length(file_paths)
 
 
+def plot_avg_word_length(file_paths):
+    # Initialize an empty DataFrame to store average metrics
+    avg_word_lengths = pd.DataFrame(columns=['Source', 'avg_word_length'])
+
+    # Calculate the average word length for Human texts
+    human_df = pd.read_csv(file_paths[0])
+    human_avg = human_df[human_df['label'] == 0]['avg_word_length'].mean()
+    human_row = pd.DataFrame([['Human', human_avg]], columns=['Source', 'avg_word_length'])
+    avg_word_lengths = pd.concat([avg_word_lengths, human_row], ignore_index=True)
+
+    # Define a dictionary to map file names to more readable names
+    name_map = {
+        'gpt-3.5-turbo': 'GPT-3.5-turbo',
+        'gpt-j1x': 'GPT-J',
+        'gpt2-large': 'GPT2-large'
+    }
+
+    # Calculate the average word length for each file
+    for file_path in file_paths:
+        df = pd.read_csv(file_path)
+        gpt_avg = df[df['label'] == 1]['avg_word_length'].mean()
+
+        # Extract the model name from the file path and map it to a readable name
+        gpt_name = re.search('data_matrix_(.*).csv', file_path).group(1)
+        gpt_name_readable = name_map[gpt_name]
+
+        # Append the readable name and the average word length to the dataframe
+        gpt_row = pd.DataFrame([[gpt_name_readable, gpt_avg]], columns=['Source', 'avg_word_length'])
+        avg_word_lengths = pd.concat([avg_word_lengths, gpt_row], ignore_index=True)
+
+    # Create a bar plot
+    plt.figure(figsize=[10, 6])
+    bar_plot = sns.barplot(x='avg_word_length', y='Source', data=avg_word_lengths, palette='viridis')
+
+    # Add title and labels
+    plt.title('Average Word Length for Human and Different GPT Models')
+    plt.xlabel('Average Word Length')
+    plt.ylabel('Language Model')
+
+    # Add the average values at the end of the bars
+    for bar in bar_plot.containers[0]:
+        bar_plot.text(bar.get_width(), bar.get_y() + bar.get_height() / 2, f'{bar.get_width():.2f}',
+                      va='center', ha='left', color='black')
+
+    # Save the plot as a PDF file
+    plt.savefig("average_word_length.pdf", bbox_inches='tight')
+
+    # Show the plot
+    plt.show()
+
+
+# Call the function to display the plot
+# file_paths = ["data_matrix_gpt-3.5-turbo.csv", "data_matrix_gpt-j1x.csv", "data_matrix_gpt2-large.csv"]
+# plot_avg_word_length(file_paths)
+
+
+
+
 def plot_avg_sentence_cosine_similarity_distribution(file_path):
     # Load data
     df = pd.read_csv(file_path)
@@ -300,27 +357,32 @@ def plot_avg_sentence_cosine_similarity_distribution(file_path):
     # Set a theme for prettier plots
     sns.set(style="white")  # set style to white to remove grids
 
+    # Increase figure size
+    plt.figure(figsize=(12, 6))  # Increase width to 12
+
     # Create the KDE plot for label 0
     sns.kdeplot(data=df_0, x='avg_sentence_cosine_similarity', fill=True, color='lightblue', label='Human')
 
     # Create the KDE plot for label 1
-    sns.kdeplot(data=df_1, x='avg_sentence_cosine_similarity', fill=True, color='salmon', label='GPT-3.5-turbo')
+    sns.kdeplot(data=df_1, x='avg_sentence_cosine_similarity', fill=True, color='salmon', label='GPT2-large')
 
     # Add title and labels
     plt.title(
-        '[GPT-3.5-turbo] Distribution of Average Cosine Similarity between Sentences for Human and LM-generated Text')
+        '[GPT2-large] Distribution of Average Cosine Similarity between Sentences for Human and LM-generated Text')
     plt.xlabel('Average Cosine Similarity between Sentences')
     plt.ylabel('Density')
 
     # Add vertical lines for mean values
-    plt.axvline(df_0['avg_sentence_cosine_similarity'].mean(), color='blue', linestyle='dashed', linewidth=1.5)
-    plt.axvline(df_1['avg_sentence_cosine_similarity'].mean(), color='red', linestyle='dashed', linewidth=1.5)
+    plt.axvline(x=df_0['avg_sentence_cosine_similarity'].mean(), color='blue', linestyle='--', alpha=0.8, linewidth=1.5,
+                label='Average Cosine Similarity (Human Text)')
+    plt.axvline(x=df_1['avg_sentence_cosine_similarity'].mean(), color='red', linestyle='--', alpha=0.8, linewidth=1.5,
+                label='Average Cosine Similarity (GPT2-large)')
 
     # Set x-axis limit
     plt.xlim(0.8, 1.1)
 
     # Add legend with a title
-    plt.legend(title="Source")
+    plt.legend(title="Label")
 
     # Save the plot as a PDF file
     plt.savefig("avg_cosine_similarity_distribution.pdf", bbox_inches='tight')
