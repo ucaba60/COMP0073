@@ -396,7 +396,7 @@ def plot_avg_sentence_cosine_similarity_distribution(file_path):
 # plot_avg_sentence_cosine_similarity_distribution("data_matrix_gpt-3.5-turbo.csv")
 
 
-def plot_roc_curve(y_test, y_pred, model_name):
+def plot_roc_curve(y_test, y_pred):
     # Calculate ROC-AUC score
     roc_auc = roc_auc_score(y_test, y_pred)
     print("ROC-AUC Score:", roc_auc)
@@ -405,13 +405,16 @@ def plot_roc_curve(y_test, y_pred, model_name):
     fpr, tpr, thresholds = roc_curve(y_test, y_pred)
 
     # Plot ROC curve
-    fig = plt.figure()
-    plt.plot(fpr, tpr)
-    plt.plot([0, 1], [0, 1], linestyle='--')  # Plotting the random guess line
+    plt.figure(figsize=(10, 10))
+    plt.plot(fpr, tpr, color='darkorange', label=f'ROC curve (AUC Score = {roc_auc:.2f})')
+    plt.plot([0, 1], [0, 1], color='navy', linestyle='--')  # Plotting the random guess line
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
     plt.title('Receiver Operating Characteristic (ROC) Curve')
-    fig.savefig('ROC_Curve.png', bbox_inches='tight')
+    plt.legend(loc="lower right")
+    plt.savefig('ROC_Curve.pdf', bbox_inches='tight')
     plt.show()
 
 
