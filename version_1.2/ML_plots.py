@@ -1,4 +1,6 @@
 import re
+
+import joblib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -409,7 +411,7 @@ def plot_roc_curve(y_test, y_pred, model_name):
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
     plt.title('Receiver Operating Characteristic (ROC) Curve')
-    fig.savefig(f'output_images/{model_name}_ROC_Curve.png', dpi=300, bbox_inches='tight')
+    fig.savefig('ROC_Curve.png', bbox_inches='tight')
     plt.show()
 
 
@@ -493,25 +495,50 @@ def print_classification_report(y_test, y_pred):
     print('Classification Report: \n', classification_report(y_test, y_pred))
 
 
-def plot_feature_importance(model, X, model_name):
+def plot_feature_importance_lr(model, model_name):
     # Get the coefficients from the logistic regression model
     coefficients = model.coef_[0]
 
+    # Load the feature names
+    feature_names = joblib.load(f'model_data/{model_name}/feature_names.pkl')
+
     # Create a DataFrame to store the feature names and their corresponding coefficients
-    feature_importance_df = pd.DataFrame({'Feature': X.columns, 'Coefficient': coefficients})
+    feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Coefficient': coefficients})
     feature_importance_df['Absolute Coefficient'] = feature_importance_df['Coefficient'].abs()
 
     # Sort the features by their absolute coefficients in descending order
     feature_importance_df = feature_importance_df.sort_values(by='Absolute Coefficient', ascending=False)
 
     # Plot the feature importances
-    fig = plt.figure()
     plt.figure(figsize=(16, 10))
     sns.barplot(x='Absolute Coefficient', y='Feature', data=feature_importance_df, palette='coolwarm')
     plt.title("Feature Importances (Logistic Regression)")
     plt.xlabel("Absolute Coefficient")
     plt.ylabel("Feature")
-    fig.savefig(f'output_images/{model_name}_Feature_Importance.png', dpi=300, bbox_inches='tight')
+    plt.savefig('Feature_Importance.pdf', bbox_inches='tight')
+    plt.show()
+
+
+def plot_feature_importance_rf(model, model_name):
+    # Get the feature importances from the Random Forest model
+    feature_importances = model.feature_importances_
+
+    # Load the feature names
+    feature_names = joblib.load(f'model_data/{model_name}/feature_names.pkl')
+
+    # Create a DataFrame to store the feature names and their corresponding importances
+    feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': feature_importances})
+
+    # Sort the features by their importances in descending order
+    feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+
+    # Plot the feature importances
+    plt.figure(figsize=(16, 10))
+    sns.barplot(x='Importance', y='Feature', data=feature_importance_df, palette='coolwarm')
+    plt.title("Feature Importances (Random Forest)")
+    plt.xlabel("Importance")
+    plt.ylabel("Feature")
+    plt.savefig('Feature_Importance_RANDOMFOREST.pdf', bbox_inches='tight')
     plt.show()
 
 
