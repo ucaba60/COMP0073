@@ -690,7 +690,7 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
 
     plt.xlabel('Sentiment Scores')
     plt.ylabel('Frequency')
-    plt.title(f'[GPT-3.5-turbo] Frequency of Sentiment Scores ({sentiment_method.capitalize()}) by Label')
+    plt.title(f'[GPT2-large] Frequency of Sentiment Scores ({sentiment_method.capitalize()}) by Label')
     plt.xticks(np.arange(len(sentiment_order)), sentiment_order)
     plt.legend()
     plt.gca().set_facecolor('white')  # Set white background
