@@ -649,9 +649,9 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
     offset = width / 2
 
     plt.bar(np.arange(len(sentiment_order)) - offset, frequencies_label0, width, label='Human-Text', alpha=0.8,
-            color='red')
-    plt.bar(np.arange(len(sentiment_order)) + offset, frequencies_label1, width, label='GPT-Text', alpha=0.8,
             color='blue')
+    plt.bar(np.arange(len(sentiment_order)) + offset, frequencies_label1, width, label='GPT-Text', alpha=0.8,
+            color='red')
 
     # Add labels with the number of observations on top of each column
     for i, freq_label0, freq_label1 in zip(range(len(sentiment_order)), frequencies_label0, frequencies_label1):
