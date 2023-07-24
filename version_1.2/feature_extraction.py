@@ -2,23 +2,18 @@
 import string
 from collections import Counter
 from statistics import mean
-from transformers import pipeline
-import matplotlib.pyplot as plt
-import nltk
 import pandas as pd
-import seaborn as sns
 import spacy
 import textstat
 import torch
 from nltk.corpus import stopwords
-from nltk.sentiment import SentimentIntensityAnalyzer
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from scipy.spatial.distance import cosine
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import normalize
-from transformers import RobertaTokenizer, RobertaForMaskedLM
 from textblob import TextBlob
+from transformers import RobertaTokenizer, RobertaForMaskedLM
 
 # nltk.download('punkt')
 # nltk.download('wordnet')
