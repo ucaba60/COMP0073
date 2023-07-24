@@ -1,17 +1,16 @@
 import os
+
 import pandas as pd
-from feature_extraction import remove_prefix, extract_prompts_and_texts
+import spacy
+from nltk.sentiment import SentimentIntensityAnalyzer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from transformers import pipeline
+
 from feature_extraction import load_model, count_pos_tags_and_special_elements, calculate_readability_scores, \
     calculate_average_word_length, calculate_average_sentence_length, calculate_perplexity, calculate_cosine_similarity, \
     calculate_cosine_similarities_for_sentences_in_text, calculate_cosine_similarity_for_prompt_and_text, \
     compute_sentiment_roberta, compute_sentiment_bert, compute_sentiment_nltk, compute_sentiment_textblob
-from sklearn.feature_extraction.text import TfidfVectorizer
-import spacy
-import random
-from sklearn.metrics import mean_squared_error
-from transformers import pipeline, AutoTokenizer, AutoModelWithLMHead
-from nltk.sentiment import SentimentIntensityAnalyzer
-from textblob import TextBlob
+from feature_extraction import remove_prefix, extract_prompts_and_texts
 
 # Constants
 nlp = spacy.load('en_core_web_sm')
