@@ -75,7 +75,7 @@ iface = gr.Interface(
         gr.inputs.Radio(choices=["Agree", "Disagree"], label="Do you agree with the prediction?", optional=True)
     ],
     outputs="text",
-    description="Note: In order for your feedback to be recorded the 'Submit' button needs to be pressed twice. First "
+    description="IMPORTANT: In order for your feedback to be recorded the 'Submit' button needs to be pressed twice. First "
                 "when computing the probabilities and the second time when you input your response as to whether you "
                 "agree with the model's decision.",
     allow_flagging=False
