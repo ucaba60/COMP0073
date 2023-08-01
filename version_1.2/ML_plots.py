@@ -1,15 +1,18 @@
 import re
-
+import tabulate
 import joblib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
 from sklearn.inspection import permutation_importance
-from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, classification_report
+from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, classification_report, auc
 from sklearn.model_selection import learning_curve
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from feature_extraction import compute_difference_tfidf_words
+from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score, matthews_corrcoef
+from tabulate import tabulate
+from ML_models import load_model_and_scaler
 
 
 def plot_text_perplexity_distribution(file_path, save_as_pdf=False):
@@ -713,3 +716,7 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
 # plot_sentiment_frequencies('text_sentiments/gpt-3.5-turbo-sentiment.csv', 'roberta')
 # plot_sentiment_frequencies('text_sentiments/gpt-3.5-turbo-sentiment.csv', 'textblob')
 # plot_sentiment_frequencies('text_sentiments/gpt-3.5-turbo-sentiment.csv', 'nltk')
+
+
+
+
