@@ -396,25 +396,22 @@ def plot_avg_sentence_cosine_similarity_distribution(file_path):
 # plot_avg_sentence_cosine_similarity_distribution("data_matrix_gpt-3.5-turbo.csv")
 
 
-def plot_roc_curve(y_test, y_pred):
-    # Calculate ROC-AUC score
-    roc_auc = roc_auc_score(y_test, y_pred)
-    print("ROC-AUC Score:", roc_auc)
+def plot_roc_curve(y_test, y_pred_prob, model_name):
+    # Compute ROC curve and ROC area for each class
+    fpr, tpr, _ = roc_curve(y_test, y_pred_prob)
+    roc_auc = auc(fpr, tpr)
 
-    # Calculate ROC curve
-    fpr, tpr, thresholds = roc_curve(y_test, y_pred)
-
-    # Plot ROC curve
-    plt.figure(figsize=(10, 10))
-    plt.plot(fpr, tpr, color='darkorange', label=f'ROC curve (AUC Score = {roc_auc:.2f})')
-    plt.plot([0, 1], [0, 1], color='navy', linestyle='--')  # Plotting the random guess line
+    # Plot
+    plt.figure()
+    plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
+    plt.plot([0, 1], [0, 1], 'k--')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('Receiver Operating Characteristic (ROC) Curve')
+    plt.title('Receiver Operating Characteristic for ' + model_name)
     plt.legend(loc="lower right")
-    plt.savefig('ROC_Curve.pdf', bbox_inches='tight')
+    plt.savefig(f'ROC_Curve_{model_name}.pdf', bbox_inches='tight')
     plt.show()
 
 
@@ -456,7 +453,7 @@ def plot_learning_curve(estimator, X_train_scaled, y_train, model_name):
     plt.grid(False)  # Disable grid
     plt.tight_layout()
     plt.gca().set_facecolor('white')  # Set background color to white
-    fig.savefig(f'output_images/{model_name}_Learning_Curve.png', dpi=300, bbox_inches='tight')
+    fig.savefig(f'{model_name}_Learning_Curve.pdf', bbox_inches='tight')
 
     plt.show()
 
