@@ -438,6 +438,9 @@ def plot_learning_curve(estimator, X_train_scaled, y_train, model_name):
     test_color = "#ff7f0e"  # Orange
     std_color = "#DDDDDD"  # Light gray
 
+    # Create plot
+    fig = plt.figure()
+
     # Draw lines
     plt.plot(train_sizes, train_mean, '--', color=train_color, label="Training score")
     plt.plot(train_sizes, test_mean, color=test_color, label="Cross-validation score")
@@ -446,8 +449,6 @@ def plot_learning_curve(estimator, X_train_scaled, y_train, model_name):
     plt.fill_between(train_sizes, train_mean - train_std, train_mean + train_std, color=std_color)
     plt.fill_between(train_sizes, test_mean - test_std, test_mean + test_std, color=std_color)
 
-    # Create plot
-    fig = plt.figure()
     plt.title("Learning Curve")
     plt.xlabel("Training Set Size"), plt.ylabel("Accuracy Score"), plt.legend(loc="best")
     plt.grid(False)  # Disable grid
