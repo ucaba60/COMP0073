@@ -672,6 +672,9 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
     # Set the order of sentiment scores for the x-axis
     sentiment_order = ['Negative', 'Neutral', 'Positive']
 
+    # Set the seaborn style to white for prettier plots
+    sns.set(style="white")
+
     # Plot the grouped bar chart using Matplotlib
     plt.figure(figsize=(12, 6))
 
@@ -679,10 +682,10 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
     width = 0.35
     offset = width / 2
 
-    plt.bar(np.arange(len(sentiment_order)) - offset, frequencies_label0, width, label='Human-Text', alpha=0.8,
-            color='blue')
-    plt.bar(np.arange(len(sentiment_order)) + offset, frequencies_label1, width, label='GPT-Text', alpha=0.8,
-            color='red')
+    plt.bar(np.arange(len(sentiment_order)) - offset, frequencies_label0, width, label='Human', alpha=0.8,
+            color='lightblue')
+    plt.bar(np.arange(len(sentiment_order)) + offset, frequencies_label1, width, label='GPT-J', alpha=0.8,
+            color='salmon')
 
     # Add labels with the number of observations on top of each column
     for i, freq_label0, freq_label1 in zip(range(len(sentiment_order)), frequencies_label0, frequencies_label1):
@@ -691,11 +694,10 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
 
     plt.xlabel('Sentiment Scores')
     plt.ylabel('Frequency')
-    plt.title(f'[GPT2-large] Frequency of Sentiment Scores ({sentiment_method.capitalize()}) by Label')
+    plt.title(f'[GPT-J] Frequency of Sentiment Scores ({sentiment_method.capitalize()}) by Label')
     plt.xticks(np.arange(len(sentiment_order)), sentiment_order)
     plt.legend()
-    plt.gca().set_facecolor('white')  # Set white background
-    plt.grid(False)  # Remove grid lines
+    plt.tight_layout()
 
     # Save the plot as a PDF file
     plt.savefig("sentiment_frequencies.pdf", bbox_inches='tight')
