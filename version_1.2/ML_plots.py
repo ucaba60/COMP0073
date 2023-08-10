@@ -1,13 +1,18 @@
 import re
+import tabulate
+import joblib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
 from sklearn.inspection import permutation_importance
-from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, classification_report
+from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, classification_report, auc
 from sklearn.model_selection import learning_curve
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from feature_extraction import compute_difference_tfidf_words
+from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score, matthews_corrcoef
+from tabulate import tabulate
+from ML_models import load_model_and_scaler
 
 
 def plot_text_perplexity_distribution(file_path, save_as_pdf=False):
@@ -394,22 +399,22 @@ def plot_avg_sentence_cosine_similarity_distribution(file_path):
 # plot_avg_sentence_cosine_similarity_distribution("data_matrix_gpt-3.5-turbo.csv")
 
 
-def plot_roc_curve(y_test, y_pred, model_name):
-    # Calculate ROC-AUC score
-    roc_auc = roc_auc_score(y_test, y_pred)
-    print("ROC-AUC Score:", roc_auc)
+def plot_roc_curve(y_test, y_pred_prob, model_name):
+    # Compute ROC curve and ROC area for each class
+    fpr, tpr, _ = roc_curve(y_test, y_pred_prob)
+    roc_auc = auc(fpr, tpr)
 
-    # Calculate ROC curve
-    fpr, tpr, thresholds = roc_curve(y_test, y_pred)
-
-    # Plot ROC curve
-    fig = plt.figure()
-    plt.plot(fpr, tpr)
-    plt.plot([0, 1], [0, 1], linestyle='--')  # Plotting the random guess line
+    # Plot
+    plt.figure()
+    plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
+    plt.plot([0, 1], [0, 1], 'k--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('Receiver Operating Characteristic (ROC) Curve')
-    fig.savefig(f'output_images/{model_name}_ROC_Curve.png', dpi=300, bbox_inches='tight')
+    plt.title('Receiver Operating Characteristic for ' + model_name)
+    plt.legend(loc="lower right")
+    plt.savefig(f'ROC_Curve_{model_name}.pdf', bbox_inches='tight')
     plt.show()
 
 
@@ -436,6 +441,9 @@ def plot_learning_curve(estimator, X_train_scaled, y_train, model_name):
     test_color = "#ff7f0e"  # Orange
     std_color = "#DDDDDD"  # Light gray
 
+    # Create plot
+    fig = plt.figure()
+
     # Draw lines
     plt.plot(train_sizes, train_mean, '--', color=train_color, label="Training score")
     plt.plot(train_sizes, test_mean, color=test_color, label="Cross-validation score")
@@ -444,14 +452,12 @@ def plot_learning_curve(estimator, X_train_scaled, y_train, model_name):
     plt.fill_between(train_sizes, train_mean - train_std, train_mean + train_std, color=std_color)
     plt.fill_between(train_sizes, test_mean - test_std, test_mean + test_std, color=std_color)
 
-    # Create plot
-    fig = plt.figure()
     plt.title("Learning Curve")
     plt.xlabel("Training Set Size"), plt.ylabel("Accuracy Score"), plt.legend(loc="best")
     plt.grid(False)  # Disable grid
     plt.tight_layout()
     plt.gca().set_facecolor('white')  # Set background color to white
-    fig.savefig(f'output_images/{model_name}_Learning_Curve.png', dpi=300, bbox_inches='tight')
+    fig.savefig(f'{model_name}_Learning_Curve.pdf', bbox_inches='tight')
 
     plt.show()
 
@@ -493,25 +499,50 @@ def print_classification_report(y_test, y_pred):
     print('Classification Report: \n', classification_report(y_test, y_pred))
 
 
-def plot_feature_importance(model, X, model_name):
+def plot_feature_importance_lr(model, model_name):
     # Get the coefficients from the logistic regression model
     coefficients = model.coef_[0]
 
+    # Load the feature names
+    feature_names = joblib.load(f'model_data/{model_name}/feature_names.pkl')
+
     # Create a DataFrame to store the feature names and their corresponding coefficients
-    feature_importance_df = pd.DataFrame({'Feature': X.columns, 'Coefficient': coefficients})
+    feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Coefficient': coefficients})
     feature_importance_df['Absolute Coefficient'] = feature_importance_df['Coefficient'].abs()
 
     # Sort the features by their absolute coefficients in descending order
     feature_importance_df = feature_importance_df.sort_values(by='Absolute Coefficient', ascending=False)
 
     # Plot the feature importances
-    fig = plt.figure()
     plt.figure(figsize=(16, 10))
     sns.barplot(x='Absolute Coefficient', y='Feature', data=feature_importance_df, palette='coolwarm')
     plt.title("Feature Importances (Logistic Regression)")
     plt.xlabel("Absolute Coefficient")
     plt.ylabel("Feature")
-    fig.savefig(f'output_images/{model_name}_Feature_Importance.png', dpi=300, bbox_inches='tight')
+    plt.savefig('Feature_Importance.pdf', bbox_inches='tight')
+    plt.show()
+
+
+def plot_feature_importance_rf(model, model_name):
+    # Get the feature importances from the Random Forest model
+    feature_importances = model.feature_importances_
+
+    # Load the feature names
+    feature_names = joblib.load(f'model_data/{model_name}/feature_names.pkl')
+
+    # Create a DataFrame to store the feature names and their corresponding importances
+    feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': feature_importances})
+
+    # Sort the features by their importances in descending order
+    feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+
+    # Plot the feature importances
+    plt.figure(figsize=(16, 10))
+    sns.barplot(x='Importance', y='Feature', data=feature_importance_df, palette='coolwarm')
+    plt.title("Feature Importances (Random Forest)")
+    plt.xlabel("Importance")
+    plt.ylabel("Feature")
+    plt.savefig('Feature_Importance_RANDOMFOREST.pdf', bbox_inches='tight')
     plt.show()
 
 
@@ -641,6 +672,9 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
     # Set the order of sentiment scores for the x-axis
     sentiment_order = ['Negative', 'Neutral', 'Positive']
 
+    # Set the seaborn style to white for prettier plots
+    sns.set(style="white")
+
     # Plot the grouped bar chart using Matplotlib
     plt.figure(figsize=(12, 6))
 
@@ -648,10 +682,10 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
     width = 0.35
     offset = width / 2
 
-    plt.bar(np.arange(len(sentiment_order)) - offset, frequencies_label0, width, label='Human-Text', alpha=0.8,
-            color='red')
-    plt.bar(np.arange(len(sentiment_order)) + offset, frequencies_label1, width, label='GPT-Text', alpha=0.8,
-            color='blue')
+    plt.bar(np.arange(len(sentiment_order)) - offset, frequencies_label0, width, label='Human', alpha=0.8,
+            color='lightblue')
+    plt.bar(np.arange(len(sentiment_order)) + offset, frequencies_label1, width, label='GPT-J', alpha=0.8,
+            color='salmon')
 
     # Add labels with the number of observations on top of each column
     for i, freq_label0, freq_label1 in zip(range(len(sentiment_order)), frequencies_label0, frequencies_label1):
@@ -660,11 +694,10 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
 
     plt.xlabel('Sentiment Scores')
     plt.ylabel('Frequency')
-    plt.title(f'[GPT-3.5-turbo] Frequency of Sentiment Scores ({sentiment_method.capitalize()}) by Label')
+    plt.title(f'[GPT-J] Frequency of Sentiment Scores ({sentiment_method.capitalize()}) by Label')
     plt.xticks(np.arange(len(sentiment_order)), sentiment_order)
     plt.legend()
-    plt.gca().set_facecolor('white')  # Set white background
-    plt.grid(False)  # Remove grid lines
+    plt.tight_layout()
 
     # Save the plot as a PDF file
     plt.savefig("sentiment_frequencies.pdf", bbox_inches='tight')
@@ -685,3 +718,7 @@ def plot_sentiment_frequencies(data_file, sentiment_method):
 # plot_sentiment_frequencies('text_sentiments/gpt-3.5-turbo-sentiment.csv', 'roberta')
 # plot_sentiment_frequencies('text_sentiments/gpt-3.5-turbo-sentiment.csv', 'textblob')
 # plot_sentiment_frequencies('text_sentiments/gpt-3.5-turbo-sentiment.csv', 'nltk')
+
+
+
+
