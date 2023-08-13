@@ -311,29 +311,6 @@ def extract_prompts_and_texts(data):
 
     return prompts_and_texts
 
-
-def calculate_cosine_similarities_for_dataset(model, tokenizer):
-    """
-    This function calculates cosine similarities for all (prompt, text) pairs in a dataset.
-
-    Args:
-    model: The language model used to generate word embeddings.
-    tokenizer: The tokenizer used to tokenize the text.
-
-    Returns:
-    cosine_similarities (list of floats): The list of cosine similarities.
-    """
-
-    prompts_and_texts = extract_prompts_and_texts(data)
-
-    cosine_similarities = []
-    for prompt, text in prompts_and_texts:
-        cosine_similarity = calculate_cosine_similarity(prompt, text, model, tokenizer)
-        cosine_similarities.append(cosine_similarity)
-
-    return cosine_similarities
-
-
 def calculate_cosine_similarities_for_sentences_in_text(text, model, tokenizer):
     """
     This function calculates cosine similarities for all consecutive pairs of sentences in a single text.
