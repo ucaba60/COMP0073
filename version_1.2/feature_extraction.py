@@ -311,6 +311,7 @@ def extract_prompts_and_texts(data):
 
     return prompts_and_texts
 
+
 def calculate_cosine_similarities_for_sentences_in_text(text, model, tokenizer):
     """
     This function calculates cosine similarities for all consecutive pairs of sentences in a single text.
