@@ -1,7 +1,7 @@
 # GPT-Text Detection via Machine Learning Classifiers
 
 ## Note on WritingPrompts
-To run functions related to WritingPrompts download the dataset from here. Save the data into a directory **data/writingPrompts**.
+To run functions related to WritingPrompts download the dataset from [here](https://www.kaggle.com/datasets/ratthachat/writing-prompts). Save the data into a directory **data/writingPrompts**.
 
 ## File Descriptions
 The below is a high-level description of the functionality contained in each .py file:
