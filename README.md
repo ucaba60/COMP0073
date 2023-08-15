@@ -1,40 +1,49 @@
-# COMP0073
-Summer Project Code
+# GPT-Text Detection via Machine Learning Classifiers
 
-                                                          **  Supplementary Explanation of Code and File Structure**
+## Note on WritingPrompts
+To run functions related to WritingPrompts download the dataset from here. Save the data into a directory **data/writingPrompts**.
 
-The code is separated into .py files depending on the functionality. There are also folders where data is stored in a .csv format. Generally, running interface.py starts the application.
+## File Descriptions
+The below is a high-level description of the functionality contained in each .py file:
 
-Here is a brief summary of what each .py file does and what each folder contains:
+### interface_best.py
+- **Purpose**: Launches the Gradio application for field-testing.
+- **Steps**:
+  1. Loads the pre-trained SVM GPT-3.5-turbo model `.pkl` file from `model_data/gpt-3.5-turbo`.
+  2. Pre-processes the input text and feeds it to the model.
 
-Datasets.py – this is functions related to extracting, processing and combining data from the human datasets (PubMedQA, WritingPrompts, CNN_Dailymail) in the format ‘Question:Answer’.
+### datasets_gathering.py
+- **Purpose**: Functions related to extracting, processing, and combining data from human datasets.
+- **Datasets**: PubMedQA, WritingPrompts, CNN_Dailymail (formatted as `Question: Answer`).
+- **Dependencies**: Requires the existence of the `data` folder (contains WritingPrompts data).
+- **Outputs**:
+  - `prompts.csv` in `extracted_data` folder.
+  - `combined_human_data.csv` in `extracted_data` folder with all human text.
 
-§ This requires the exitance of the data folder, where WritingPrompts data is located.
+### llm_sample.py
+- **Purpose**: Uses 'Questions' as prompts for GPT-3.5-turbo and GPT2.
+- **Outputs**:
+  - `gpt-3.5-turbo_responses.csv` in `extracted_data` (raw responses).
+  - `gpt-3.5-turbo_responses_preprocessed` in `extracted_data` (pre-processed responses).
+  - `gpt-3.5-turbo_and_human_data.csv` in `extracted_data` (pre-processed texts from both human and AI sources for feature extraction).
 
-§ This creates a file prompts.csv in the folder extracted_data.
+### gpt-j.py
+- **Purpose**: Specific code for extracting GPT-J outputs.
 
-§ This creates a file combined_human_data.csv containing all human text in extracted_data.
+### feature_extraction.py
+- **Purpose**: Contains main functions for extracting features (e.g., POS-tags, cosine similarity) from texts.
 
-Llm_sample.py – functions related to using the ‘Questions’ as prompts for various language models (GPT-3.5-trubo).
+### training_matrix.py
+- **Purpose**: Constructs the data matrix after feature extraction.
+- **Output**: `data_matrix.csv` (used for training).
 
-· This creates the file gpt-3.5-turbo_repsonses.csv in extracted_data. This is the raw responses.
+### ML_models.py
+- **Purpose**: Training and fine-tuning of machine learning models.
+- **Output**: Models are saved in the `model_data/[model name]` folder.
 
-· This creates the file gpt-3.5-turbo_responses_preprocessed in extracted_data. These are the responses with some pre-processing.
+### ML_plots.py
+- **Purpose**: Contains code for creating various plots.
+- **Output**: Plot data saved in the `output_images` folder.
 
-· This creates the gpt-3.5-turbo_and_human_data.csv in extracted_data. This contains the pre-processed texts from both human and AI sources. This is the file from which features are extracted.
 
-Feature_extraction.py – these are the main functions that extract the features (POS-tags, cosine similarity etc.) from the texts.
-
-Training_matrix.py – this creates a data_matrix.csv file which is the result of extracting all the features. These files are used for training.
-
-ML_models.py – training and fine-tuning ML models.
-
-· The models are saved in the folder model_data/[model name]
-
-Interface.py – the function that uses Gradio to start the application.
-
-Folders:
-
-Extracted_data: Contains the prompts, the AI-responses, the human text and the combined text.
-
-Model_data: Contains .pkl files for each machine learning model.
+                                          
