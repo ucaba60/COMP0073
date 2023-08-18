@@ -8,7 +8,7 @@ The below is a high-level description of the functionality contained in each .py
 
 
 ### interface.py
-- **Purpose**: Launches the Gradio application for field-testing. THIS IS THE INTERFACE USED IN THE VIDEO REPORT
+- **Purpose**: Launches the Gradio application for field testing. **THIS IS THE INTERFACE USED IN THE VIDEO REPORT.**
 - **Steps**:
   1. Loads the pre-trained LR/SVM/RF/Ensemble GPT-3.5-turbo, GPT-J, GPT2-large model `.pkl` file from `model_data`.
   2. Pre-processes the input text and feeds it to the model.
