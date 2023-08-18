@@ -76,7 +76,7 @@ iface = gr.Interface(
     ],
     outputs="text",
     description="IMPORTANT: In order for your feedback to be recorded the 'Submit' button needs to be pressed twice. "
-                "First"
+                "First, "
                 "when computing the probabilities and the second time when you input your response as to whether you "
                 "agree with the model's decision.",
     allow_flagging=False
