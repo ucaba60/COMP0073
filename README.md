@@ -6,7 +6,14 @@ To run functions related to WritingPrompts download the dataset from [here](http
 ## File Descriptions
 The below is a high-level description of the functionality contained in each .py file:
 
-### interface_best.py
+
+### interface.py
+- **Purpose**: Launches the Gradio application for field testing. **THIS IS THE INTERFACE USED IN THE VIDEO REPORT.**
+- **Steps**:
+  1. Loads the pre-trained LR/SVM/RF/Ensemble GPT-3.5-turbo, GPT-J, GPT2-large model `.pkl` file from `model_data`.
+  2. Pre-processes the input text and feeds it to the model.
+
+### interface_fieldtest.py
 - **Purpose**: Launches the Gradio application for field-testing.
 - **Steps**:
   1. Loads the pre-trained SVM GPT-3.5-turbo model `.pkl` file from `model_data/gpt-3.5-turbo`.
