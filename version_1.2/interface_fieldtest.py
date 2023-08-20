@@ -23,7 +23,7 @@ def preprocess_and_predict(prompt, response):
     # Turn features into a DataFrame (assuming 'features' is a dict)
     X = pd.DataFrame([features], columns=feature_names)
 
-    model_file = "model_data/gpt-3.5-turbo/trained_model_ensemble.pkl"
+    model_file = "model_data/gpt-3.5-turbo/trained_model_svm.pkl"
     scaler_file = "model_data/gpt-3.5-turbo/trained_scaler.pkl"
 
     model, scaler = load_model_and_scaler(model_file, scaler_file)

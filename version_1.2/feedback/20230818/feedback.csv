@@ -1,0 +1,4 @@
+text,prediction,feedback,time
+"{'prompt': 'This is a Title Written by a Human, obviously.', 'response': 'This is some long text, once again written by a human. It is preferable that the text is longer than a single sentence for sentence cosine similarity to be computed. However, this is not an absolute requirement. Do not pay attention to this text, as it is mostly gibberish and only serves to illustrate my work. Thank you for watching this demonstration. Bye!'}","This text is likely human-generated with 79.48% probability.
+
+Training Corpus Used: gpt-j1x",Agree,135439
